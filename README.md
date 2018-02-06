@@ -16,8 +16,8 @@ Professor Richard Jullig
 * Justin Tse
 
 ## Technologies
-JavaScript
-D3
-HTML
-CSS
+* JavaScript 
+* D3
+* HTML
+* CSS
 
