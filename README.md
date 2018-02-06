@@ -10,10 +10,10 @@ tbd
 Professor Richard Jullig
 
 ## Team Members
-Diego Garcia
-Jacob Katzeff
-Brian Liu
-Justin Tse
+* Diego Garcia
+* Jacob Katzeff
+* Brian Liu
+* Justin Tse
 
 ## Technologies
 JavaScript
