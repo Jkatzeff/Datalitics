@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>D3 Map</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+</body>
+<script>
+    var width = 600,
+        height = 1160,
+        centered;
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+    var g = svg.append("g");
+    var mapLayer = g.append("g")
+                    .classed("map-layer", true);
+    d3.json("california-counties.json", function(error, ca){
+        if (error) return console.error(error);
+        console.log(ca.features);
+
+        var center = d3.geoCentroid(ca);
+        console.log(center);
+        
+        var projection = d3.geoMercator()
+                        .scale(1500)
+                        .center(center)
+                        .translate([width/2, height/2]);
+        var path = d3.geoPath()
+                    .projection(projection);
+        
+        mapLayer.selectAll("path")
+                .data(ca.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .style("fill", "blue");
+        
+    });
+
+    
+</script>
+</html>
