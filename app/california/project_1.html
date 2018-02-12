@@ -28,12 +28,15 @@
 <body>
 </body>
 <script>
+    var countyInfo = {};
+    
     var div = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip");
     
     var width = 1500,
         height = 2000;
+    
     var svg = d3.select("body")
                 .append("svg")
                 .attr("width", width)
@@ -55,7 +58,7 @@
         var center = d3.geoCentroid(ca);
 
         var projection = d3.geoMercator()
-                        .scale(6500)
+                        .scale(2000)
                         .center(center)
                         .translate([width/2, height/2]);
         
@@ -77,9 +80,18 @@
         if (error) return console.error(error);
         data.slice(203, 261).forEach(function(d, i){
 //            console.log(i);
-            console.log(d['COUNTY']);
+            var county = d["COUNTY"]
+            countyInfo[county] = {};
+            countyInfo[county]["whites1970"] = d['B08AA1970'];
+            countyInfo[county]["whites1980"] = d['B08AA1980'];
+            countyInfo[county]["whites1990"] = d['B08AA1990'];
+            countyInfo[county]["whites2000"] = d['B08AA2000'];
+            countyInfo[county]["whites2010"] = d['B08AA2010'];
         })
-    })
+//        console.log(countyInfo);
+    });
+    
+    console.log(countyInfo);
     
     function mouseClick(d){
         div.html(d.properties['name'] + "<br />")
