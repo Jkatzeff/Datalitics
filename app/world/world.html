@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>D3 Map</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<style>
+    .background{
+        fill: #eee;
+    }
+    .map-layer {
+/*        fill: black;*/
+        stroke: black;
+    }
+    div.tooltip {	
+        position: absolute;			
+        text-align: center;			
+        width: 100px;					
+        height: 50px;					
+        padding: 1px;				
+        font: 20px sans-serif;		
+        background: lightsteelblue;			
+        border-radius: 8px;			
+        pointer-events: none;
+        opacity: 0;
+    }
+</style>
+<body>
+</body>
+<script>
+    var countryInfo = {};
+    
+    var div = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip");
+    
+    var width = 1200,
+        height = 800;
+    
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+    svg.append("rect")
+        .attr("class", "background")
+        .attr("width", width)
+        .attr("height", height);
+//    
+    var g = svg.append("g");
+    
+    var mapLayer = g.append("g")
+                    .classed("map-layer", true);
+    
+    
+    d3.json("countries.geo.json", function(error, world){
+        if (error) return console.error(error);
+        
+        var center = d3.geoCentroid(world);
+
+        var projection = d3.geoMercator()
+                        .scale(200)
+                        .center(center)
+                        .translate([width/2, height/2]);
+        
+        var path = d3.geoPath()
+                    .projection(projection);
+        
+        mapLayer.selectAll("path")
+                .data(world.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .style("fill", "grey");
+//                .on("click", mouseClick);
+        
+    });
+    
+    d3.csv("population.csv", function(error, data){
+        if (error) return console.error(error);
+        data.forEach(function(d, i){
+//            console.log(i);
+            var country = d["Country Code"]
+            countryInfo[country] = {};
+            countryInfo[country] = {};
+            countryInfo[country]["population"]=d["Value"]
+        });
+        
+//        mapLayer.selectAll("path")
+//                .on("click", function(d){
+//                    console.log(d);
+        mapLayer.selectAll("path")
+                .data(countryInfo, function(d)
+                      {
+//                        console.log(d.id)
+//                        console.log(countryInfo["ARB"]["population"])
+//                          console.log(countryInfo[d.id]["population"])
+                        if(countryInfo[d.id])
+                        return countryInfo[d.id]["population"];
+                    }).enter().style('fill',function(d){return '#D5708B';})
+        
+        
+    });
+    
+    console.log(mapLayer);
+    
+    function mouseClick(d){
+        div.html(d.properties['Country Name'] + "<br />")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100); 
+    }
+    
+</script>
+</html>
