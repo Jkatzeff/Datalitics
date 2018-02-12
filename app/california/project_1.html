@@ -71,8 +71,8 @@
                 .append("path")
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
-                .style("fill", "grey")
-                .on("click", mouseClick);
+                .style("fill", "grey");
+//                .on("click", mouseClick);
         
     });
     
@@ -82,16 +82,74 @@
 //            console.log(i);
             var county = d["COUNTY"]
             countyInfo[county] = {};
-            countyInfo[county]["whites1970"] = d['B08AA1970'];
-            countyInfo[county]["whites1980"] = d['B08AA1980'];
-            countyInfo[county]["whites1990"] = d['B08AA1990'];
-            countyInfo[county]["whites2000"] = d['B08AA2000'];
-            countyInfo[county]["whites2010"] = d['B08AA2010'];
+            countyInfo[county]["1970"] = {}
+            countyInfo[county]["1970"]["whites"] = d['B08AA1970'];
+            countyInfo[county]["1970"]["blacks"] = d['B08AB1970'];
+            countyInfo[county]["1970"]["american-indian-and-alaska-natives-tribes"] = d['B08AC1970'];
+            countyInfo[county]["1970"]["asian-japanese"] = d['B08AD1970'];
+            countyInfo[county]["1970"]["asian-chinese"] = d['B08AE1970'];
+            countyInfo[county]["1970"]["asian-filipino"] = d['B08AF1970'];
+            countyInfo[county]["1970"]["asian-korean"] = d['B08AG1970'];
+            countyInfo[county]["1970"]["native-hawaiian-and-pacific-islanders"] = d['B08AH1970'];
+            countyInfo[county]["1970"]["other-single-race"] = d['B08AI1970'];
+            countyInfo[county]["1970"]["two-or-more-races"] = d['B08AJ2000'];
+            
+            countyInfo[county]["1980"] = {}
+            countyInfo[county]["1980"]["whites"] = d['B08AA1980'];
+            countyInfo[county]["1980"]["blacks"] = d['B08AB1980'];
+            countyInfo[county]["1980"]["american-indian-and-alaska-natives-tribes"] = d['B08AC1980'];
+            countyInfo[county]["1980"]["asian-japanese"] = d['B08AD1980'];
+            countyInfo[county]["1980"]["asian-chinese"] = d['B08AE1980'];
+            countyInfo[county]["1980"]["asian-filipino"] = d['B08AF1980'];
+            countyInfo[county]["1980"]["asian-korean"] = d['B08AG1980'];
+            countyInfo[county]["1980"]["native-hawaiian-and-pacific-islanders"] = d['B08AH1980'];
+            countyInfo[county]["1980"]["other-single-race"] = d['B08AI1980'];
+            countyInfo[county]["1980"]["two-or-more-races"] = d['B08AJ2000'];
+            
+            countyInfo[county]["1990"] = {}
+            countyInfo[county]["1990"]["whites"] = d['B08AA1990'];
+            countyInfo[county]["1990"]["blacks"] = d['B08AB1990'];
+            countyInfo[county]["1990"]["american-indian-and-alaska-natives-tribes"] = d['B08AC1990'];
+            countyInfo[county]["1990"]["asian-japanese"] = d['B08AD1990'];
+            countyInfo[county]["1990"]["asian-chinese"] = d['B08AE1990'];
+            countyInfo[county]["1990"]["asian-filipino"] = d['B08AF1990'];
+            countyInfo[county]["1990"]["asian-korean"] = d['B08AG1990'];
+            countyInfo[county]["1990"]["native-hawaiian-and-pacific-islanders"] = d['B08AH1990'];
+            countyInfo[county]["1990"]["other-single-race"] = d['B08AI1990'];
+            countyInfo[county]["1990"]["two-or-more-races"] = d['B08AJ2000'];
+            
+            countyInfo[county]["2000"] = {}
+            countyInfo[county]["2000"]["whites"] = d['B08AA2000'];
+            countyInfo[county]["2000"]["blacks"] = d['B08AB2000'];
+            countyInfo[county]["2000"]["american-indian-and-alaska-natives-tribes"] = d['B08AC2000'];
+            countyInfo[county]["2000"]["asian-japanese"] = d['B08AD2000'];
+            countyInfo[county]["2000"]["asian-chinese"] = d['B08AE2000'];
+            countyInfo[county]["2000"]["asian-filipino"] = d['B08AF2000'];
+            countyInfo[county]["2000"]["asian-korean"] = d['B08AG2000'];
+            countyInfo[county]["2000"]["native-hawaiian-and-pacific-islanders"] = d['B08AH2000'];
+            countyInfo[county]["2000"]["other-single-race"] = d['B08AI2000'];
+            countyInfo[county]["2000"]["two-or-more-races"] = d['B08AJ2000'];
+               
+            countyInfo[county]["2010"] = {}
+            countyInfo[county]["2010"]["whites"] = d['B08AA2010'];
+            countyInfo[county]["2010"]["blacks"] = d['B08AB2010'];
+            countyInfo[county]["2010"]["american-indian-and-alaska-natives-tribes"] = d['B08AC2010'];
+            countyInfo[county]["2010"]["asian-japanese"] = d['B08AD2010'];
+            countyInfo[county]["2010"]["asian-chinese"] = d['B08AE2010'];
+            countyInfo[county]["2010"]["asian-filipino"] = d['B08AF2010'];
+            countyInfo[county]["2010"]["asian-korean"] = d['B08AG2010'];
+            countyInfo[county]["2010"]["native-hawaiian-and-pacific-islanders"] = d['B08AH2010'];
+            countyInfo[county]["2010"]["other-single-race"] = d['B08AI2010'];
+            countyInfo[county]["2010"]["two-or-more-races"] = d['B08AJ2010'];
+        });
+        
+        mapLayer.selectAll("path")
+                .on("click", function(d){
+                    console.log(d);
         })
-//        console.log(countyInfo);
     });
     
-    console.log(countyInfo);
+//    console.log(countyInfo);
     
     function mouseClick(d){
         div.html(d.properties['name'] + "<br />")
