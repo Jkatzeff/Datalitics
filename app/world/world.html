@@ -6,13 +6,16 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <style>
-    .background{
+	div {
+		background-color: #87CEFA;
+	}
+   <!--  .background{
         fill: #eee;
     }
     .map-layer {
 /*        fill: black;*/
         stroke: black;
-    }
+    } -->
     div.tooltip {	
         position: absolute;			
         text-align: center;			
@@ -27,35 +30,26 @@
     }
 </style>
 <body>
+	<!-- This is the map -->
+	<div id="mapContainer" ></div>
+	
 </body>
+
+<!-- imports jQuery -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <script>
-    var countryInfo = {};
-    
-    var div = d3.select("body")
-                .append("div")
-                .attr("class", "tooltip");
-    
-    var width = 1600,
-        height = 1600;
-    
-    var svg = d3.select("body")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height);
-    svg.append("rect")
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height);
-//    
-    var g = svg.append("g");
-    
-    var mapLayer = g.append("g")
-                    .classed("map-layer", true);
-    var color = d3.scaleLinear()
-      .domain([0, 255])
-      .range([d3.rgb(50,50,50), d3.rgb(255,0,0)]);
-    
-    d3.csv("population.csv", function(error, data){
+//	draws the map and includes all its functions
+    function draw(ht){
+		var countryInfo = {};
+		var div = d3.select("body")
+					.append("div")
+					.attr("class", "tooltip");
+		var color = d3.scaleLinear()
+						.domain([0, 255])
+						.range([d3.rgb(50,50,50), d3.rgb(255,0,0)]);
+						
+		d3.csv("population.csv", function(error, data){
         if (error) return console.error(error);
 //        max_pop = d3.max(data["Value"]);
           var features = data;
@@ -86,30 +80,37 @@
 //                    }).enter().style('fill',function(d){return '#D5708B';})
         
         
-    });
+		});
 //    var max_pop = d3.max()
 //    console.log(max_pop);
 
 //    console.log(max_pop);
-    d3.json("countries.geo.json", function(error, world){
-        if (error) return console.error(error);
-        
-        var center = d3.geoCentroid(world);
+				
+		$("#mapContainer").html("<svg id='map' xmlns='https://www.w3.org/TR/2011/REC-SVG11-20110816/' width='100%' height='" + ht + "'></svg>");
+		$("svg").append("rect")
+			.attr("class", "background")
+			.attr("width", width)
+			.attr("height", height)
+			.attr("fill", "grey");
+		map = d3.select("svg");
+		var width = $("svg").parent()
+							.width();
+		var height = ht;
 
-        var projection = d3.geoMercator()
-                        .scale(200)
-                        .center(center)
-                        .translate([width/2, height/2]);
-        
-        var path = d3.geoPath()
-                    .projection(projection);
-        
-        mapLayer.selectAll("path")
-                .data(world.features)
-                .enter()
-                .append("path")
-                .attr("d", path)
-                .attr('vector-effect', 'non-scaling-stroke')
+		var projection = d3.geoMercator()
+						.scale((height/6.5))
+						.translate([width/2, height/2]);
+		var path = d3.geoPath()
+						.projection(projection);
+		d3.json('countries.geo.json', function(world){
+			map.selectAll('path')
+				.data(world.features)
+				.enter()
+				.append('path')
+				.attr('d', path)
+//				.attr("width", width)
+//				.attr("height", width/2);
+				.attr('vector-effect', 'non-scaling-stroke')
                 .style("fill", function(d){
                     console.log(d.id);
                     if(countryInfo[d.id]){
@@ -119,21 +120,35 @@
                     return color(countryInfo[d.id]["population"]);
                     }
                     else{return color(0);}
-        });
+				});
 //                .on("click", mouseClick);
-        
-    });
+		});
+		
+		console.log(map);
     
+		function mouseClick(d){
+			div.html(d.properties['Country Name'] + "<br />")
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY) + "px")
+                .style("opacity", 100); 
+		}
+	}
+	
+	draw($("#mapContainer").width()/2);
+//	for resize
+	$(window).resize(function() {
+		if(this.resizeTo){
+			clearTimeout(this.resizeTo)
+		};
+		this.resizeTo = setTimeout(function(){
+							$(this).trigger('resizeEnd');
+						}, 500);
+	});
 
-    
-    console.log(mapLayer);
-    
-    function mouseClick(d){
-        div.html(d.properties['Country Name'] + "<br />")
-                        .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY) + "px")
-                        .style("opacity", 100); 
-    }
-    
+	$(window).bind('resizeEnd', function(){
+		var height = $("#mapContainer").width()/2;
+		$("#mapContainer svg").css("height", height);
+		draw(height);
+	});
 </script>
 </html>
