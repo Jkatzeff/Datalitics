@@ -145,8 +145,15 @@
         });
         
         mapLayer.selectAll("path")
+        
+        //used to log out county properites
+        mapLayer.selectAll("path")
                 .on("click", function(d){
                     console.log(d);
+                    //window name pop up
+                    window.alert(
+                    d.properties
+                    .name);
         })
     });
     
