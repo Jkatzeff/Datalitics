@@ -146,25 +146,28 @@
         
         mapLayer.selectAll("path")
         
-        //used to log out county properites
+        //used to popup county names
         mapLayer.selectAll("path")
                 .on("click", function(d){
                     console.log(d);
-                    //window name pop up
-                    window.alert(
-                    d.properties
-                    .name);
+                    div.html(
+                        d.properties
+                        .name + "<br />")
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY) + "px")
+                    .style("opacity", 100)
         })
     });
     
 //    console.log(countyInfo);
     
-    function mouseClick(d){
-        div.html(d.properties['name'] + "<br />")
-                        .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY) + "px")
-                        .style("opacity", 100); 
-    }
+//    function mouseClick(d){
+//        div.html(d.properties['name'] + "<br />")
+//                        .style("left", (d3.event.pageX) + "px")
+//                        .style("top", (d3.event.pageY) + "px")
+//                        .style("opacity", 100); 
+//    }
+    
     
 </script>
 </html>
