@@ -35,8 +35,8 @@
                 .append("div")
                 .attr("class", "tooltip");
     
-    var width = 1200,
-        height = 800;
+    var width = 1600,
+        height = 1600;
     
     var svg = d3.select("body")
                 .append("svg")
@@ -52,14 +52,15 @@
     var mapLayer = g.append("g")
                     .classed("map-layer", true);
     var color = d3.scaleLinear()
-      .domain([0, 100])
-      .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
+      .domain([0, 255])
+      .range([d3.rgb(50,50,50), d3.rgb(255,0,0)]);
     
     d3.csv("population.csv", function(error, data){
         if (error) return console.error(error);
 //        max_pop = d3.max(data["Value"]);
           var features = data;
         var max_pop = d3.max(features, function(d){return d["Value"];})
+        var min_pop = d3.min(features, function(d){return d["Value"];})
 //        console.log(d3.max(data["Value"]));
         data.forEach(function(d, i){
 //            console.log(i);
@@ -110,11 +111,14 @@
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
                 .style("fill", function(d){
-//                    console.log(d.id);
+                    console.log(d.id);
                     if(countryInfo[d.id]){
+                    console.log(countryInfo[d.id]["population"])}
+                    if(countryInfo[d.id]){
+//                        console.log(countryInfo[d.id]["population"]);
                     return color(countryInfo[d.id]["population"]);
                     }
-                    else{return d3.rgb(0,0,0);}
+                    else{return color(0);}
         });
 //                .on("click", mouseClick);
         
