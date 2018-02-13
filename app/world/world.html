@@ -6,16 +6,37 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <style>
-	div {
+	/*div {
+		background-color: #87CEFA;
+	}*/
+	body {
+		margin: 0;
 		background-color: #87CEFA;
 	}
-   <!--  .background{
-        fill: #eee;
-    }
-    .map-layer {
-/*        fill: black;*/
-        stroke: black;
-    } -->
+	#mapContainer {
+		width: 100vw;
+		height: 100vh;
+	}
+	svg rect {
+		fill: #2A2C39;   /* map background colour */
+	}
+	.country{
+		fill: #d0d0d0;   /* country colour */
+		stroke: #2A2C39; /* country border colour */
+		stroke-width: 1; /* country border width */
+	}
+	.country-on{
+		fill: #4B5358;   /* highlight colour for selected country */
+	}
+	.countryLabel{
+		display: none;   /* hide all country labels by default */
+	}
+	.countryName{
+		fill: #FFFAFF;   /* country label text colour */
+	}
+	.countryLabelBg{
+		fill: #30BCED;   /* country label background colour */
+	}
     div.tooltip {	
         position: absolute;			
         text-align: center;			
@@ -87,12 +108,12 @@
 //    console.log(max_pop);
 				
 		$("#mapContainer").html("<svg id='map' xmlns='https://www.w3.org/TR/2011/REC-SVG11-20110816/' width='100%' height='" + ht + "'></svg>");
-		$("svg").append("rect")
-			.attr("class", "background")
-			.attr("width", width)
-			.attr("height", height)
-			.attr("fill", "grey");
-		map = d3.select("svg");
+		var map = d3.select("svg");
+//			this is the pan and zoom function (to improve, check out https://bl.ocks.org/rutgerhofste/5bd5b06f7817f0ff3ba1daa64dee629d)
+			map.call(d3.zoom().on("zoom", function () {
+				map.attr("transform", d3.event.transform)
+			}))
+			.append("g");
 		var width = $("svg").parent()
 							.width();
 		var height = ht;
@@ -100,6 +121,9 @@
 		var projection = d3.geoMercator()
 						.scale((height/6.5))
 						.translate([width/2, height/2]);
+						
+		
+
 		var path = d3.geoPath()
 						.projection(projection);
 		d3.json('countries.geo.json', function(world){
