@@ -82,6 +82,10 @@
         data.slice(203, 261).forEach(function(d, i){
 //            console.log(i);
             var county = d["COUNTY"]
+            //console.log(county);
+            //match to json county
+            
+            
             countyInfo[county] = {};
             countyInfo[county]["1970"] = {}
             countyInfo[county]["1970"]["whites"] = d['B08AA1970'];
