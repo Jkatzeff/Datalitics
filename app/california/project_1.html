@@ -190,9 +190,14 @@
                 .style("fill", "grey")
                 .on("click", mouseClick);
         
+        //demographic cirle representations popup and pull together
+        function gravityCircles(d){
+            console.log("gravity circles called");
+        }
+        
         //this function pops up the demographics upon clicking a county
         function mouseClick(d){
-            div.html(d.properties['name'] + "<br />" + d.properties["1970"]["whites"])
+            div.html(d.properties['name'] + "<br />" + d.properties["2010"]["whites"])
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY) + "px")
                             .style("opacity", 100);
@@ -204,7 +209,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["whites"] / 1000) + "px");
+                                    d.properties["2010"]["whites"] / 1000) + "px");
             //black bar popup
             bbar.html("B")
                             .style("left", (d3.event.pageX) + 30 + "px")
@@ -213,7 +218,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["blacks"] / 1000) + "px");
+                                    d.properties["2010"]["blacks"] / 1000) + "px");
             //american native
             natbar.html("NAT")
                             .style("left", (d3.event.pageX) + 60 + "px")
@@ -222,7 +227,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["american-indian-and-alaska-natives-tribes"] / 1000) + "px");
+                                    d.properties["2010"]["american-indian-and-alaska-natives-tribes"] / 1000) + "px");
             //japanese
             jpbar.html("JP")
                             .style("left", (d3.event.pageX) + 90 + "px")
@@ -231,7 +236,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-japanese"] / 1000) + "px");
+                                    d.properties["2010"]["asian-japanese"] / 1000) + "px");
             //chinese
             chbar.html("CH")
                             .style("left", (d3.event.pageX) + 120 + "px")
@@ -240,7 +245,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-chinese"] / 1000) + "px");
+                                    d.properties["2010"]["asian-chinese"] / 1000) + "px");
             //filipino
             fpbar.html("FIL")
                             .style("left", (d3.event.pageX) + 150 + "px")
@@ -249,7 +254,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-filipino"] / 1000) + "px");
+                                    d.properties["2010"]["asian-filipino"] / 1000) + "px");
             //korean
             korbar.html("KOR")
                             .style("left", (d3.event.pageX) + 180 + "px")
@@ -258,7 +263,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-korean"] / 1000) + "px");
+                                    d.properties["2010"]["asian-korean"] / 1000) + "px");
             
             //pacific islanders
             pacbar.html("PAC")
@@ -268,7 +273,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["native-hawaiian-and-pacific-islanders"] / 1000) + "px");
+                                    d.properties["2010"]["native-hawaiian-and-pacific-islanders"] / 1000) + "px");
             //other
             othbar.html("OTH")
                             .style("left", (d3.event.pageX) + 240 + "px")
@@ -277,7 +282,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["other-single-race"] / 1000) + "px");
+                                    d.properties["2010"]["other-single-race"] / 1000) + "px");
             
             //two or more
             twobar.html("TWO")
@@ -287,7 +292,7 @@
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["two-or-more-races"] /1000) + "px");
+                                    d.properties["2010"]["two-or-more-races"] /1000) + "px");
         }
     }
       
