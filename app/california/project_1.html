@@ -26,10 +26,19 @@
         pointer-events: none;
         opacity: 0;
     }
+    .bar{
+        width: 20px;
+    }
 </style>
 <body>
 </body>
 <script>
+    //base variable values for the represnentation bars
+    var bar = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .attr("fill","brown");
+                
     
     var div = d3.select("body")
                 .append("div")
@@ -46,7 +55,8 @@
         .attr("class", "background")
         .attr("width", width)
         .attr("height", height);
-//    
+    
+    
     var g = svg.append("g");
     
     var mapLayer = g.append("g")
@@ -145,11 +155,22 @@
                 .style("fill", "grey")
                 .on("click", mouseClick);
         
+        //this function pops up the demographics upon clicking a county
         function mouseClick(d){
             div.html(d.properties['name'] + "<br />" + d.properties["1970"]["whites"])
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY) + "px")
-                            .style("opacity", 100); 
+                            .style("opacity", 100);
+            //bar popup
+            bar.html(d.properties["1970"]["whites"])
+                            .style("right", (d3.event.pageY) + "px")
+                            .style("bottom",(d3,event.pageY) + "px")
+                            .style("opactity", 100)
+                            .attr("width", 20 +"px")
+            
+                            .attr("height",
+                                  Math.floor(
+                                    d.properties["1970"]["whites"] / 1000) + "px");
         }
     }
       
