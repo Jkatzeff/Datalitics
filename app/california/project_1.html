@@ -28,8 +28,7 @@
     }
     div.bar{
         position: absolute;
-/*        width: 20px;*/
-/*        height: 10px;*/
+        font: 10px sans-serif;
         padding: 1px;
         background: brown;
         border-radius: 8px;
@@ -41,7 +40,37 @@
 </body>
 <script>
     //base variable values for the represnentation bars
-    var bar = d3.select("body")
+    var wbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var bbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var abar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var natbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var chbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var jpbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var fpbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var korbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var pacbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var othbar = d3.select("body")
+                .append("div")
+                .attr("class", "bar");
+    var twobar = d3.select("body")
                 .append("div")
                 .attr("class", "bar");
                 
@@ -167,15 +196,98 @@
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY) + "px")
                     ;//        .style("opacity", 100);
-            //bar popup
-            bar.html(d.properties['1970']['whites'])
-                            .style("left", (d3.event.pageY) + "px")
-                            .style("top",(d3.event.pageY) + "px")
-                            .style("opacity", 100)
+            //white bar popup
+            wbar.html("W1970")
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["whites"] / 1000) + "px");
+                                    d.properties["1970"]["whites"] / 5000) + "px");
+            //black bar popup
+            bbar.html("B1970")
+                            .style("left", (d3.event.pageX) + 30 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["blacks"] / 5000) + "px");
+            //american native
+            natbar.html("NAT1970")
+                            .style("left", (d3.event.pageX) + 60 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["american-indian-and-alaska-natives-tribes"] / 5000) + "px");
+            //japanese
+            jpbar.html("JP1970")
+                            .style("left", (d3.event.pageX) + 90 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["asian-japanese"] / 5000) + "px");
+            //chinese
+            chbar.html("CH1970")
+                            .style("left", (d3.event.pageX) + 120 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["asian-chinese"] / 5000) + "px");
+            //filipino
+            fpbar.html("FIL1970")
+                            .style("left", (d3.event.pageX) + 150 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["asian-filipino"] / 5000) + "px");
+            //korean
+            korbar.html("KOR1970")
+                            .style("left", (d3.event.pageX) + 180 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["asian-korean"] / 5000) + "px");
+            
+            //pacific islanders
+            pacbar.html("PAC1970")
+                            .style("left", (d3.event.pageX) + 210 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["native-hawaiian-and-pacific-islanders"] / 5000) + "px");
+            //other
+            othbar.html("OTH1970")
+                            .style("left", (d3.event.pageX) + 240 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["other-single-race"] / 5000) + "px");
+            
+            //two or more
+            twobar.html("TWO1970")
+                            .style("left", (d3.event.pageX) + 270 + "px")
+                            .style("bottom", "-100%")
+                            .style("opacity", 50)
+                            .style("width", 20 +"px")
+                            .style("height",
+                                  Math.floor(
+                                    d.properties["1970"]["two-or-more-races"] / 5000) + "px");
         }
     }
       
