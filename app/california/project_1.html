@@ -30,8 +30,8 @@
         position: absolute;
         font: 10px sans-serif;
         padding: 1px;
-        background: brown;
-        border-radius: 8px;
+        background: pink;
+        border-radius: 3px;
         pointer-events: none;
         opacity: 0;
     }
@@ -197,97 +197,97 @@
                             .style("top", (d3.event.pageY) + "px")
                     ;//        .style("opacity", 100);
             //white bar popup
-            wbar.html("W1970")
+            wbar.html("W")
                             .style("left", (d3.event.pageX) + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["whites"] / 5000) + "px");
+                                    d.properties["1970"]["whites"] / 1000) + "px");
             //black bar popup
-            bbar.html("B1970")
+            bbar.html("B")
                             .style("left", (d3.event.pageX) + 30 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["blacks"] / 5000) + "px");
+                                    d.properties["1970"]["blacks"] / 1000) + "px");
             //american native
-            natbar.html("NAT1970")
+            natbar.html("NAT")
                             .style("left", (d3.event.pageX) + 60 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["american-indian-and-alaska-natives-tribes"] / 5000) + "px");
+                                    d.properties["1970"]["american-indian-and-alaska-natives-tribes"] / 1000) + "px");
             //japanese
-            jpbar.html("JP1970")
+            jpbar.html("JP")
                             .style("left", (d3.event.pageX) + 90 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-japanese"] / 5000) + "px");
+                                    d.properties["1970"]["asian-japanese"] / 1000) + "px");
             //chinese
-            chbar.html("CH1970")
+            chbar.html("CH")
                             .style("left", (d3.event.pageX) + 120 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-chinese"] / 5000) + "px");
+                                    d.properties["1970"]["asian-chinese"] / 1000) + "px");
             //filipino
-            fpbar.html("FIL1970")
+            fpbar.html("FIL")
                             .style("left", (d3.event.pageX) + 150 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-filipino"] / 5000) + "px");
+                                    d.properties["1970"]["asian-filipino"] / 1000) + "px");
             //korean
-            korbar.html("KOR1970")
+            korbar.html("KOR")
                             .style("left", (d3.event.pageX) + 180 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["asian-korean"] / 5000) + "px");
+                                    d.properties["1970"]["asian-korean"] / 1000) + "px");
             
             //pacific islanders
-            pacbar.html("PAC1970")
+            pacbar.html("PAC")
                             .style("left", (d3.event.pageX) + 210 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["native-hawaiian-and-pacific-islanders"] / 5000) + "px");
+                                    d.properties["1970"]["native-hawaiian-and-pacific-islanders"] / 1000) + "px");
             //other
-            othbar.html("OTH1970")
+            othbar.html("OTH")
                             .style("left", (d3.event.pageX) + 240 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["other-single-race"] / 5000) + "px");
+                                    d.properties["1970"]["other-single-race"] / 1000) + "px");
             
             //two or more
-            twobar.html("TWO1970")
+            twobar.html("TWO")
                             .style("left", (d3.event.pageX) + 270 + "px")
                             .style("bottom", "-100%")
                             .style("opacity", 50)
                             .style("width", 20 +"px")
                             .style("height",
                                   Math.floor(
-                                    d.properties["1970"]["two-or-more-races"] / 5000) + "px");
+                                    d.properties["1970"]["two-or-more-races"] /1000) + "px");
         }
     }
       
