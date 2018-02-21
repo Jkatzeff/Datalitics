@@ -1,36 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>D3 Map</title>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-</head>
-<style>
-    .background{
-        fill: #eee;
-    }
-    .map-layer {
-/*        fill: black;*/
-        stroke: black;
-    }
-    div.tooltip {	
-        position: absolute;			
-        text-align: center;			
-        width: 100px;					
-        height: 50px;					
-        padding: 1px;				
-        font: 20px sans-serif;		
-        background: lightsteelblue;			
-        border-radius: 8px;			
-        pointer-events: none;
-        opacity: 0;
-    }
-</style>
-<body>
-</body>
 <script>
-    var countryInfo = {};
-    var populations = [];
+    var dataInfo = {}
     
     var div = d3.select("body")
                 .append("div")
@@ -52,42 +21,26 @@
     
     var mapLayer = g.append("g")
                     .classed("map-layer", true);
-    var color = d3.scaleLog()
+    var color = d3.scaleLinear()
       .domain([0, 255])
-      .range([d3.rgb(0,255,255), d3.rgb(255,0,0)]);
+      .range([d3.rgb(50,50,50), d3.rgb(255,0,0)]);
     
-    d3.csv("population_parsed.csv", function(error, data){
+    d3.csv("data.csv", function(error, data){
         if (error) return console.error(error);
-        console.log(data)
-//        max_pop = d3.max(data["Value"]);
-          var features = data;
-          var max_pop = d3.max(data, function(d){return +d["Value"]})
-          var min_pop = d3.min(data, function(d){return +d["Value"]})
-
-        // var max_pop = d3.max(features, function(d){return d["Value"];})
-        // var min_pop = d3.min(features, function(d){return d["Value"];})
-//        console.log(d3.max(data["Value"]));
-        console.log(max_pop)
-        // console.log(d3.max(populations,function(d){return d.value;}))
-
+        var features = data;
+        var max_data = d3.max(features, function(d){return d["Value"];})
+        var min_data = d3.min(features, function(d){return d["Value"];})
         data.forEach(function(d, i){
+//            console.log(i);
             var country = d["Country Code"]
             countryInfo[country] = {};
+            countryInfo[country] = {};
             countryInfo[country]["population"]=d["Value"];
-            // populations.push(d["Value"]);
-            populations.push({key: country, value: d["Value"]})
         })
-        color.domain([min_pop,max_pop]);
+        color.domain([0,max_pop]);
 
-
+        // console.log(max_pop);
     });
-    // var max_pop = d3.max(populations,function(d){return d.value})
-
-    console.log(populations)
-    // var max_p = d3.max(populations,function(d){return d.value})
-    // console.log(max_p);
-    /* WHY DOESN'T THIS WORK */
-
     d3.json("countries.geo.json", function(error, world){
         if (error) return console.error(error);
         
@@ -108,9 +61,9 @@
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
                 .style("fill", function(d){
-                    // console.log(d.id);
-                    // if(countryInfo[d.id]){
-                    // console.log(countryInfo[d.id]["population"])}
+                    console.log(d.id);
+                    if(countryInfo[d.id]){
+                    console.log(countryInfo[d.id]["population"])}
                     if(countryInfo[d.id]){
 //                        console.log(countryInfo[d.id]["population"]);
                     return color(countryInfo[d.id]["population"]);
@@ -121,6 +74,9 @@
         
     });
 
+    
+    console.log(mapLayer);
+    
     function mouseClick(d){
         div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
                         .style("left", (d3.event.pageX) + "px")
@@ -129,4 +85,3 @@
     }
     
 </script>
-</html>
