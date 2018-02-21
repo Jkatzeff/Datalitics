@@ -70,27 +70,9 @@
             countryInfo[country]["population"]=d["Value"];
         })
         color.domain([0,max_pop]);
-//      var color_scale = d3.scaleLinear().domain([0, max_pop]).range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
-        console.log(max_pop);
-//        mapLayer.selectAll("path")
-//                .on("click", function(d){
-//                    console.log(d);
-//        mapLayer.selectAll("path")
-//                .data(countryInfo, function(d)
-//                      {
-////                        console.log(d.id)
-////                        console.log(countryInfo["ARB"]["population"])
-////                          console.log(countryInfo[d.id]["population"])
-//                        if(countryInfo[d.id])
-//                        return countryInfo[d.id]["population"];
-//                    }).enter().style('fill',function(d){return '#D5708B';})
-        
-        
-    });
-//    var max_pop = d3.max()
-//    console.log(max_pop);
 
-//    console.log(max_pop);
+        console.log(max_pop);
+    });
     d3.json("countries.geo.json", function(error, world){
         if (error) return console.error(error);
         
@@ -119,17 +101,16 @@
                     return color(countryInfo[d.id]["population"]);
                     }
                     else{return color(0);}
-        });
-//                .on("click", mouseClick);
+                })
+                .on("click",mouseClick);
         
     });
-    
 
     
     console.log(mapLayer);
     
     function mouseClick(d){
-        div.html(d.properties['Country Name'] + "<br />")
+        div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .style("opacity", 100); 
