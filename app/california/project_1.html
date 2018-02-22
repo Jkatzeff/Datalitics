@@ -37,7 +37,7 @@
         opacity: 0;
     }
     circle{
-        fill: black;
+        fill: orange;
     }
     
 </style>
@@ -84,8 +84,8 @@
                 .append("div")
                 .attr("class", "tooltip");
     
-    var width = 1500,
-        height = 2000;
+    var width = 800,
+        height = 800;
     
     var svg = d3.select("body")
                 .append("svg")
@@ -198,8 +198,15 @@
         
         //demographic cirle representations popup and pull together
         var totalNodes = 11;
+        var demYear = "2010";
+        
+        //range variable for where circles attrac
+        var xScale = d3.scaleLinear().domain([0, 1]).range([0, 600]);
         var nodes = d3.range(totalNodes).map(function(d) {
-            return {radius: Math.random() * 25}
+            return {
+                radius: Math.random() * 25,
+                value: Math.random()
+                   }
         })
         
         function gravityCircles(d){
@@ -207,6 +214,9 @@
             var simulation = d3.forceSimulation(nodes)
                 .force('charge', d3.forceManyBody().strength(5))
                 .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('x', d3.forceX().x(function(d) {
+                    return xScale(d.value);
+                }))
                 .force('collision', d3.forceCollide().radius(function(d) {
                     return d.radius
                 }))
