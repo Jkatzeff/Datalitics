@@ -67,7 +67,40 @@
             countryInfo[country]["year"]=d["Year"];
         })
         color.domain([min_pop,max_pop]);
+        var y = d3.scaleLinear()
+        .domain([min_pop,max_pop])
+        .range([0,300]);
 
+
+        var defs = svg.append("defs");
+        var linearGradient = defs.append("linearGradient")
+        .attr("id", "linear-gradient");
+
+
+        //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
+        linearGradient.append("stop") 
+        .attr("offset", "0%")   
+        .attr("stop-color", color(min_pop)); 
+        linearGradient.append("stop") 
+        .attr("offset", "100%")   
+        .attr("stop-color", color(max_pop));
+        svg.append("rect")
+        .attr("width", width)
+        .attr("height", 120)
+        .style("fill", "url(#linear-gradient)");
+        var xScale = d3.scaleLinear()
+                         .domain([min_pop, max_pop])
+                         .range([0,width]);
+
+        var xAxis = d3.axisBottom()
+                        .scale(xScale)
+                        .ticks(20)
+                        .tickFormat(d3.format("d"));
+
+        svg.append("g")
+             .attr("class", "axis")
+             .attr("transform", "translate(0," + 120 + ")")
+             .call(xAxis);
 
     });
 
