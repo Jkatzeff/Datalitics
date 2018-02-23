@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 import requests
 
 def geoLocation(location, api_key):
@@ -7,12 +8,12 @@ def geoLocation(location, api_key):
     location = r.json()["results"][0]["geometry"]["location"]
     return location
     
-def csv_parser(file, fieldnames):
-    with open(file, "r+", encoding="utf8") as f:
-        reader = csv.DictReader(f)
-        writer = csv.DictWriter(f, fieldnames = fieldnames)
-        for row in reader:
-            loc = geoLocation(row["Location"], "AIzaSyDS2WoS4k4j_Ci9O38ISp04w6OZP_9hb_8")
-            print(loc)
+def csv_parser(file):
+    df = pd.read_csv(file)
+    for i in range(0, len(df)):
+        loc = geoLocation(df.loc[i, "Location"], "AIzaSyBt9H1W4e9Y2qeNc_T0tWurJyXP6JxgaY4")
+        df.set_value(i, "latitude", loc['lat'])
+        df.set_value(i, "longitude", loc['lng'])
+    df.to_csv(file, index=False)
             
-csv_parser("data.csv", ["Latitude", "Longitude"])
+csv_parser("data.csv")
