@@ -53,7 +53,7 @@
                     .classed("map-layer", true);
     var color = d3.scaleLog()
       .domain([1, 255])
-      .range([d3.rgb(0,255,255), d3.rgb(255,0,0)]);
+      .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
     
     d3.csv("population_parsed.csv", function(error, data){
         if (error){return console.error(error);}
@@ -78,6 +78,7 @@
 
 
         //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
+        //problem: not linear
         linearGradient.append("stop") 
         .attr("offset", "0%")   
         .attr("stop-color", color(min_pop)); 
@@ -90,7 +91,7 @@
         .style("fill", "url(#linear-gradient)");
         var xScale = d3.scaleLinear()
                          .domain([min_pop, max_pop])
-                         .range([0,width]);
+                         .range([1,width]);
 
         var xAxis = d3.axisBottom()
                         .scale(xScale)
