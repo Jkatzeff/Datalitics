@@ -197,20 +197,25 @@
                 .on("click",gravityCircles);
         
         //demographic cirle representations popup and pull together
-        var totalNodes = 11;
+        var totalNodes = 10;
         var demYear = "2010";
+        var groups = ["whites", "blacks", "american-indian-and-alaska-natives-tribes",
+                     "asian-japanese", "asian-chinese", "asian-filipino", 
+                     "asian-korean", "native-hawaiian-and-pacific-islanders",
+                     "other-single-race", "two-or-more-races"];
         
-        //range variable for where circles attrac
+        //range variable for where circles attract
         var xScale = d3.scaleLinear().domain([0, 1]).range([0, 600]);
         var nodes = d3.range(totalNodes).map(function(d) {
             return {
                 radius: Math.random() * 25,
-                value: Math.random()
-                   }
+                value: Math.random(),
+                county: ""}
         })
         
         function gravityCircles(d){
-            
+            popupName(d);
+            updateCircles(d);
             var simulation = d3.forceSimulation(nodes)
                 .force('charge', d3.forceManyBody().strength(5))
                 .force('center', d3.forceCenter(width / 2, height / 2))
@@ -245,11 +250,28 @@
             u.exit().remove()
         }
         
-        //function to get the popups to scale to demo size
-        function scaleCircle(stat, circ){
-            console.log("scalecircle called");
+        //function for the pops out county name
+        function popupName (d){
+            div.html(d.properties['name'] + "<br />" )//+ d.properties["2010"]["whites"])
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY) + "px")
+                            .style("opacity", 100);
         }
-    
+        
+        //update the circles to the chosen county
+        function updateCircles(d){
+            //console.log((d.properties["2010"]["whites"] / 1000) + "px");
+            nodes[0].radius = d.properties["2010"]["whites"] / 500;
+            nodes[1].radius = d.properties["2010"]["blacks"] / 500;
+            nodes[2].radius = d.properties["2010"]["american-indian-and-alaska-natives-tribes"] / 500;
+            nodes[3].radius = d.properties["2010"]["asian-japanese"] / 500;
+            nodes[4].radius = d.properties["2010"]["asian-chinese"] / 500;
+            nodes[5].radius = d.properties["2010"]["asian-filipino"] / 500;
+            nodes[6].radius = d.properties["2010"]["asian-korean"] / 500;
+            nodes[7].radius = d.properties["2010"]["native-hawaiian-and-pacific-islanders"] / 500;
+            nodes[8].radius = d.properties["2010"]["other-single-race"] / 500;
+            nodes[9].radius = d.properties["2010"]["two-or-more-races"] / 500;
+        }
         
         
         //this function pops up the demographics upon clicking a county
