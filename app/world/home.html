@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- https://www.htmlgoodies.com/beyond/javascript/article.php/3471111 -->
+	</head>
+	<body>
+		<img src="icon_small.jpg" alt="DataLitics" style="width:30%;height:30%> <br clear="all" /> <p>
+		<select name="mapType" id="selectMap" onchange="changeMap()"> 
+			<option value="cal">California Map</option> 
+			<option value="world" selected>World Map</option>
+		</select><p>
+		<script>
+			function changeMap() {
+				var choice = document.getElementById("selectMap").value;
+				if (choice == "cal"){
+					document.linker.action = "project_1.html"
+				}
+				if (choice == "world"){
+					document.linker.action = "world.html"
+				}
+			}
+		</script>
+		<FORM method="LINK" action="return changeMap();" name = "linker" id="linker">
+			Upload your file: <INPUT TYPE="file" NAME="FileName"> <p>
+			<INPUT TYPE="submit" VALUE="Visualize!">
+		</FORM>
+	</body>
+</html>

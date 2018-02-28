@@ -56,6 +56,14 @@
 	
 </body>
 
+<style>
+	.zoom {
+		cursor: move;
+		fill: none;
+		pointer-events: all;
+	}
+</style>
+
 <!-- imports jQuery -->
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -109,11 +117,15 @@
 				
 		$("#mapContainer").html("<svg id='map' xmlns='https://www.w3.org/TR/2011/REC-SVG11-20110816/' width='100%' height='" + ht + "'></svg>");
 		var map = d3.select("svg");
-//			this is the pan and zoom function (to improve, check out https://bl.ocks.org/rutgerhofste/5bd5b06f7817f0ff3ba1daa64dee629d)
-			map.call(d3.zoom().on("zoom", function () {
-				map.attr("transform", d3.event.transform)
-			}))
+		var zoom = d3.zoom()
+					.on("zoom", zoomFunction);
+		function zoomFunction(){
+			map.attr("transform", d3.event.transform)
+		}
+//		this is the pan and zoom function (to improve, check out https://bl.ocks.org/rutgerhofste/5bd5b06f7817f0ff3ba1daa64dee629d)
+		map.call(zoom)
 			.append("g");
+		
 		var width = $("svg").parent()
 							.width();
 		var height = ht;
@@ -156,6 +168,15 @@
                 .style("top", (d3.event.pageY) + "px")
                 .style("opacity", 100); 
 		}
+		/*map.on("mouseover", function() {
+			var coordinates = [0, 0];
+			coordinates = d3.mouse(this);
+			var mouseX6 = Number(coordinates[0]);
+			var mouseY6 = Number(coordinates[1]);
+			console.log('mouseX6 = ', mouseX6, typeof mouseX6);
+			console.log('mouseY6 = ', mouseY6, typeof mouseY6);
+			}
+		);*/
 	}
 	
 	draw($("#mapContainer").width()/2);
