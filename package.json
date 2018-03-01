@@ -29,6 +29,7 @@
   "dependencies": {
     "d3": "^4.13.0",
     "jquery": "^3.3.1",
-    "papaparse": "^4.3.7"
+    "papaparse": "^4.3.7",
+    "templatesjs": "^2.0.0"
   }
 }
