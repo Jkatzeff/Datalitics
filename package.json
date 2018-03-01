@@ -1,0 +1,34 @@
+{
+  "name": "datalitics",
+  "version": "1.0.0",
+  "description": "Meaningful data visualizations",
+  "main": "/app/index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jkatzeff/Datalitics.git"
+  },
+  "keywords": [
+    "d3",
+    "javascript",
+    "html",
+    "css",
+    "csv",
+    "json",
+    "visualization",
+    "maps"
+  ],
+  "author": "Diego Garcia, Jacob Katzeff, Bian Liu, Justin Tse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jkatzeff/Datalitics/issues"
+  },
+  "homepage": "https://github.com/Jkatzeff/Datalitics#readme",
+  "dependencies": {
+    "d3": "^4.13.0",
+    "jquery": "^3.3.1",
+    "papaparse": "^4.3.7"
+  }
+}
