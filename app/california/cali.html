@@ -7,9 +7,280 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-queue.v3.min.js"></script>
     </head>
-    <body>California map goes here</body>
+    <body></body>
 </html>
 
+
 <script>
+    //one circle per demographic
     console.log("hello world");
+    var demographicsCount = 10;
+    var w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
+        kor_cirlce, pac_cirlce, oth_cirlce, two_circle;
+    
+    //include css file
+    var cssId = 'caliStyleSheet';  // you could encode the css path itself to generate id..
+    if (!document.getElementById(cssId)){
+        var head  = document.getElementsByTagName('head')[0];
+        var link  = document.createElement('link');
+        link.id   = cssId;
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'cali.css';
+        link.media = 'all';
+        head.appendChild(link);
+    }
+    //replace theses to the desired file names
+    var jsonFileName = "california-counties.json";
+    var csvFileName = "nhgis0002_csv/nhgis0002_ts_nominal_county.csv";
+    
+    function getCirlce(d){
+        return d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    }
+    
+    var circleArray = [w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
+        kor_cirlce, pac_cirlce, oth_cirlce, two_circle];
+    
+    var circles = circleArray.map(getCirlce);
+    
+    //delet this
+    /*var w_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var b_cirlce = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var a_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var nat_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var ch_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var jp_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var fp_cirlce = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var kor_cirlce = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var pac_cirlce = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var oth_cirlce = d3.select("body")
+                .append("div")
+                .attr("class", "circle");
+    var two_circle = d3.select("body")
+                .append("div")
+                .attr("class", "circle");*/
+    
+    var div = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip");
+    
+    //svg container properties
+    var width = 600,
+        color = "orange";
+        height = 600;
+    
+    //d3 adds svg to body and background
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("fill", color)
+                .attr("height", height);
+    
+    svg.append("rect")
+        .attr("class", "background")
+        .attr("width", width)
+        .attr("height", height);
+    
+    //add svg to <g> and the maplayer
+    var g = svg.append("g");
+    var mapLayer = g.append("g")
+                    .classed("map-layer",true);
+    
+    //grab json and csv file
+    var q = d3.queue()
+    q.defer(d3.json, jsonFileName)
+        .defer(d3.csv, csvFileName)
+        .await(bind);
+    
+    function bind(error, ca, data){
+        ca['features'].forEach(function(d1){
+            data.slice(203, 261).forEach(function(d2){
+                if (d1.properties.name == d2["COUNTY"].substring(0, d2["COUNTY"].lastIndexOf(" "))){
+                    d1.properties["1970"] = {}
+                    d1.properties["1970"]["whites"] = d2['B08AA1970'];
+                    d1.properties["1970"]["blacks"] = d2['B08AB1970'];
+                    d1.properties["1970"]["american-indian-and-alaska-natives-tribes"] = d2['B08AC1970'];
+                    d1.properties["1970"]["asian-japanese"] = d2['B08AD1970'];
+                    d1.properties["1970"]["asian-chinese"] = d2['B08AE1970'];
+                    d1.properties["1970"]["asian-filipino"] = d2['B08AF1970'];
+                    d1.properties["1970"]["asian-korean"] = d2['B08AG1970'];
+                    d1.properties["1970"]["native-hawaiian-and-pacific-islanders"] = d2['B08AH1970'];
+                    d1.properties["1970"]["other-single-race"] = d2['B08AI1970'];
+                    d1.properties["1970"]["two-or-more-races"] = d2['B08AJ2000'];
+
+                    d1.properties["1980"] = {}
+                    d1.properties["1980"]["whites"] = d2['B08AA1980'];
+                    d1.properties["1980"]["blacks"] = d2['B08AB1980'];
+                    d1.properties["1980"]["american-indian-and-alaska-natives-tribes"] = d2['B08AC1980'];
+                    d1.properties["1980"]["asian-japanese"] = d2['B08AD1980'];
+                    d1.properties["1980"]["asian-chinese"] = d2['B08AE1980'];
+                    d1.properties["1980"]["asian-filipino"] = d2['B08AF1980'];
+                    d1.properties["1980"]["asian-korean"] = d2['B08AG1980'];
+                    d1.properties["1980"]["native-hawaiian-and-pacific-islanders"] = d2['B08AH1980'];
+                    d1.properties["1980"]["other-single-race"] = d2['B08AI1980'];
+                    d1.properties["1980"]["two-or-more-races"] = d2['B08AJ2000'];
+
+                    d1.properties["1990"] = {}
+                    d1.properties["1990"]["whites"] = d2['B08AA1990'];
+                    d1.properties["1990"]["blacks"] = d2['B08AB1990'];
+                    d1.properties["1990"]["american-indian-and-alaska-natives-tribes"] = d2['B08AC1990'];
+                    d1.properties["1990"]["asian-japanese"] = d2['B08AD1990'];
+                    d1.properties["1990"]["asian-chinese"] = d2['B08AE1990'];
+                    d1.properties["1990"]["asian-filipino"] = d2['B08AF1990'];
+                    d1.properties["1990"]["asian-korean"] = d2['B08AG1990'];
+                    d1.properties["1990"]["native-hawaiian-and-pacific-islanders"] = d2['B08AH1990'];
+                    d1.properties["1990"]["other-single-race"] = d2['B08AI1990'];
+                    d1.properties["1990"]["two-or-more-races"] = d2['B08AJ2000'];
+
+                    d1.properties["2000"] = {}
+                    d1.properties["2000"]["whites"] = d2['B08AA2000'];
+                    d1.properties["2000"]["blacks"] = d2['B08AB2000'];
+                    d1.properties["2000"]["american-indian-and-alaska-natives-tribes"] = d2['B08AC2000'];
+                    d1.properties["2000"]["asian-japanese"] = d2['B08AD2000'];
+                    d1.properties["2000"]["asian-chinese"] = d2['B08AE2000'];
+                    d1.properties["2000"]["asian-filipino"] = d2['B08AF2000'];
+                    d1.properties["2000"]["asian-korean"] = d2['B08AG2000'];
+                    d1.properties["2000"]["native-hawaiian-and-pacific-islanders"] = d2['B08AH2000'];
+                    d1.properties["2000"]["other-single-race"] = d2['B08AI2000'];
+                    d1.properties["2000"]["two-or-more-races"] = d2['B08AJ2000'];
+
+                    d1.properties["2010"] = {}
+                    d1.properties["2010"]["whites"] = d2['B08AA2010'];
+                    d1.properties["2010"]["blacks"] = d2['B08AB2010'];
+                    d1.properties["2010"]["american-indian-and-alaska-natives-tribes"] = d2['B08AC2010'];
+                    d1.properties["2010"]["asian-japanese"] = d2['B08AD2010'];
+                    d1.properties["2010"]["asian-chinese"] = d2['B08AE2010'];
+                    d1.properties["2010"]["asian-filipino"] = d2['B08AF2010'];
+                    d1.properties["2010"]["asian-korean"] = d2['B08AG2010'];
+                    d1.properties["2010"]["native-hawaiian-and-pacific-islanders"] = d2['B08AH2010'];
+                    d1.properties["2010"]["other-single-race"] = d2['B08AI2010'];
+                    d1.properties["2010"]["two-or-more-races"] = d2['B08AJ2010'];
+                }
+            })
+        });
+        
+        console.log(ca.features);
+        //project map
+        var center = d3.geoCentroid(ca);
+        var projection = d3.geoMercator()
+                        .scale(2000)
+                        .center(center)
+                        .translate([width/2, height/2]);
+        
+        var path = d3.geoPath()
+                    .projection(projection);
+        
+        mapLayer.selectAll("path")
+                .data(ca.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .attr('stroke', 'black')
+                .style("fill", "gold")
+                .on("click", gravityCircles);
+ 
+        //display the name of a county when clicked
+        function popupName (d){
+            div.html(
+                d.properties['name'] + "<br />" )//+ d.properties["2010"]["whites"])
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100);
+        }
+        
+        console.log(circles);
+        
+        
+        //range variable for where circles attract
+        var xScale = d3.scaleLinear()
+                        .domain([0, 1])
+                        .range([0, 600]);
+        var nodes = d3.range(demographicsCount)
+                        .map(function(d) {
+                            return {
+                                radius: Math.random() * 25,
+                                value: Math.random(),
+                                county: ""
+                            }
+        })
+        var simulationDone = false;
+        //forces circles to center near the middle
+        function gravityCircles(d){
+            popupName(d);
+            updateCircles(d);
+            if (Boolean(simulationDone) == false){
+                var simulation = d3.forceSimulation(nodes)
+                    .force('charge', d3.forceManyBody().strength(5))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('x', d3.forceX().x(function(d) {
+                        return xScale(d.value);
+                    }))
+                    .force('collision', d3.forceCollide().radius(function(d) {
+                        return d.radius
+                    }))
+                    .on('tick',ticked);
+                simulationDone = true;
+            }
+            console.log("gravity circles called");
+        }
+        
+        //updates positions on every tick
+        function ticked(){
+            var u = d3.select('svg')
+                .selectAll('circle')
+                .data(nodes)
+
+            u.enter()
+                .append('circle')
+                .attr('r', function(d) {
+                    return d.radius
+                })
+                .merge(u)
+                .attr('cx', function(d) {
+                    return d.x
+                })
+                .attr('cy', function(d) {
+                    return d.y
+                })
+            u.exit().remove()
+        }
+        
+        function updateCircles(d){
+            //console.log((d.properties["2010"]["whites"] / 1000) + "px");
+            nodes[0].radius = d.properties["2010"]["whites"] / 500;
+            nodes[1].radius = d.properties["2010"]["blacks"] / 500;
+            nodes[2].radius = d.properties["2010"]["american-indian-and-alaska-natives-tribes"] / 500;
+            nodes[3].radius = d.properties["2010"]["asian-japanese"] / 500;
+            nodes[4].radius = d.properties["2010"]["asian-chinese"] / 500;
+            nodes[5].radius = d.properties["2010"]["asian-filipino"] / 500;
+            nodes[6].radius = d.properties["2010"]["asian-korean"] / 500;
+            nodes[7].radius = d.properties["2010"]["native-hawaiian-and-pacific-islanders"] / 500;
+            nodes[8].radius = d.properties["2010"]["other-single-race"] / 500;
+            nodes[9].radius = d.properties["2010"]["two-or-more-races"] / 500;
+        }
+        
+        
+    }
+
 </script>
