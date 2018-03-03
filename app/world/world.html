@@ -6,12 +6,23 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <style>
+    #wrapper {
+        width: 1600px;
+        margin: -100px auto 0;
+    }
     .background{
         fill: #eee;
     }
     .map-layer {
 /*        fill: black;*/
-        stroke: black;
+        stroke: pink;
+    }
+    #play, #clock {
+        position: absolute;
+        top: 200px;
+    }
+    #play { 
+        left: 800px; 
     }
     div.tooltip {	
         position: absolute;			
@@ -27,6 +38,10 @@
     }
 </style>
 <body>
+    <div id="wrapper">  
+      <button id="play">play</button>
+<!--       <span id="clock">year</span>
+ -->    </div>
 </body>
 <script>
     var countryInfo = {};
