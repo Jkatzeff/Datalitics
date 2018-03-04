@@ -111,7 +111,7 @@
     function enterFiles(){
         queue()
         .defer(d3.json,"countries.geo.json")
-        .defer(d3.csv,"population.csv")
+        .defer(d3.csv,"population_example.csv")
         .await(enterData);
     }
 
@@ -127,7 +127,6 @@
             features[j]["Time Series"] = {}
         }
         for (var i in data){
-            // console.log(data[i]);
             // data[i] = Object containing country name, code, year, value;
             for(var j in features){
                 if(features[j]["id"] == data[i]["Country Code"]){
@@ -142,8 +141,6 @@
             }
 
         }
-
-        // console.log(features);
         d3.select('#clock').html(countryInfo[currentAttr]);
         drawMap(world);
     }
@@ -188,34 +185,24 @@
     }
 
     function drawMap(world){
-        // console.log(world.objects)
         svg.selectAll(".country")
                 .data(world.features)
                 .enter()
                 .append("path")
                 .attr("class","country")
-                .attr("id", function(d){return "code_"+ d["id"]/*console.log(d)*/},true)
+                .attr("id", function(d){return "code_"+ d["id"]},true)
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
                 .on("click",mouseClick);
 
                 changeMap();
-                // d3.selectAll(".country")
-                // .style("fill", function(d){
-                //     if(d["Time Series"][countryInfo[currentAttr]]){
-                //         var pop = +d["Time Series"][countryInfo[currentAttr]]
-                //         return color(pop);
-                //     }
-                //     else{return color(0);}
-                // });
     }
 
 
-    /*WHY TF ISN'T THIS WORKING!!*/
     function changeMap(){
         d3.selectAll(".country")
             .transition()
-            .duration(100)
+            .duration(500)
             .style("fill", function(d){
                 // console.log(d);
                 // console.log(countryInfo[currentAttr]);
@@ -241,7 +228,7 @@
                         }
                         changeMap();
                         d3.select("#clock").html(countryInfo[currentAttr]);
-                    }, 200);
+                    }, 500);
 
                     d3.select(this).html('stop');
                     animating = true;
