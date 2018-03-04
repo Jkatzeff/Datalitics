@@ -27,7 +27,7 @@
         stroke: pink;
     }
     .country {
-        fill: steelblue;
+        /*fill: steelblue;*/
         stroke: white;
     }
     #play { 
@@ -147,6 +147,8 @@
         d3.select('#clock').html(countryInfo[currentAttr]);
         drawMap(world);
     }
+        //     //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
+
     function manageColors(min_pop, max_pop){
          color.domain([min_pop,max_pop]);
         var y = d3.scaleLinear()
@@ -187,31 +189,40 @@
 
     function drawMap(world){
         // console.log(world.objects)
-        svg.selectAll("path")
+        svg.selectAll(".country")
                 .data(world.features)
                 .enter()
                 .append("path")
+                .attr("class","country")
+                .attr("id", function(d){return "code_"+ d["id"]/*console.log(d)*/},true)
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
-                .style("fill", function(d){
-                    if(d["Time Series"][countryInfo[currentAttr]]){
-                        var pop = +d["Time Series"][countryInfo[currentAttr]]
-                        return color(pop);
-                    }
-                    else{return color(0);}
-                })
                 .on("click",mouseClick);
+
+                changeMap();
+                // d3.selectAll(".country")
+                // .style("fill", function(d){
+                //     if(d["Time Series"][countryInfo[currentAttr]]){
+                //         var pop = +d["Time Series"][countryInfo[currentAttr]]
+                //         return color(pop);
+                //     }
+                //     else{return color(0);}
+                // });
     }
 
+
+    /*WHY TF ISN'T THIS WORKING!!*/
     function changeMap(){
-        d3.selectAll("path")
+        d3.selectAll(".country")
             .transition()
-            .duration(200)
-            .attr("fill", function(d){
+            .duration(100)
+            .style("fill", function(d){
                 // console.log(d);
-                if(d){return color(+d["Time Series"][countryInfo[currentAttr]]);}
+                // console.log(countryInfo[currentAttr]);
+                // console.log(d["Time Series"][countryInfo[currentAttr]]);
+                if(d){return color(+d["Time Series"][+countryInfo[+currentAttr]]);}
                 else{return color(0);}
-                // return color(+d["Time Series"][countryInfo[currentAttr]]);
+                // return color(+currentAttr*50);
             })
     }
     //http://bl.ocks.org/rgdonohue/9280446
@@ -221,6 +232,7 @@
             .on('click', function(){
                 if(animating == false){
                     timer = setInterval(function(){
+
                         if(currentAttr < countryInfo.length-1){
                             currentAttr+=1;
                         }
@@ -229,7 +241,7 @@
                         }
                         changeMap();
                         d3.select("#clock").html(countryInfo[currentAttr]);
-                    }, 500);
+                    }, 200);
 
                     d3.select(this).html('stop');
                     animating = true;
@@ -241,125 +253,13 @@
                 }
             })
     }
-    begin();
-
-    // var countryInfo = {};
-    
-    // var div = d3.select("body")
-    //             .append("div")
-    //             .attr("class", "tooltip");
-    
-    // var width = 1600,
-    //     height = 1600,
-    //     animating = false;
-    
-    // var svg = d3.select("body")
-    //             .append("svg")
-    //             .attr("width", width)
-    //             .attr("height", height);
-    // svg.append("rect")
-    //     .attr("class", "background")
-    //     .attr("width", width)
-    //     .attr("height", height);
-
-    // var g = svg.append("g");
-    
-    // var mapLayer = g.append("g")
-    //                 .classed("map-layer", true);
-    // var color = d3.scaleLog()
-    //   .domain([1, 255])
-    //   .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
-    
-    // d3.csv("population_parsed.csv", function(error, data){
-    //     if (error){return console.error(error);}
-    //     var max_pop = d3.max(data, function(d){return +d["Value"]})
-    //     var min_pop = d3.min(data, function(d){return +d["Value"]})
-
-    //     data.forEach(function(d, i){
-    //         var country = d["Country Code"]
-    //         countryInfo[country] = {};
-    //         countryInfo[country]["population"]=d["Value"];
-    //         countryInfo[country]["year"]=d["Year"];
-    //     })
-    //     color.domain([min_pop,max_pop]);
-    //     var y = d3.scaleLinear()
-    //     .domain([min_pop,max_pop])
-    //     .range([0,300]);
-
-
-    //     var defs = svg.append("defs");
-    //     var linearGradient = defs.append("linearGradient")
-    //     .attr("id", "linear-gradient");
-
-
-    //     //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
-    //     //problem: not linear
-    //     linearGradient.append("stop") 
-    //     .attr("offset", "0%")   
-    //     .attr("stop-color", color(min_pop)); 
-    //     linearGradient.append("stop") 
-    //     .attr("offset", "100%")   
-    //     .attr("stop-color", color(max_pop));
-    //     svg.append("rect")
-    //     .attr("width", width)
-    //     .attr("height", 120)
-    //     .style("fill", "url(#linear-gradient)");
-    //     var xScale = d3.scaleLinear()
-    //                      .domain([min_pop, max_pop])
-    //                      .range([1,width]);
-
-    //     var xAxis = d3.axisBottom()
-    //                     .scale(xScale)
-    //                     .ticks(20)
-    //                     .tickFormat(d3.format("d"));
-
-    //     svg.append("g")
-    //          .attr("class", "axis")
-    //          .attr("transform", "translate(0," + 120 + ")")
-    //          .call(xAxis);
-
-    // });
-
-    // d3.json("countries.geo.json", function(error, world){
-    //     if (error) return console.error(error);
-        
-    //     var center = d3.geoCentroid(world);
-
-    //     var projection = d3.geoMercator()
-    //                     .scale(200)
-    //                     .center(center)
-    //                     .translate([width/2, height/2]);
-        
-    //     var path = d3.geoPath()
-    //                 .projection(projection);
-    //     console.log(world.features);
-    //     var features = world.features;
-    //     for(var i in features){
-    //         console.log(features[i]["geometry"]);
-    //     }
-    //     mapLayer.selectAll("path")
-    //             .data(world.features)
-    //             .enter()
-    //             .append("path")
-    //             .attr("d", path)
-    //             .attr('vector-effect', 'non-scaling-stroke')
-    //             .style("fill", function(d){
-    //                 if(countryInfo[d.id]){
-    //                     return color(countryInfo[d.id]["population"]);
-    //                 }
-    //                 else{return color(0);}
-    //             })
-    //             .on("click",mouseClick);
-        
-    // });
     function mouseClick(d){
-        // console.log(d);
         var year = countryInfo[currentAttr];
         div.html(d.id + "\n" +  year + "\n" + d["Time Series"][year] + "<br />")
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .style("opacity", 100); 
     }
-    
+    begin();    
 </script>
 </html>
