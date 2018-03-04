@@ -5,6 +5,8 @@
     <title>D3 Map</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
 </head>
 <style>
 /*http://bl.ocks.org/rgdonohue/9280446*/
@@ -23,6 +25,10 @@
     .map-layer {
 /*        fill: black;*/
         stroke: pink;
+    }
+    .country {
+        fill: steelblue;
+        stroke: white;
     }
     #play { 
         position: absolute;
@@ -49,15 +55,21 @@
 </style>
 <body>
     <div id="wrapper">  
+      <div id="map"></div>
       <button id="play">Start animation!</button>
       <span id="clock">current_year</span>
     </div>
 </body>
 <script>
-    var width, height, projection, path, svg,
+    var width, height, projection, path, svg, mapLayer, div,
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
+
+    var color = d3.scaleLog()
+    .domain([1, 255])
+    .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
+
     function begin(){
         loadMap();
         animateMap();
@@ -65,6 +77,10 @@
     function loadMap(){
         width = 1600,
         height = 1600;
+        div = d3.select("#map")
+                    .append("div")
+                    .attr("class", "tooltip");
+
 
         projection = d3.geoMercator()
                         .scale(200)
@@ -77,6 +93,16 @@
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height);
+        svg.append("rect")
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height);
+
+
+        var g = svg.append("g");
+        
+        mapLayer = g.append("g")
+                        .classed("map-layer", true);
 
         enterFiles();
 
@@ -90,11 +116,13 @@
     }
 
     function enterData(error, world,data){
+        var max_pop = d3.max(data, function(d){return +d["Value"]});
+        var min_pop = d3.min(data, function(d){return +d["Value"]});
+        manageColors(min_pop,max_pop);
         var center = d3.geoCentroid(world);
         projection.center(center);
 
         var features = world.features;
-        // console.log(features);
         for(var j in features){
             features[j]["Time Series"] = {}
         }
@@ -105,63 +133,113 @@
                 if(features[j]["id"] == data[i]["Country Code"]){
                     features[j]["Time Series"][data[i]["Year"]] = data[i]["Value"];
                 }
+
+                if (countryInfo.indexOf(data[i]["Year"]) == -1){
+                    countryInfo.push(data[i]["Year"]);
+                }
                 // features[j] = Object containing id (country code), geometry, Time Series, Country Name
 
             }
-            // break;
-            // console.log(data[i])
 
         }
-    //     for(var i in features){
-    //         // console.log(features[i]);
-    //         features[i]["Time Series"] = {};
-    //         var countryGeo = features[i]["geometry"];
-    //         var countryId = features[i]["id"];
-    // //     data.forEach(function(d, i){
-    // //         var country = d["Country Code"]
-    // //         countryInfo[country] = {};
-    // //         countryInfo[country]["population"]=d["Value"];
-    // //         countryInfo[country]["year"]=d["Year"];
-    // //     })            
-    //         for(var j in data){
-    //             // console.log(data[j]);
-    //             var countryCode = data[j]["Country Code"];
-    //             if (countryId == countryCode){
-    //                 // console.log(data[j]);
-    //                 for (var k in data[i]){
 
-    //                     // console.log(data[j]);
-    //                     if(k!="Country Code" && k!="Value"){
-    //                         if (k == "Year"){
-    //                             features[i]["Time Series"][data[j][k]]=+data[j]["Value"];
-    //                         }
-    //                         // console.log(k)
-    //                         if (countryInfo.indexOf(k) == -1){
-    //                             countryInfo.push(k);
-    //                         }
-    //                         if(isNaN(+data[j][k])){
-    //                             features[i][k] = data[j][k];
-    //                         }
-    //                         else{
-    //                         features[i][k] = +data[j][k];
-    //                         }
-    //                     }
-    //                 }
-    //             break;
-    //             }
-
-    //         }
-    //     }
-        console.log(features);
-        d3.select('#clock').html(countryInfo["Year"]);
+        // console.log(features);
+        d3.select('#clock').html(countryInfo[currentAttr]);
         drawMap(world);
+    }
+    function manageColors(min_pop, max_pop){
+         color.domain([min_pop,max_pop]);
+        var y = d3.scaleLinear()
+        .domain([min_pop,max_pop])
+        .range([0,300]);     
+        
+        var defs = svg.append("defs");
+
+        var linearGradient = defs.append("linearGradient")
+        .attr("id", "linear-gradient");
+
+        linearGradient.append("stop") 
+        .attr("offset", "0%")   
+        .attr("stop-color", color(min_pop)); 
+
+        linearGradient.append("stop") 
+        .attr("offset", "100%")   
+        .attr("stop-color", color(max_pop));
+
+        svg.append("rect")
+        .attr("width", width)
+        .attr("height", 120)
+        .style("fill", "url(#linear-gradient)");
+        var xScale = d3.scaleLinear()
+                         .domain([min_pop, max_pop])
+                         .range([1,width]);
+
+        var xAxis = d3.axisBottom()
+                        .scale(xScale)
+                        .ticks(20)
+                        .tickFormat(d3.format("d"));
+
+        svg.append("g")
+             .attr("class", "axis")
+             .attr("transform", "translate(0," + 120 + ")")
+             .call(xAxis);  
     }
 
     function drawMap(world){
-
+        // console.log(world.objects)
+        svg.selectAll("path")
+                .data(world.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .style("fill", function(d){
+                    if(d["Time Series"][countryInfo[currentAttr]]){
+                        var pop = +d["Time Series"][countryInfo[currentAttr]]
+                        return color(pop);
+                    }
+                    else{return color(0);}
+                })
+                .on("click",mouseClick);
     }
-    function animateMap(){
 
+    function changeMap(){
+        d3.selectAll("path")
+            .transition()
+            .duration(200)
+            .attr("fill", function(d){
+                // console.log(d);
+                if(d){return color(+d["Time Series"][countryInfo[currentAttr]]);}
+                else{return color(0);}
+                // return color(+d["Time Series"][countryInfo[currentAttr]]);
+            })
+    }
+    //http://bl.ocks.org/rgdonohue/9280446
+    function animateMap(){
+        var timer;
+        d3.select("#play")
+            .on('click', function(){
+                if(animating == false){
+                    timer = setInterval(function(){
+                        if(currentAttr < countryInfo.length-1){
+                            currentAttr+=1;
+                        }
+                        else{
+                            currentAttr = 0;
+                        }
+                        changeMap();
+                        d3.select("#clock").html(countryInfo[currentAttr]);
+                    }, 500);
+
+                    d3.select(this).html('stop');
+                    animating = true;
+                }
+                else{
+                    clearInterval(timer);
+                    d3.select(this).html('play');
+                    animating = false;
+                }
+            })
     }
     begin();
 
@@ -274,12 +352,14 @@
     //             .on("click",mouseClick);
         
     // });
-    // function mouseClick(d){
-    //     div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
-    //                     .style("left", (d3.event.pageX) + "px")
-    //                     .style("top", (d3.event.pageY) + "px")
-    //                     .style("opacity", 100); 
-    // }
+    function mouseClick(d){
+        // console.log(d);
+        var year = countryInfo[currentAttr];
+        div.html(d.id + "\n" +  year + "\n" + d["Time Series"][year] + "<br />")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100); 
+    }
     
 </script>
 </html>
