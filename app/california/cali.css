@@ -1,7 +1,7 @@
 .background{
-    fill: white;
+    fill: lightblue;
 }
-.map-layer{
+.map-layer {
     stroke: black;
 }
 div.tooltip {	
