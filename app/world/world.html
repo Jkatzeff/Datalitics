@@ -4,11 +4,18 @@
     <meta charset="utf-8"/>
     <title>D3 Map</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
 </head>
 <style>
+/*http://bl.ocks.org/rgdonohue/9280446*/
     #wrapper {
         width: 1600px;
         margin: -100px auto 0;
+    }
+    #map {
+        width: 1600px;
+        height: 1600px;
+        position: relative;  
     }
     .background{
         fill: #eee;
@@ -17,12 +24,15 @@
 /*        fill: black;*/
         stroke: pink;
     }
-    #play, #clock {
+    #play { 
         position: absolute;
         top: 200px;
-    }
-    #play { 
         left: 800px; 
+    }
+    #clock {
+        position: absolute;
+        top: 150px;
+        left: 815px;
     }
     div.tooltip {	
         position: absolute;			
@@ -39,127 +49,237 @@
 </style>
 <body>
     <div id="wrapper">  
-      <button id="play">play</button>
-<!--       <span id="clock">year</span>
- -->    </div>
+      <button id="play">Start animation!</button>
+      <span id="clock">current_year</span>
+    </div>
 </body>
 <script>
-    var countryInfo = {};
-    
-    var div = d3.select("body")
-                .append("div")
-                .attr("class", "tooltip");
-    
-    var width = 1600,
+    var width, height, projection, path, svg,
+        countryInfo = [], 
+        currentAttr = 0, 
+        animating = false;
+    function begin(){
+        loadMap();
+        animateMap();
+    }
+    function loadMap(){
+        width = 1600,
         height = 1600;
-    
-    var svg = d3.select("body")
+
+        projection = d3.geoMercator()
+                        .scale(200)
+                        // .center(center)
+                        .translate([width/2, height/2]);
+        path = d3.geoPath()
+                 .projection(projection);
+
+        svg = d3.select("#map")
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height);
-    svg.append("rect")
-        .attr("class", "background")
-        .attr("width", width)
-        .attr("height", height);
 
-    var g = svg.append("g");
-    
-    var mapLayer = g.append("g")
-                    .classed("map-layer", true);
-    var color = d3.scaleLog()
-      .domain([1, 255])
-      .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
-    
-    d3.csv("population_parsed.csv", function(error, data){
-        if (error){return console.error(error);}
-        var max_pop = d3.max(data, function(d){return +d["Value"]})
-        var min_pop = d3.min(data, function(d){return +d["Value"]})
+        enterFiles();
 
-        data.forEach(function(d, i){
-            var country = d["Country Code"]
-            countryInfo[country] = {};
-            countryInfo[country]["population"]=d["Value"];
-            countryInfo[country]["year"]=d["Year"];
-        })
-        color.domain([min_pop,max_pop]);
-        var y = d3.scaleLinear()
-        .domain([min_pop,max_pop])
-        .range([0,300]);
-
-
-        var defs = svg.append("defs");
-        var linearGradient = defs.append("linearGradient")
-        .attr("id", "linear-gradient");
-
-
-        //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
-        //problem: not linear
-        linearGradient.append("stop") 
-        .attr("offset", "0%")   
-        .attr("stop-color", color(min_pop)); 
-        linearGradient.append("stop") 
-        .attr("offset", "100%")   
-        .attr("stop-color", color(max_pop));
-        svg.append("rect")
-        .attr("width", width)
-        .attr("height", 120)
-        .style("fill", "url(#linear-gradient)");
-        var xScale = d3.scaleLinear()
-                         .domain([min_pop, max_pop])
-                         .range([1,width]);
-
-        var xAxis = d3.axisBottom()
-                        .scale(xScale)
-                        .ticks(20)
-                        .tickFormat(d3.format("d"));
-
-        svg.append("g")
-             .attr("class", "axis")
-             .attr("transform", "translate(0," + 120 + ")")
-             .call(xAxis);
-
-    });
-
-    d3.json("countries.geo.json", function(error, world){
-        if (error) return console.error(error);
-        
-        var center = d3.geoCentroid(world);
-
-        var projection = d3.geoMercator()
-                        .scale(200)
-                        .center(center)
-                        .translate([width/2, height/2]);
-        
-        var path = d3.geoPath()
-                    .projection(projection);
-        
-        mapLayer.selectAll("path")
-                .data(world.features)
-                .enter()
-                .append("path")
-                .attr("d", path)
-                .attr('vector-effect', 'non-scaling-stroke')
-                .style("fill", function(d){
-                    // console.log(d.id);
-                    // if(countryInfo[d.id]){
-                    // console.log(countryInfo[d.id]["population"])}
-                    if(countryInfo[d.id]){
-//                        console.log(countryInfo[d.id]["population"]);
-                    return color(countryInfo[d.id]["population"]);
-                    }
-                    else{return color(0);}
-                })
-                .on("click",mouseClick);
-        
-    });
-    // console.log(countryInfo)
-    // console.log(countryInfo["ATA"]["population"])
-    function mouseClick(d){
-        div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
-                        .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY) + "px")
-                        .style("opacity", 100); 
     }
+
+    function enterFiles(){
+        queue()
+        .defer(d3.json,"countries.geo.json")
+        .defer(d3.csv,"population.csv")
+        .await(enterData);
+    }
+
+    function enterData(error, world,data){
+        var center = d3.geoCentroid(world);
+        projection.center(center);
+
+        var features = world.features;
+        // console.log(features);
+        for(var j in features){
+            features[j]["Time Series"] = {}
+        }
+        for (var i in data){
+            // console.log(data[i]);
+            // data[i] = Object containing country name, code, year, value;
+            for(var j in features){
+                if(features[j]["id"] == data[i]["Country Code"]){
+                    features[j]["Time Series"][data[i]["Year"]] = data[i]["Value"];
+                }
+                // features[j] = Object containing id (country code), geometry, Time Series, Country Name
+
+            }
+            // break;
+            // console.log(data[i])
+
+        }
+    //     for(var i in features){
+    //         // console.log(features[i]);
+    //         features[i]["Time Series"] = {};
+    //         var countryGeo = features[i]["geometry"];
+    //         var countryId = features[i]["id"];
+    // //     data.forEach(function(d, i){
+    // //         var country = d["Country Code"]
+    // //         countryInfo[country] = {};
+    // //         countryInfo[country]["population"]=d["Value"];
+    // //         countryInfo[country]["year"]=d["Year"];
+    // //     })            
+    //         for(var j in data){
+    //             // console.log(data[j]);
+    //             var countryCode = data[j]["Country Code"];
+    //             if (countryId == countryCode){
+    //                 // console.log(data[j]);
+    //                 for (var k in data[i]){
+
+    //                     // console.log(data[j]);
+    //                     if(k!="Country Code" && k!="Value"){
+    //                         if (k == "Year"){
+    //                             features[i]["Time Series"][data[j][k]]=+data[j]["Value"];
+    //                         }
+    //                         // console.log(k)
+    //                         if (countryInfo.indexOf(k) == -1){
+    //                             countryInfo.push(k);
+    //                         }
+    //                         if(isNaN(+data[j][k])){
+    //                             features[i][k] = data[j][k];
+    //                         }
+    //                         else{
+    //                         features[i][k] = +data[j][k];
+    //                         }
+    //                     }
+    //                 }
+    //             break;
+    //             }
+
+    //         }
+    //     }
+        console.log(features);
+        d3.select('#clock').html(countryInfo["Year"]);
+        drawMap(world);
+    }
+
+    function drawMap(world){
+
+    }
+    function animateMap(){
+
+    }
+    begin();
+
+    // var countryInfo = {};
+    
+    // var div = d3.select("body")
+    //             .append("div")
+    //             .attr("class", "tooltip");
+    
+    // var width = 1600,
+    //     height = 1600,
+    //     animating = false;
+    
+    // var svg = d3.select("body")
+    //             .append("svg")
+    //             .attr("width", width)
+    //             .attr("height", height);
+    // svg.append("rect")
+    //     .attr("class", "background")
+    //     .attr("width", width)
+    //     .attr("height", height);
+
+    // var g = svg.append("g");
+    
+    // var mapLayer = g.append("g")
+    //                 .classed("map-layer", true);
+    // var color = d3.scaleLog()
+    //   .domain([1, 255])
+    //   .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
+    
+    // d3.csv("population_parsed.csv", function(error, data){
+    //     if (error){return console.error(error);}
+    //     var max_pop = d3.max(data, function(d){return +d["Value"]})
+    //     var min_pop = d3.min(data, function(d){return +d["Value"]})
+
+    //     data.forEach(function(d, i){
+    //         var country = d["Country Code"]
+    //         countryInfo[country] = {};
+    //         countryInfo[country]["population"]=d["Value"];
+    //         countryInfo[country]["year"]=d["Year"];
+    //     })
+    //     color.domain([min_pop,max_pop]);
+    //     var y = d3.scaleLinear()
+    //     .domain([min_pop,max_pop])
+    //     .range([0,300]);
+
+
+    //     var defs = svg.append("defs");
+    //     var linearGradient = defs.append("linearGradient")
+    //     .attr("id", "linear-gradient");
+
+
+    //     //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
+    //     //problem: not linear
+    //     linearGradient.append("stop") 
+    //     .attr("offset", "0%")   
+    //     .attr("stop-color", color(min_pop)); 
+    //     linearGradient.append("stop") 
+    //     .attr("offset", "100%")   
+    //     .attr("stop-color", color(max_pop));
+    //     svg.append("rect")
+    //     .attr("width", width)
+    //     .attr("height", 120)
+    //     .style("fill", "url(#linear-gradient)");
+    //     var xScale = d3.scaleLinear()
+    //                      .domain([min_pop, max_pop])
+    //                      .range([1,width]);
+
+    //     var xAxis = d3.axisBottom()
+    //                     .scale(xScale)
+    //                     .ticks(20)
+    //                     .tickFormat(d3.format("d"));
+
+    //     svg.append("g")
+    //          .attr("class", "axis")
+    //          .attr("transform", "translate(0," + 120 + ")")
+    //          .call(xAxis);
+
+    // });
+
+    // d3.json("countries.geo.json", function(error, world){
+    //     if (error) return console.error(error);
+        
+    //     var center = d3.geoCentroid(world);
+
+    //     var projection = d3.geoMercator()
+    //                     .scale(200)
+    //                     .center(center)
+    //                     .translate([width/2, height/2]);
+        
+    //     var path = d3.geoPath()
+    //                 .projection(projection);
+    //     console.log(world.features);
+    //     var features = world.features;
+    //     for(var i in features){
+    //         console.log(features[i]["geometry"]);
+    //     }
+    //     mapLayer.selectAll("path")
+    //             .data(world.features)
+    //             .enter()
+    //             .append("path")
+    //             .attr("d", path)
+    //             .attr('vector-effect', 'non-scaling-stroke')
+    //             .style("fill", function(d){
+    //                 if(countryInfo[d.id]){
+    //                     return color(countryInfo[d.id]["population"]);
+    //                 }
+    //                 else{return color(0);}
+    //             })
+    //             .on("click",mouseClick);
+        
+    // });
+    // function mouseClick(d){
+    //     div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
+    //                     .style("left", (d3.event.pageX) + "px")
+    //                     .style("top", (d3.event.pageY) + "px")
+    //                     .style("opacity", 100); 
+    // }
     
 </script>
 </html>
