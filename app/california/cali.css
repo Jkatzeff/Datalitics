@@ -26,19 +26,21 @@ div.circle{
   stroke: #000;
   stroke-width: 1.5px;
 }
-.node{
+/*.node{
     fill: #000;
     stroke: #fff;
     stroke-width: 1px;
+}*/
+.button {
+    background-color: goldenrod;
+    border: none;
+    width: 100%;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
 }
-.node.w{fill: white}
-.node.b{fill: black}
-.node.a{fill: purple}
-.node.nat{fill: olive}
-.node.ch{fill: orangered}
-.node.jp{fill: lime}
-.node.fp{fill: orange}
-.node.kor{fill: pink}
-.node.pac{fill: darkblue}
-.node.oth{fill: grey}
-.node.two{fill: brown}
