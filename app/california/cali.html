@@ -34,7 +34,7 @@
     var jsonFileName = "california-counties.json";
     var csvFileName = "nhgis0002_csv/nhgis0002_ts_nominal_county.csv";
     
-    function getCirlce(d){
+    /*function getCirlce(d){
         return d3.select("body")
                 .append("div")
                 .attr("class", "circle");
@@ -43,7 +43,7 @@
     var circleArray = [w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
         kor_cirlce, pac_cirlce, oth_cirlce, two_circle];
     
-    var circles = circleArray.map(getCirlce);
+    var circles = circleArray.map(getCirlce);*/
     
     var div = d3.select("body")
                 .append("div")
@@ -181,13 +181,13 @@
         //range variable for where circles attract
         var xScale = d3.scaleLinear()
                         .domain([0, 1])
-                        .range([0, 600]);
+                        .range([0, 200]);
         var nodes = d3.range(demographicsCount)
                         .map(function(d) {
                             return {
                                 radius: Math.random() * 25,
                                 value: Math.random(),
-                                fill: ""
+                                fill: 'orange'
                             }
         })
         //console.log(nodes);
@@ -197,7 +197,7 @@
             var removed =d3.selectAll('circle').remove();
                 var simulation = d3.forceSimulation(nodes)
                     .force('charge', d3.forceManyBody().strength(5))
-                    .force('center', d3.forceCenter(width / 2 + 200, height / 2))
+                    .force('center', d3.forceCenter(width / 2 +100, height / 2))
                     .force('x', d3.forceX().x(function(d) {
                         return xScale(d.value);
                     }))
@@ -215,6 +215,9 @@
 
             u.enter()
                 .append('circle')
+                .attr('fill', function(d){
+                    return d.fill
+                })
                 .attr('r', function(d) {
                     return d.radius
                 })
@@ -230,18 +233,34 @@
         
         //updates the demographic data on circle
         function updateCircles(d){
-            //console.log("update circles called");
+            var year = "2010";
             nodes[0].radius = d.properties["2010"]["whites"] / 500;
+            nodes[0].fill = 'white';
             nodes[1].radius = d.properties["2010"]["blacks"] / 500;
+            nodes[1].fill = 'black';
             nodes[2].radius = d.properties["2010"]["american-indian-and-alaska-natives-tribes"] / 500;
+            nodes[2].fill = 'brown';
             nodes[3].radius = d.properties["2010"]["asian-japanese"] / 500;
+            nodes[3].fill = 'olive';
             nodes[4].radius = d.properties["2010"]["asian-chinese"] / 500;
+            nodes[4].fill = 'orangered';
             nodes[5].radius = d.properties["2010"]["asian-filipino"] / 500;
+            nodes[5].fill = 'lime';
             nodes[6].radius = d.properties["2010"]["asian-korean"] / 500;
+            nodes[6].fill = 'orange';
             nodes[7].radius = d.properties["2010"]["native-hawaiian-and-pacific-islanders"] / 500;
+            nodes[7].fill = 'pink';
             nodes[8].radius = d.properties["2010"]["other-single-race"] / 500;
+            nodes[8].fill = 'darkblue';
             nodes[9].radius = d.properties["2010"]["two-or-more-races"] / 500;
+            nodes[9].fill = 'grey'
     
+        }
+        
+        //helper for the update circles function
+        function setNode(d, i, y, demographic, color){
+            nodes[i].radius = d.properties[y][demographic] / 500;
+            nodes[i].fill = color
         }
         
         var sizeMax = 200;
@@ -250,8 +269,16 @@
         var lowColor = "blue";
         //used to check that the radius does not exceed or go under the limit
         function radiusCheck(d, county, year){
-            console.log(radius checking);
+            console.log("radius checking");
         }
+        
+
+    }
+    
+    function clearElements(elem){
+        var u = d3.select(svg)
+            .selectAll(elem)
+            .remove();
     }
 
 </script>
