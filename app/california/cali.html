@@ -34,17 +34,6 @@
     var jsonFileName = "california-counties.json";
     var csvFileName = "nhgis0002_csv/nhgis0002_ts_nominal_county.csv";
     
-    /*function getCirlce(d){
-        return d3.select("body")
-                .append("div")
-                .attr("class", "circle");
-    }
-    
-    var circleArray = [w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
-        kor_cirlce, pac_cirlce, oth_cirlce, two_circle];
-    
-    var circles = circleArray.map(getCirlce);*/
-    
     var div = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip");
@@ -52,7 +41,7 @@
     //svg container properties
     var width = 1000,
         color = "orange";
-        height = 600;
+        height = 800;
     
     //d3 adds svg to body and background
     var svg = d3.select("body")
@@ -234,42 +223,46 @@
         //updates the demographic data on circle
         function updateCircles(d){
             var year = "2010";
-            nodes[0].radius = d.properties["2010"]["whites"] / 500;
-            nodes[0].fill = 'white';
-            nodes[1].radius = d.properties["2010"]["blacks"] / 500;
-            nodes[1].fill = 'black';
-            nodes[2].radius = d.properties["2010"]["american-indian-and-alaska-natives-tribes"] / 500;
-            nodes[2].fill = 'brown';
-            nodes[3].radius = d.properties["2010"]["asian-japanese"] / 500;
-            nodes[3].fill = 'olive';
-            nodes[4].radius = d.properties["2010"]["asian-chinese"] / 500;
-            nodes[4].fill = 'orangered';
-            nodes[5].radius = d.properties["2010"]["asian-filipino"] / 500;
-            nodes[5].fill = 'lime';
-            nodes[6].radius = d.properties["2010"]["asian-korean"] / 500;
-            nodes[6].fill = 'orange';
-            nodes[7].radius = d.properties["2010"]["native-hawaiian-and-pacific-islanders"] / 500;
-            nodes[7].fill = 'pink';
-            nodes[8].radius = d.properties["2010"]["other-single-race"] / 500;
-            nodes[8].fill = 'darkblue';
-            nodes[9].radius = d.properties["2010"]["two-or-more-races"] / 500;
-            nodes[9].fill = 'grey'
+            setNode(d,0, year, "whites", 'white');
+            setNode(d,1, year, "blacks", 'black');
+            setNode(d,2, year, "american-indian-and-alaska-natives-tribes", 'brown');
+            setNode(d,3, year, "asian-japanese", 'olive');
+            setNode(d,4, year, "asian-chinese", 'orangered');
+            setNode(d,5, year, "asian-filipino", 'lime');
+            setNode(d,6, year, "asian-korean", 'orange');
+            setNode(d,7, year, "native-hawaiian-and-pacific-islanders", 'pink');
+            setNode(d,8, year, "other-single-race", 'darkblue');
+            setNode(d,9, year, "two-or-more-races", 'grey')
     
         }
         
+        var sizeMax = 100;
+        var sizeMin = 5;
+        var highColor = 'red';
+        var lowColor = 'blue';
         //helper for the update circles function
-        function setNode(d, i, y, demographic, color){
-            nodes[i].radius = d.properties[y][demographic] / 500;
-            nodes[i].fill = color
+        function setNode(d, i, year, demographic, color){
+            //nodes[i].radius = d.properties[year][demographic] / 500;
+            radiusCheck(d, i, year, demographic);
+            if (nodes[i].radius != sizeMax && nodes[i].radius != sizeMin){
+                nodes[i].fill = color
+            }
         }
         
-        var sizeMax = 200;
-        var sizeMin = 20;
-        var highColor = "red";
-        var lowColor = "blue";
         //used to check that the radius does not exceed or go under the limit
-        function radiusCheck(d, county, year){
-            console.log("radius checking");
+        function radiusCheck(d, i, y, dem){
+            var r = nodes[i].radius = d.properties[y][dem] / 500;
+            if (r > sizeMax){
+                nodes[i].radius = sizeMax;
+                nodes[i].fill = highColor;
+            }
+            else if(r < sizeMin){
+                nodes[i].radius = sizeMin;
+                nodes[i].fill = lowColor;
+            }
+            else{
+                nodes[i].radius = r
+            }
         }
         
 
