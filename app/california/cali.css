@@ -18,19 +18,12 @@ div.tooltip {
 }
 div.circle{
     stroke: #000;
+    padding: 1px;
+    font: 12px sans-serif;	
+    position: absolute;			
+    text-align: center;	
     fill: orange;
 }
-
-
-.link {
-  stroke: #000;
-  stroke-width: 1.5px;
-}
-/*.node{
-    fill: #000;
-    stroke: #fff;
-    stroke-width: 1px;
-}*/
 .button {
     background-color: goldenrod;
     border: none;
@@ -43,4 +36,12 @@ div.circle{
     font-size: 24px;
     margin: 4px 2px;
     cursor: pointer;
+}
+.link {
+  stroke: #ccc;
+}
+
+.node text {
+  pointer-events: none;
+  font: 10px sans-serif;
 }

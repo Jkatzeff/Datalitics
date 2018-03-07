@@ -160,14 +160,11 @@
         //display the name of a county when clicked
         function popupName (d){
             div.html(
-                d.properties['name'] + "<br />" )//+ d.properties["2010"]["whites"])
+                d.properties['name'] )//+ "<br />" )+ d.properties["2010"]["whites"])
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .style("opacity", 100);
         }
-        
-        //console.log(circles);
-        
         
         //range variable for where circles attract
         var xScale = d3.scaleLinear()
@@ -178,20 +175,22 @@
                             return {
                                 radius: Math.random() * 25,
                                 value: Math.random(),
-                                fill: 'orange'
+                                fill: 'orange',
+                                dem: ""
                             }
         })
         //console.log(nodes);
         function gravityCircles(d){
             popupName(d);
             updateCircles(d);
-            var removed =d3.selectAll('circle').remove();
+            var removed =d3.selectAll('circle')
+                        .remove();
                 var simulation = d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody().strength(5))
+                    .force('charge', d3.forceManyBody().strength(20))
                     .force('center', d3.forceCenter(width / 2 +100, height / 2))
-                    .force('x', d3.forceX().x(function(d) {
-                        return xScale(d.value);
-                    }))
+                    //.force('x', d3.forceX().x(function(d) {
+                    //    return xScale(d.value);
+                    //}))
                     .force('collision', d3.forceCollide().radius(function(d) {
                         return d.radius
                     }))
@@ -220,6 +219,29 @@
                     return d.y
                 })
             u.exit().remove()
+            setLinks();
+        }
+        
+        var links = [
+            {source: 0, target: 1},
+            {source: 0, target: 2},
+            {source: 0, target: 3},
+            {source: 1, target: 6},
+            {source: 3, target: 4},
+            {source: 3, target: 7},
+            {source: 4, target: 5},
+            {source: 5, target: 8},
+            {source: 6, target: 9},
+            {source: 3, target: 8},
+            {source: 2, target: 7},
+            {source: 7, target: 9}
+        ]
+        
+        function setLinks(){
+            var u = d3.select('svg')
+                .append("g")
+                .attr
+                
         }
         
         //updates the demographic data on circle
@@ -244,11 +266,11 @@
         var lowColor = 'blue';
         //helper for the update circles function
         function setNode(d, i, year, demographic, color){
-            //nodes[i].radius = d.properties[year][demographic] / 500;
             radiusCheck(d, i, year, demographic);
             if (nodes[i].radius != sizeMax && nodes[i].radius != sizeMin){
                 nodes[i].fill = color
             }
+            nodes[i].dem = demographic
         }
         
         //used to check that the radius does not exceed or go under the limit
@@ -257,6 +279,7 @@
             if (r > sizeMax){
                 nodes[i].radius = sizeMax;
                 nodes[i].fill = highColor;
+                
             }
             else if(r < sizeMin){
                 nodes[i].radius = sizeMin;
@@ -269,8 +292,8 @@
         
         /*the following function clear the workspace if a user clicks on the
         removal button*/
-        document.getElementById("clearButton").addEventListener("click", myFunction);
-        function myFunction() {
+        document.getElementById("clearButton").addEventListener("click", clearCircles);
+        function clearCircles() {
             console.log("elements called to be cleared");
             var u = d3.select('svg')
                 .selectAll('circle')
