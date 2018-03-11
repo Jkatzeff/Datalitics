@@ -61,7 +61,10 @@ d3.json("us-states.json", function(error, us) {
 });
 
 d3.csv("data.csv", function(data){
-    
+    console.log(data);
+    var headerNames = d3.keys(data[0]);
+    console.log(headerNames);
+
     var maxYear = d3.max(data, function(d){
         return d.Year;
     });
@@ -109,18 +112,25 @@ d3.csv("data.csv", function(data){
             .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
             .attr("class", "track-overlay")
             .call(d3.drag()
-                    .on("start.interrupt", function(){
-                        slider.interrupt();
-            })
                     .on("drag", function(){
+        
                         var yearSelected = Math.round(x.invert(d3.event.x));
                         console.log(yearSelected);
                         moveCircle(yearSelected);
+                        var yearOf = data.filter(function(d){
+                            if (d.Year == yearSelected){
+                                return d;
+                            }
+                        });
+                        console.log(yearOf);
+//                        var header = {"columns": headerNames};
+//                        var yearData = Object.assign(yearOf, header);
+//                        console.log(yearData);
                         d3.select("svg")
                             .selectAll(".shooting-circles")
                             .remove();
-                        svg.selectAll("circle")
-                            .data(data)
+                        svg.selectAll(".shooting-circles")
+                            .data(yearOf)
                             .enter()
                             .append("circle")
                             .attr("cx", function(d){
@@ -137,8 +147,11 @@ d3.csv("data.csv", function(data){
                                     return 0;
                                 }
                             })
+                            .attr("class", "shooting-circles")
                             .style("fill", "red")
-                            .attr("class", "shooting-circles");
+                            .on("mouseover", function(d){
+                                console.log(d.Case);
+                            });
                         
             }));
 
