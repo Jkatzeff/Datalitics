@@ -38,10 +38,33 @@ div.circle{
     cursor: pointer;
 }
 .link {
-  stroke: #ccc;
+  stroke: #000;
+  stroke-width: 1.5px;
 }
 
 .node text {
   pointer-events: none;
   font: 10px sans-serif;
+}
+#countTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#countTable td, #countTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#countTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#countTable tr:hover {background-color: #ddd;}
+
+#countTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: goldenrod;
+    color: white;
 }

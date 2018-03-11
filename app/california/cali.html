@@ -10,7 +10,65 @@
         <script src="https://d3js.org/d3-queue.v3.min.js"></script>
         <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
     </head>
-    <body></body>
+    <body>
+        <table id="countTable">
+  <tr>
+    <th>Demographic</th>
+    <th>Reprenentitive Color</th>
+    <th>Population count</th>
+  </tr>
+  <tr>
+    <td>White</td>
+    <td>White</td>
+    <td id="w_count"></td>
+  </tr>
+  <tr>
+    <td>Black</td>
+    <td>Black</td>
+    <td id="b_count"></td>
+  </tr>
+  <tr>
+    <td>American Indian</td>
+    <td>Brown</td>
+    <td id="na_count"></td>
+  </tr>
+  <tr>
+    <td>Japanese</td>
+    <td>Olive</td>
+    <td id="j_count"></td>
+  </tr>
+  <tr>
+    <td>Chinese</td>
+    <td>orangered</td>
+    <td id="c_count"></td>
+  </tr>
+  <tr>
+    <td>Filipino</td>
+    <td>Lime</td>
+    <td id="f_count"></td>  
+  </tr>
+  <tr>
+    <td>Korean</td>
+    <td>Orange</td>
+    <td id="k_count"></td>
+  </tr>
+  <tr>
+    <td>Hawaiian and Pacific Islander</td>
+    <td>Pink</td>
+    <td id="h_count"></td>
+  </tr>
+  <tr>
+    <td>Other Single Race</td>
+    <td>Darkblue</td>
+    <td id="o_count"></td>
+  </tr>
+  <tr>
+    <td>Two or more races</td>
+    <td>Grey</td>
+    <td id="t_count"></td>
+  </tr>
+</table>
+    </body>
     <button class="button" id ="clearButton">Clear</button>
 </html>
 
@@ -183,52 +241,22 @@
                             }
         })
         
-        //conection links
-        /*var dataset = {
-            nodes,
-            edges: [
-                {source: 0, target: 1},
-                {source: 0, target: 2},
-                {source: 0, target: 3},
-                {source: 0, target: 4},
-                {source: 1, target: 5},
-                {source: 2, target: 5},
-                {source: 2, target: 5},
-                {source: 3, target: 4},
-                {source: 5, target: 8},
-                {source: 5, target: 9},
-                {source: 6, target: 7},
-                {source: 7, target: 8},
-                {source: 8, target: 9}
-            ]
-        };
-        
-        var nodelabels = svg.selectAll(".nodelabel") 
-            .data(dataset.nodes)
-            .enter()
-            .append("text")
-            .attrs({"x":function(d){return d.x;},
-                "y":function(d){return d.y;},
-                "class":"nodelabel",
-                "stroke":"black"})
-            .text(function(d){return d.name;});*/
-
-        
         function gravityCircles(d){
             popupName(d);
             updateCircles(d);
             var removed =d3.selectAll('circle')
                         .remove();
-                var simulation = d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody().strength(20))
-                    .force('center', d3.forceCenter(width / 2 +100, height / 2))
+            var simulation = d3.forceSimulation(nodes)
+                .force('charge', d3.forceManyBody().strength(20))
+                .force('center', d3.forceCenter(width / 2 +100, height / 2))
+                .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(40))
                     //.force('x', d3.forceX().x(function(d) {
                     //    return xScale(d.value);
                     //}))
-                    .force('collision', d3.forceCollide().radius(function(d) {
-                        return d.radius
-                    }))
-                    .on('tick',ticked);
+                .force('collision', d3.forceCollide().radius(function(d) {
+                    return d.radius
+                }))
+                .on('tick',ticked);
             console.log(nodes);
         }
         
@@ -237,7 +265,9 @@
             var u = d3.select('svg')
                 .selectAll('circle')
                 .data(nodes)
-
+                    .text(function(d){
+                        return d.dem
+                });
             u.enter()
                 .append('circle')
                 .attr('fill', function(d){
@@ -253,22 +283,12 @@
                 .attr('cy', function(d) {
                     return d.y
                 })
-                .append("text")
-                    .attrs({
-                        "x":function(d){
-                        return d.x;
-                    },
-                        "y":function(d){
-                            return d.y;
-                    },
-                        "class":"nodelabel",
-                        "stroke":"black"
-                    })
-                        .text(function(d){
-                            return d.dem;
-                    });
+                .attr('stroke', '#fff')
+                .attr('stroke-width', '1.5px')
+                .attr('font-size', 'xx-large')
+                .attr('overflow', 'visible')
             u.exit().remove()
-            setLinks();
+            //setLinks();
         }
         
         var links = [
@@ -284,7 +304,7 @@
             {source: 3, target: 8},
             {source: 2, target: 7},
             {source: 7, target: 9}
-        ]
+        ];
         
         function setLinks(){
             var u = d3.select('svg')
@@ -306,7 +326,14 @@
             setNode(d,7, year, "native-hawaiian-and-pacific-islanders", 'pink');
             setNode(d,8, year, "other-single-race", 'darkblue');
             setNode(d,9, year, "two-or-more-races", 'grey')
-    
+            setTable(d, year);
+            
+        }
+        
+        function labelCircles(d){
+           var targets = d3.select('svg')
+                    .selectAll('circle')
+                    .map
         }
         
         var sizeMax = 100;
@@ -320,6 +347,31 @@
                 nodes[i].fill = color
             }
             nodes[i].dem = demographic
+        }
+        
+        //helper to update the legend
+        function setTable(d, yr){
+            var w_count = d3.select("#w_count")
+                .text(d.properties[yr]["whites"]);
+            var b_count = d3.select("#b_count")
+                .text(d.properties[yr]["blacks"]);
+            var na_count = d3.select("#na_count")
+                .text(d.properties[yr]["american-indian-and-alaska-natives-tribes"]);
+            var j_koreancount = d3.select("#j_count")
+                .text(d.properties[yr]["asian-japanese"]);
+            var c_count = d3.select("#c_count")
+                .text(d.properties[yr]["asian-chinese"]);
+            var f_count = d3.select("#f_count")
+                .text(d.properties[yr]["asian-filipino"]);
+            var k_count = d3.select("#k_count")
+                .text(d.properties[yr]["asian-korean"]);
+            var h_count = d3.select("#h_count")
+                .text(d.properties[yr]["native-hawaiian-and-pacific-islanders"]);
+            var o_count = d3.select("#o_count")
+                .text(d.properties[yr]["other-single-race"]);
+            var t_count = d3.select("#t_count")
+                .text(d.properties[yr]["two-or-more-races"]);
+                
         }
         
         //used to check that the radius does not exceed or go under the limit
