@@ -1,0 +1,87 @@
+<script>
+    var dataInfo = {}
+    
+    var div = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip");
+    
+    var width = 1600,
+        height = 1600;
+    
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+    svg.append("rect")
+        .attr("class", "background")
+        .attr("width", width)
+        .attr("height", height);
+
+    var g = svg.append("g");
+    
+    var mapLayer = g.append("g")
+                    .classed("map-layer", true);
+    var color = d3.scaleLinear()
+      .domain([0, 255])
+      .range([d3.rgb(50,50,50), d3.rgb(255,0,0)]);
+    
+    d3.csv("data.csv", function(error, data){
+        if (error) return console.error(error);
+        var features = data;
+        var max_data = d3.max(features, function(d){return d["Value"];})
+        var min_data = d3.min(features, function(d){return d["Value"];})
+        data.forEach(function(d, i){
+//            console.log(i);
+            var country = d["Country Code"]
+            countryInfo[country] = {};
+            countryInfo[country] = {};
+            countryInfo[country]["population"]=d["Value"];
+        })
+        color.domain([0,max_pop]);
+
+        // console.log(max_pop);
+    });
+    d3.json("countries.geo.json", function(error, world){
+        if (error) return console.error(error);
+        
+        var center = d3.geoCentroid(world);
+
+        var projection = d3.geoMercator()
+                        .scale(200)
+                        .center(center)
+                        .translate([width/2, height/2]);
+        
+        var path = d3.geoPath()
+                    .projection(projection);
+        
+        mapLayer.selectAll("path")
+                .data(world.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .style("fill", function(d){
+                    console.log(d.id);
+                    if(countryInfo[d.id]){
+                    console.log(countryInfo[d.id]["population"])}
+                    if(countryInfo[d.id]){
+//                        console.log(countryInfo[d.id]["population"]);
+                    return color(countryInfo[d.id]["population"]);
+                    }
+                    else{return color(0);}
+                })
+                .on("click",mouseClick);
+        
+    });
+
+    
+    console.log(mapLayer);
+    
+    function mouseClick(d){
+        div.html(d.id + "\n" + countryInfo[d.id]['population'] + "<br />")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100); 
+    }
+    
+</script>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>D3 Map</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+</head>
+<style>
+/*http://bl.ocks.org/rgdonohue/9280446*/
+    #wrapper {
+        width: 1600px;
+        margin: -100px auto 0;
+    }
+    #map {
+        width: 1600px;
+        height: 1600px;
+        position: relative;  
+    }
+    .background{
+        fill: #eee;
+    }
+    .map-layer {
+/*        fill: black;*/
+        stroke: pink;
+    }
+    .country {
+        /*fill: steelblue;*/
+        stroke: white;
+    }
+    #play { 
+        position: absolute;
+        top: 200px;
+        left: 800px; 
+    }
+    #clock {
+        position: absolute;
+        top: 150px;
+        left: 815px;
+    }
+    div.tooltip {	
+        position: absolute;			
+        text-align: center;			
+        width: 100px;					
+        height: 50px;					
+        padding: 1px;				
+        font: 20px sans-serif;		
+        background: lightsteelblue;			
+        border-radius: 8px;			
+        pointer-events: none;
+        opacity: 0;
+    }
+</style>
+<body>
+    <div id="wrapper">  
+      <div id="map"></div>
+      <button id="play">Start animation!</button>
+      <span id="clock">current_year</span>
+    </div>
+</body>
+
+<!-- imports jQuery -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+<script>
+    var width, height, projection, path, svg, mapLayer, div,
+        countryInfo = [], 
+        currentAttr = 0, 
+        animating = false;
+
+    var color = d3.scaleLog()
+    .domain([1, 255])
+    .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
+
+    function begin(){
+        loadMap();
+        animateMap();
+    }
+    function loadMap(){
+        width = 1600,
+        height = 1600;
+        div = d3.select("#map")
+                    .append("div")
+                    .attr("class", "tooltip");
+					
+
+        projection = d3.geoMercator()
+                        .scale(200)
+                        // .center(center)
+                        .translate([width/2, height/2]);
+        path = d3.geoPath()
+                 .projection(projection);
+
+        svg = d3.select("#map")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+        svg.append("rect")
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height);
+
+		
+		$("#mapContainer").html("<svg id='map' xmlns='https://www.w3.org/TR/2011/REC-SVG11-20110816/' width='100%' height='" + $("#wrapper").width()/2 + "'></svg>");
+		var map = d3.select("svg");
+		var zoom = d3.zoom()
+					.on("zoom", zoomFunction);
+		function zoomFunction(){
+			map.attr("transform", d3.event.transform)
+		}
+//		this is the pan and zoom function (to improve, check out https://bl.ocks.org/rutgerhofste/5bd5b06f7817f0ff3ba1daa64dee629d)
+		map.call(zoom)
+			.append("g");
+		
+		var width = $("svg").parent()
+							.width();
+		var height = $("#mapContainer").width()/2;
+
+        var g = svg.append("g");
+        
+        mapLayer = g.append("g")
+                        .classed("map-layer", true);
+
+        enterFiles();
+
+    }
+
+    function enterFiles(){
+        queue()
+        .defer(d3.json,"countries.geo.json")
+        .defer(d3.csv,"population_example.csv")
+        .await(enterData);
+    }
+
+    function enterData(error, world,data){
+        var max_pop = d3.max(data, function(d){return +d["Value"]});
+        var min_pop = d3.min(data, function(d){return +d["Value"]});
+        manageColors(min_pop,max_pop);
+        var center = d3.geoCentroid(world);
+        projection.center(center);
+
+        var features = world.features;
+        for(var j in features){
+            features[j]["Time Series"] = {}
+        }
+        for (var i in data){
+            // data[i] = Object containing country name, code, year, value;
+            for(var j in features){
+                if(features[j]["id"] == data[i]["Country Code"]){
+                    features[j]["Time Series"][data[i]["Year"]] = data[i]["Value"];
+                }
+
+                if (countryInfo.indexOf(data[i]["Year"]) == -1){
+                    countryInfo.push(data[i]["Year"]);
+                }
+                // features[j] = Object containing id (country code), geometry, Time Series, Country Name
+
+            }
+
+        }
+        d3.select('#clock').html(countryInfo[currentAttr]);
+        drawMap(world);
+    }
+        //     //https://www.visualcinnamon.com/2016/05/smooth-color-legend-d3-svg-gradient.html
+
+    function manageColors(min_pop, max_pop){
+         color.domain([min_pop,max_pop]);
+        var y = d3.scaleLinear()
+        .domain([min_pop,max_pop])
+        .range([0,300]);     
+        
+        var defs = svg.append("defs");
+
+        var linearGradient = defs.append("linearGradient")
+        .attr("id", "linear-gradient");
+
+        linearGradient.append("stop") 
+        .attr("offset", "0%")   
+        .attr("stop-color", color(min_pop)); 
+
+        linearGradient.append("stop") 
+        .attr("offset", "100%")   
+        .attr("stop-color", color(max_pop));
+
+        svg.append("rect")
+        .attr("width", width)
+        .attr("height", 120)
+        .style("fill", "url(#linear-gradient)");
+        var xScale = d3.scaleLinear()
+                         .domain([min_pop, max_pop])
+                         .range([1,width]);
+
+        var xAxis = d3.axisBottom()
+                        .scale(xScale)
+                        .ticks(20)
+                        .tickFormat(d3.format("d"));
+
+        svg.append("g")
+             .attr("class", "axis")
+             .attr("transform", "translate(0," + 120 + ")")
+             .call(xAxis);  
+    }
+
+    function drawMap(world){
+        svg.selectAll(".country")
+                .data(world.features)
+                .enter()
+                .append("path")
+                .attr("class","country")
+                .attr("id", function(d){return "code_"+ d["id"]},true)
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .on("click",mouseClick);
+
+                changeMap();
+    }
+
+
+    function changeMap(){
+        d3.selectAll(".country")
+            .transition()
+            .duration(500)
+            .style("fill", function(d){
+                // console.log(d);
+                // console.log(countryInfo[currentAttr]);
+                // console.log(d["Time Series"][countryInfo[currentAttr]]);
+                if(d){return color(+d["Time Series"][+countryInfo[+currentAttr]]);}
+                else{return color(0);}
+                // return color(+currentAttr*50);
+            })
+    }
+    //http://bl.ocks.org/rgdonohue/9280446
+    function animateMap(){
+        var timer;
+        d3.select("#play")
+            .on('click', function(){
+                if(animating == false){
+                    timer = setInterval(function(){
+
+                        if(currentAttr < countryInfo.length-1){
+                            currentAttr+=1;
+                        }
+                        else{
+                            currentAttr = 0;
+                        }
+                        changeMap();
+                        d3.select("#clock").html(countryInfo[currentAttr]);
+                    }, 500);
+
+                    d3.select(this).html('stop');
+                    animating = true;
+                }
+                else{
+                    clearInterval(timer);
+                    d3.select(this).html('play');
+                    animating = false;
+                }
+            })
+    }
+    function mouseClick(d){
+        var year = countryInfo[currentAttr];
+        div.html(d.id + "\n" +  year + "\n" + d["Time Series"][year] + "<br />")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100); 
+    }
+    begin();    
+	$(window).resize(function() {
+		if(this.resizeTo){
+			clearTimeout(this.resizeTo)
+		};
+		this.resizeTo = setTimeout(function(){
+							$(this).trigger('resizeEnd');
+						}, 500);
+	});
+
+	$(window).bind('resizeEnd', function(){
+		var height = $("#wrapper").width()/2;
+		$("#wrapper svg").css("height", height);
+		draw(height);
+	});
+</script>
+</html>
