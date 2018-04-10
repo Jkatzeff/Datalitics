@@ -384,9 +384,15 @@
                 
         }
         
+        /*called on for the scaling in terms of log x (y)*/
+        function getBaseLog(x, y) {
+            return Math.log(y) / Math.log(x);
+        }
+        
         //used to check that the radius does not exceed or go under the limit
         function radiusCheck(d, i, y, dem){
-            var r = nodes[i].radius = d.properties[y][dem] / 500;
+            nodes[i].radius = getBaseLog(2, d.properties[y][dem]) * 2;
+            var r = nodes[i].radius;
             if (r > sizeMax){
                 nodes[i].radius = sizeMax;
 //                nodes[i].fill = highColor;
@@ -405,13 +411,25 @@
         }
         /*the following function clear the workspace if a user clicks on the
         removal button*/
-        document.getElementById("clearButton").addEventListener("click", clearCircles);
+        document.getElementById("clearButton")
+            .addEventListener("click", clearCircles);
+        
         function clearCircles() {
-//            console.log("elements called to be cleared");
+            console.log("elements called to be cleared");
             var u = d3.select('svg')
                 .selectAll('circle')
                 .remove()
         }
+        /*these update the year based on the decade button clicked*/
+        //document.getElementById("70Button")
+        //    .addEventListener("click", updateYear("1970"));
+        //document.getElementById("80Button").addEventListener("click", updateYear("1980"));
+        //document.getElementById("90Button").addEventListener("click", updateYear("1990"));
+        //document.getElementById("00Button").addEventListener("click", updateYear("2000"));
+        //document.getElementById("10Button").addEventListener("click", updateYear("2010"));
+        //function updateYear(d){
+        //    console.log("year set to: ", d);
+        //    year = d;
+        //}
     }
-
 </script>
