@@ -69,13 +69,19 @@
   </tr>
 </table>
     </body>
+    <button class="yearButton" id ="70Button">1970's</button>
+    <button class="yearButton" id ="80Button">1980's</button>
+    <button class="yearButton" id ="90Button">1990's</button>
+    <button class="yearButton" id ="00Button">2000's</button>
+    <button class="yearButton" id ="10Button">2010's</button>
     <button class="button" id ="clearButton">Clear</button>
 </html>
 
 
 <script type="text/javascript">
-    //one circle per demographic
     console.log("hello world");
+    var year = "2010";          //the set can be updated through this variable
+    //one circle per demographic
     var demographicsCount = 10;
     var w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
         kor_cirlce, pac_cirlce, oth_cirlce, two_circle;
@@ -285,7 +291,7 @@
                     return d.y
                 })
                 .attr('stroke', function(d){
-                    return d.stroke
+                    return d.stroke;
                 })
                 .attr('stroke-width', '2px')
                 .attr('font-size', 'xx-large')
@@ -318,7 +324,7 @@
         
         //updates the demographic data on circle
         function updateCircles(d){
-            var year = "2010";
+//            var year = "2010";
             setNode(d,0, year, "whites", 'white');
             setNode(d,1, year, "blacks", 'black');
             setNode(d,2, year, "american-indian-and-alaska-natives-tribes", 'brown');
