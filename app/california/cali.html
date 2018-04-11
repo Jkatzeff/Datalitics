@@ -14,7 +14,7 @@
         <table id="countTable">
   <tr>
     <th>Demographic</th>
-    <th>Reprenentitive Color</th>
+    <th>Representative Color</th>
     <th>Population count</th>
   </tr>
   <tr>
@@ -39,7 +39,7 @@
   </tr>
   <tr>
     <td>Chinese</td>
-    <td>Orangered</td>
+    <td>Red</td>
     <td id="c_count"></td>
   </tr>
   <tr>
@@ -54,7 +54,7 @@
   </tr>
   <tr>
     <td>Hawaiian and Pacific Islander</td>
-    <td>Pink</td>
+    <td>Yellow</td>
     <td id="h_count"></td>
   </tr>
   <tr>
@@ -69,13 +69,19 @@
   </tr>
 </table>
     </body>
+    <button class="yearButton" id ="70Button">1970's</button>
+    <button class="yearButton" id ="80Button">1980's</button>
+    <button class="yearButton" id ="90Button">1990's</button>
+    <button class="yearButton" id ="00Button">2000's</button>
+    <button class="yearButton" id ="10Button">2010's</button>
     <button class="button" id ="clearButton">Clear</button>
 </html>
 
 
 <script type="text/javascript">
-    //one circle per demographic
     console.log("hello world");
+    var year = "2010";          //the set can be updated through this variable
+    //one circle per demographic
     var demographicsCount = 10;
     var w_circle, b_cirlce, a_circle, nat_circle, ch_circle, jp_circle, fp_cirlce,
         kor_cirlce, pac_cirlce, oth_cirlce, two_circle;
@@ -237,7 +243,8 @@
                                 radius: Math.random() * 25,
                                 value: Math.random(),
                                 fill: 'orange',
-                                dem: ""
+                                dem: "",
+                                stroke: ""
                             }
         })
         
@@ -283,8 +290,10 @@
                 .attr('cy', function(d) {
                     return d.y
                 })
-                .attr('stroke', '#fff')
-                .attr('stroke-width', '1.5px')
+                .attr('stroke', function(d){
+                    return d.stroke;
+                })
+                .attr('stroke-width', '2px')
                 .attr('font-size', 'xx-large')
                 .attr('overflow', 'visible')
             u.exit().remove()
@@ -315,15 +324,15 @@
         
         //updates the demographic data on circle
         function updateCircles(d){
-            var year = "2010";
+//            var year = "2010";
             setNode(d,0, year, "whites", 'white');
             setNode(d,1, year, "blacks", 'black');
             setNode(d,2, year, "american-indian-and-alaska-natives-tribes", 'brown');
             setNode(d,3, year, "asian-japanese", 'olive');
-            setNode(d,4, year, "asian-chinese", 'orangered');
+            setNode(d,4, year, "asian-chinese", 'red');
             setNode(d,5, year, "asian-filipino", 'lime');
             setNode(d,6, year, "asian-korean", 'orange');
-            setNode(d,7, year, "native-hawaiian-and-pacific-islanders", 'pink');
+            setNode(d,7, year, "native-hawaiian-and-pacific-islanders", 'yellow');
             setNode(d,8, year, "other-single-race", 'darkblue');
             setNode(d,9, year, "two-or-more-races", 'grey')
             setTable(d, year);
@@ -340,12 +349,13 @@
         var sizeMin = 5;
         var highColor = 'red';
         var lowColor = 'blue';
+        var standardColor = 'white';
         //helper for the update circles function
         function setNode(d, i, year, demographic, color){
             radiusCheck(d, i, year, demographic);
-            if (nodes[i].radius != sizeMax && nodes[i].radius != sizeMin){
-                nodes[i].fill = color
-            }
+//            if (nodes[i].radius != sizeMax && nodes[i].radius != sizeMin){
+            nodes[i].fill = color
+//            }
             nodes[i].dem = demographic
         }
         
@@ -374,31 +384,52 @@
                 
         }
         
+        /*called on for the scaling in terms of log x (y)*/
+        function getBaseLog(x, y) {
+            return Math.log(y) / Math.log(x);
+        }
+        
         //used to check that the radius does not exceed or go under the limit
         function radiusCheck(d, i, y, dem){
-            var r = nodes[i].radius = d.properties[y][dem] / 500;
+            nodes[i].radius = getBaseLog(2, d.properties[y][dem]) * 2;
+            var r = nodes[i].radius;
             if (r > sizeMax){
                 nodes[i].radius = sizeMax;
-                nodes[i].fill = highColor;
+//                nodes[i].fill = highColor;
+                nodes[i].stroke = highColor;
                 
             }
             else if(r < sizeMin){
                 nodes[i].radius = sizeMin;
-                nodes[i].fill = lowColor;
+//                nodes[i].fill = lowColor;
+                nodes[i].stoke = lowColor;
             }
             else{
-                nodes[i].radius = r
+                nodes[i].radius = r;
+                nodes[i].stroke = standardColor;
             }
         }
         /*the following function clear the workspace if a user clicks on the
         removal button*/
-        document.getElementById("clearButton").addEventListener("click", clearCircles);
+        document.getElementById("clearButton")
+            .addEventListener("click", clearCircles);
+        
         function clearCircles() {
-//            console.log("elements called to be cleared");
+            console.log("elements called to be cleared");
             var u = d3.select('svg')
                 .selectAll('circle')
                 .remove()
         }
+        /*these update the year based on the decade button clicked*/
+        //document.getElementById("70Button")
+        //    .addEventListener("click", updateYear("1970"));
+        //document.getElementById("80Button").addEventListener("click", updateYear("1980"));
+        //document.getElementById("90Button").addEventListener("click", updateYear("1990"));
+        //document.getElementById("00Button").addEventListener("click", updateYear("2000"));
+        //document.getElementById("10Button").addEventListener("click", updateYear("2010"));
+        //function updateYear(d){
+        //    console.log("year set to: ", d);
+        //    year = d;
+        //}
     }
-
 </script>
