@@ -391,7 +391,7 @@
         
         //used to check that the radius does not exceed or go under the limit
         function radiusCheck(d, i, y, dem){
-            nodes[i].radius = getBaseLog(2, d.properties[y][dem]) * 2;
+            nodes[i].radius = getBaseLog(2, d.properties[y][dem]) * 4;
             var r = nodes[i].radius;
             if (r > sizeMax){
                 nodes[i].radius = sizeMax;
@@ -420,16 +420,27 @@
                 .selectAll('circle')
                 .remove()
         }
-        /*these update the year based on the decade button clicked*/
-        //document.getElementById("70Button")
-        //    .addEventListener("click", updateYear("1970"));
-        //document.getElementById("80Button").addEventListener("click", updateYear("1980"));
-        //document.getElementById("90Button").addEventListener("click", updateYear("1990"));
-        //document.getElementById("00Button").addEventListener("click", updateYear("2000"));
-        //document.getElementById("10Button").addEventListener("click", updateYear("2010"));
-        //function updateYear(d){
-        //    console.log("year set to: ", d);
-        //    year = d;
-        //}
+        
+        /*updatees the year if the decade buttons were pressed*/
+        document.getElementById("70Button")
+            .addEventListener("click", function(){
+                year = "1970";
+            })
+        document.getElementById("80Button")
+            .addEventListener("click", function(){
+                year = "1980";
+            })
+        document.getElementById("90Button")
+            .addEventListener("click", function(){
+                year = "1990";
+            })
+        document.getElementById("00Button")
+            .addEventListener("click", function(){
+                year = "2000";
+            })
+        document.getElementById("10Button")
+            .addEventListener("click", function(){
+                year = "2010";
+            })
     }
 </script>
