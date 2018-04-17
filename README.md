@@ -4,7 +4,11 @@
 Data analytics platform utilizing d3. Dynamically visualize csv/json files on maps, in a human understandable way. Topics include population growth, gun violence, racial demographics over time, and more to be added.
 
 ## How to run
-Just lookat the HTML files for now, more to be added including CSV uploading.
+For a local host instance:
+1. have npm, and node installed.
+2. $ npm install
+3. $ node server.js
+4. open your browser and go to localhost:3000
 
 ## Current visualizations
 * California - force layout visualization of demographics county by county
