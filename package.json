@@ -27,9 +27,11 @@
   },
   "homepage": "https://github.com/Jkatzeff/Datalitics#readme",
   "dependencies": {
+    "connect": "^3.6.6",
     "d3": "^4.13.0",
     "jquery": "^3.3.1",
     "papaparse": "^4.3.7",
+    "serve-static": "^1.13.2",
     "templatesjs": "^2.0.0"
   }
 }

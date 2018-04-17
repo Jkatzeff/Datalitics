@@ -1,4 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
-        <img src="../Deliverables/icon_small.jpg" alt="logo">
+<meta charset="UTF-8">
+<html>
+	<head>
+		<!-- https://www.htmlgoodies.com/beyond/javascript/article.php/3471111 -->
+		<style>
+			body{background-color: white;}
+			p{center;}
+			.banner{
+				background-color: skyblue;
+				font: arial;
+				color: white;
+				padding: 10px;
+			} 
+		</style>
+	</head>
+	<body>
+		<h1 class="banner"> DataLitics</h1>
+		<nav>
+			<p><span style="font-size:25px;font:arial;">Select your map, upload your csv file (and map file if applicable), and visualize!</span></p>
+		</nav>
+		<aside>
+			<img src="icon_small.jpg" alt="DataLitics" style="width:30%;height:30%;float:left> <br clear="all" />
+		</aside>
+		<section>
+			<div style="float:left;">Select your map: <select name="mapType" id="selectMap" onchange="changeMap()"> 
+					<option value="world" selected>World Map</option>
+					<option value="cal">California Map</option> 
+					<option value="USA">United States Map</option> 
+					<option value="Europe">Europe Map</option> 
+					<option value="Asia">Asia Map</option> 
+					<option value="MidEast">Middle East Map</option> 
+					<option value="Africa">Africa Map</option>
+					<option value="Canada">Canada Map</option>
+					<option value="NA">North America Map</option>
+					<option value="SA">South America Map</option>
+					<option value="Custom">Custom Map</option>
+				</select><p>
+				<script>
+					function changeMap() {
+						var choice = document.getElementById("selectMap").value;
+						if (choice == "world"){
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "cal"){
+							document.linker.action = "california/cali.html"
+						}
+						if (choice == "USA"){ 
+							document.linker.action = "usa/index.html"
+						}
+						if (choice == "Europe"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "Asia"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "MidEast"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "Canada"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "NA"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "SA"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "Custom"){ //change the html file name
+							document.linker.action = "world/world.html"
+						}
+						if (choice == "Africa"){
+							document.linker.action = "world/world.html"
+						}
+					}
+				</script>
+				<FORM method="LINK" action="return changeMap();" name = "linker" id="linker">
+					Upload your data file: <INPUT TYPE="file" NAME="DataName"> <p>
+					Upload your map file: <INPUT TYPE="file" NAME="MapName"> <p>
+					<INPUT TYPE="submit" VALUE="Visualize!">
+				</FORM>
+			</div>
+		</section>
+	</body>
 </html>
