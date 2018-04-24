@@ -104,24 +104,24 @@
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
-    var color = d3.scaleLog()
+    var color = d3.scaleLinear()
                   .domain([1, 255])
-                  .range([d3.rgb(255,0,0), d3.rgb(0,0,0)]);
+                  .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
 
     function begin(){
         loadMap();
         animateMap();
     }
     function loadMap(){
-        width = 1600,
-        height = 1600; //400?
+        width = 1200,
+        height = 1200; //400?
         div = d3.select("#map")
                     .append("div")
                     .attr("class", "tooltip");
 
 
         projection = d3.geoMercator()
-                        .scale(200)
+                        .scale(100)
                         // .center(center)
                         .translate([width/2, height/2]);
         path = d3.geoPath()
@@ -151,9 +151,9 @@
         .await(enterData);
     }    
     function enterData(error, world,data){
-        var max_pop = d3.max(data, function(d){return +d["Deaths Per Capita"]});
-        var min_pop = d3.min(data, function(d){return +d["Deaths Per Capita"]});
-        manageColors(min_pop,max_pop);
+        var max_deaths = d3.max(data, function(d){return +d["Deaths Per Capita"]});
+        var min_deaths = d3.min(data, function(d){return +d["Deaths Per Capita"]});
+        manageColors(min_deaths,max_deaths);
         var center = d3.geoCentroid(world);
         projection.center(center);
 
@@ -165,7 +165,7 @@
             // data[i] = Object containing country name, code, year, value;
             for(var j in features){
                 if(features[j]["id"] == data[i]["Country"]){
-                    features[j]["Time Series"][data[i]["Year"]] = data[i]["Value"];
+                    features[j]["Time Series"][data[i]["Year"]] = data[i]["Deaths Per Capita"];
                 }
 
                 if (countryInfo.indexOf(data[i]["Year"]) == -1){
@@ -179,74 +179,172 @@
         d3.select('#clock').html(countryInfo[currentAttr]);
         drawMap(world);
     }
-var div = d3.select("body").append("div")	
-    .attr("class", "tooltip")				
-    .style("opacity", 0);
-    
-var svg = d3.select("body")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("fill", "grey");
-    
-var svg2 = d3.select("body")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("fill", "grey");
-    
-var svg3 = d3.select("body")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("fill", "grey");
-    
-var projection =  d3.geoMercator()
-                    .scale(200)
-                        // .center(center)
-                    .translate([width/2, height/2]);
+    function manageColors(min_deaths, max_deaths){
+         color.domain([min_deaths,max_deaths]);
+        var y = d3.scaleLinear()
+        .domain([min_deaths,max_deaths])
+        .range([0,300]);     
+        
+        var defs = svg.append("defs");
 
-var path = d3.geoPath()
-                .projection(projection);
-var projection2 =  d3.geoMercator()
-                    .scale(200)
-                        // .center(center)
-                    .translate([width/2, height/2]);
+        var linearGradient = defs.append("linearGradient")
+        .attr("id", "linear-gradient");
 
-var path2 = d3.geoPath()
-                .projection(projection2);
-var projection3 =  d3.geoMercator()
-                    .scale(200)
-                        // .center(center)
-                    .translate([width/2, height/1.2]);
+        linearGradient.append("stop") 
+        .attr("offset", "0%")   
+        .attr("stop-color", color(min_deaths)); 
 
-var path3 = d3.geoPath()
-                .projection(projection3);
+        linearGradient.append("stop") 
+        .attr("offset", "100%")   
+        .attr("stop-color", color(max_deaths));
 
-d3.json("australia-no-states.json", function(error, topology) {
-    svg.selectAll("path")
-        .data(topology.features)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .style("stroke", "#fff");
-});
-d3.json("usa-no-states.json", function(error, topology) {
-    svg2.selectAll("path")
-        .data(topology.features)
-        .enter()
-        .append("path")
-        .attr("d", path2)
-        .style("stroke", "#fff");
-});
-d3.json("france-no-states.json", function(error, topology) {
-    svg3.selectAll("path")
-        .data(topology.features)
-        .enter()
-        .append("path")
-        .attr("d", path3)
-        .style("stroke", "#fff");
-});
+        svg.append("rect")
+        .attr("width", width)
+        .attr("height", 200)
+        .style("fill", "url(#linear-gradient)");
+        var xScale = d3.scaleLinear()
+                         .domain([min_deaths, max_deaths])
+                         .range([0,width]);
+
+        var xAxis = d3.axisBottom()
+                        .scale(xScale)
+                        .ticks(20)
+                        .tickFormat(d3.format("d"));
+
+        svg.append("g")
+             .attr("class", "axis")
+             .attr("transform", "translate(0," + 120 + ")")
+             .call(xAxis);  
+    }
+    function drawMap(world){
+        svg.selectAll(".country")
+                .data(world.features)
+                .enter()
+                .append("path")
+                .attr("class","country")
+                .attr("id", function(d){return "code_"+ d["id"]},true)
+                .attr("d", path)
+                .attr('vector-effect', 'non-scaling-stroke')
+                .on("click",mouseClick);
+
+                changeMap();
+    }
+    function changeMap(){
+        d3.selectAll(".country")
+            .transition()
+            .duration(500)
+            .style("fill", function(d){
+                // console.log(d);
+                // console.log(countryInfo[currentAttr]);
+                // console.log(d["Time Series"][countryInfo[currentAttr]]);
+                if(d){return color(+d["Time Series"][+countryInfo[+currentAttr]]);}
+                else{return color(0);}
+                // return color(+currentAttr*50);
+            })
+    }
+    function animateMap(){
+        var timer;
+        d3.select("#play")
+            .on('click', function(){
+                if(animating == false){
+                    timer = setInterval(function(){
+
+                        if(currentAttr < countryInfo.length-1){
+                            currentAttr+=1;
+                        }
+                        else{
+                            currentAttr = 0;
+                        }
+                        changeMap();
+                        d3.select("#clock").html(countryInfo[currentAttr]);
+                    }, 500);
+
+                    d3.select(this).html('stop');
+                    animating = true;
+                }
+                else{
+                    clearInterval(timer);
+                    d3.select(this).html('play');
+                    animating = false;
+                }
+            })
+    }
+    function mouseClick(d){
+        var year = countryInfo[currentAttr];
+        div.html(d.id + "\n" +  year + "\n" + d["Time Series"][year] + "<br />")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .style("opacity", 100); 
+    }
+    begin();    
+// var div = d3.select("body").append("div")	
+//     .attr("class", "tooltip")				
+//     .style("opacity", 0);
+    
+// var svg = d3.select("body")
+//             .append("svg")
+//             .attr("width", width)
+//             .attr("height", height)
+//             .attr("fill", "grey");
+    
+// var svg2 = d3.select("body")
+//             .append("svg")
+//             .attr("width", width)
+//             .attr("height", height)
+//             .attr("fill", "grey");
+    
+// var svg3 = d3.select("body")
+//             .append("svg")
+//             .attr("width", width)
+//             .attr("height", height)
+//             .attr("fill", "grey");
+    
+// var projection =  d3.geoMercator()
+//                     .scale(200)
+//                         // .center(center)
+//                     .translate([width/2, height/2]);
+
+// var path = d3.geoPath()
+//                 .projection(projection);
+// var projection2 =  d3.geoMercator()
+//                     .scale(200)
+//                         // .center(center)
+//                     .translate([width/2, height/2]);
+
+// var path2 = d3.geoPath()
+//                 .projection(projection2);
+// var projection3 =  d3.geoMercator()
+//                     .scale(200)
+//                         // .center(center)
+//                     .translate([width/2, height/1.2]);
+
+// var path3 = d3.geoPath()
+//                 .projection(projection3);
+
+// d3.json("australia-no-states.json", function(error, topology) {
+//     svg.selectAll("path")
+//         .data(topology.features)
+//         .enter()
+//         .append("path")
+//         .attr("d", path)
+//         .style("stroke", "#fff");
+// });
+// d3.json("usa-no-states.json", function(error, topology) {
+//     svg2.selectAll("path")
+//         .data(topology.features)
+//         .enter()
+//         .append("path")
+//         .attr("d", path2)
+//         .style("stroke", "#fff");
+// });
+// d3.json("france-no-states.json", function(error, topology) {
+//     svg3.selectAll("path")
+//         .data(topology.features)
+//         .enter()
+//         .append("path")
+//         .attr("d", path3)
+//         .style("stroke", "#fff");
+// });
 // var svg2 = d3.select("body")
 //             .append("svg")
 //             .attr("width", width)
