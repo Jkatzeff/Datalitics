@@ -54,8 +54,8 @@
 
 <script type="text/javascript">
 
-var width = 1600,
-    height = 800;
+var width = 1200,
+    height = 400;
     
 var div = d3.select("body").append("div")	
     .attr("class", "tooltip")				
@@ -80,12 +80,26 @@ var svg3 = d3.select("body")
             .attr("fill", "grey");
     
 var projection =  d3.geoMercator()
-                    .scale(200)
+                    .scale(150)
                         // .center(center)
                     .translate([width/2, height/2]);
 
 var path = d3.geoPath()
                 .projection(projection);
+var projection2 =  d3.geoMercator()
+                    .scale(125)
+                        // .center(center)
+                    .translate([width/2, height/2]);
+
+var path2 = d3.geoPath()
+                .projection(projection2);
+var projection3 =  d3.geoMercator()
+                    .scale(280)
+                        // .center(center)
+                    .translate([width/2, height/1.2]);
+
+var path3 = d3.geoPath()
+                .projection(projection3);
 
 d3.json("aus.json", function(error, topology) {
     svg.selectAll("path")
@@ -100,7 +114,7 @@ d3.json("us.json", function(error, topology) {
         .data(topology.features)
         .enter()
         .append("path")
-        .attr("d", path)
+        .attr("d", path2)
         .style("stroke", "#fff");
 });
 d3.json("france.json", function(error, topology) {
@@ -108,7 +122,7 @@ d3.json("france.json", function(error, topology) {
         .data(topology.features)
         .enter()
         .append("path")
-        .attr("d", path)
+        .attr("d", path3)
         .style("stroke", "#fff");
 });
 // var svg2 = d3.select("body")
