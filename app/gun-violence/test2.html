@@ -10,41 +10,6 @@
 </head>
 
 <style>
-
-/*    .state-borders {
-        fill: none;
-        stroke: #fff;
-        stroke-width: 0.5px;
-        stroke-linejoin: round;
-        stroke-linecap: round;
-        pointer-events: none;
-    }
-    
-    .track{
-        stroke: #000;
-        stroke-opacity: 0.3;
-        stroke-width: 10px;
-    }
-    
-    .track-inset {
-        stroke: black;
-        stroke-width: 8px;
-    }
-    .track-overlay {
-        pointer-events: stroke;
-        stroke-width: 50px;
-        stroke: transparent;
-        cursor: crosshair;
-    }
-    div.tooltip {	
-        position: absolute;			
-        text-align: center;								
-        padding: 2px;				
-        font: 12px sans-serif;		
-        background: lightsteelblue;	
-        border: 0px;		
-        border-radius: 8px;			
-        pointer-events: none;		*/
     #wrapper {
         width: 1600px;
         margin: -100px auto 0;
@@ -58,11 +23,9 @@
         fill: #eee;
     }
     .map-layer {
-/*        fill: black;*/
         stroke: pink;
     }
     .country {
-        /*fill: steelblue;*/
         stroke: white;
     }
     #play { 
@@ -114,6 +77,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="makeMap.js"></script>
 <script type="text/javascript"> 
-    makeMap("combined.csv", "combined.json","Deaths Per Capita","Country", "id");
+    makeMap("combined_ordered.csv", "combined.json","Deaths Per Capita","Country", "id");
 </script>
 </html>
