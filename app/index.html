@@ -6,12 +6,6 @@
 		<style>
 			body{background-color: white;}
 			p{center;}
-			.banner{
-				background-color: skyblue;
-				font: arial;
-				color: white;
-				padding: 10px;
-			}
             .button {
                 background-color: goldenrod;
                 border-radius: 20%;
@@ -28,30 +22,81 @@
 		</style>
 	</head>
 	<body>
+		<div><section class="rain"></section></div>
+		
 		<style>
-			p.pic{
-				padding-left: -20px;
+			html{height:100%; width:100%;}
+			body {
+				background:#0D343A;
+				background:-webkit-gradient(linear,0% 0%,0% 100%, from(#000000 ), to(#000000)  );
+				background: -moz-linear-gradient(top, #000000 0%, #000000 100%);
+
+			overflow:hidden;}
+
+
+			.drop {
+				background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(13,255,58,1) ), to(rgba(255,255,255,0.6))  );
+				background: -moz-linear-gradient(top, rgba(0,100,0,1) 0%, rgba(255,255,255,.6) 100%);
+				width:1px;
+				height:89px;
+				position: absolute;
+				bottom:200px;
+				-webkit-animation: fall 0.7s linear infinite;
+				-moz-animation: fall 0.7s linear infinite;
+  
 			}
-			p.para{
-				font: arial;
-				padding-left: 20px;
+
+			/* animate the drops*/
+			@-webkit-keyframes fall {
+				to {margin-top:900px;}
+			}
+			@-moz-keyframes fall {
+				to {margin-top:900px;}
 			}
 		</style>
-		<h1 class="banner"> DataLitics</h1>
-		<nav>
-			<p class= "pic">
-				<img src="../Deliverables/icon_small.jpg" alt="DataLitics" style="width:30%;height:30%;float:left; vertical-align:middle;">
-				<span style="font-size:25px;font:arial;font-style:italic;position:relative;vertical-align:middle;">Amazing analytics at the tip of your fingers.</span><br clear="all" />
-			</p>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">></script>
+		<script>
+			// number of drops created.
+				var nbDrop = 858; 
+
+			// function to generate a random number range.
+				function randRange( minNum, maxNum) {
+					return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+				}
+	
+			// function to generate drops
+			function createRain() {
+	
+				for( i=1;i<nbDrop;i++) {
+					var dropLeft = randRange(0,1600);
+					var dropTop = randRange(-1000,1400);
+	
+					$('.rain').append('<div class="drop" id="drop'+i+'"></div>');
+					$('#drop'+i).css('left',dropLeft);
+					$('#drop'+i).css('top',dropTop);
+				}
+			}
+			// Make it rain
+			createRain();
+		</script>
+		<style>
+			nav{
+				height: 30px;
+				width: 100%;
+				background-color: #42bff4;
+			}
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+		<nav style=text-align:center;>
+			<a href="home.html"><button class="button" id="startButton">See The Data</button></a>
+			<a href="home.html"><button class="button" id="startButton">About Us</button></a>
 		</nav>
-		<aside>
-			<h1>
-				About Us
-			</h1>
-			<p class="para">
-				Insert Text Here
-			<p>
-		</aside>
-		<a href="home.html"><button class="button" id="startButton">Let's Begin!</button></a>
-	</body>
+		<div style="height:100%; width:100%;text-align:center;>
+			<section class="rain"></section>
+			<img src="icon_small.jpg" alt="DataLitics" style="width:70%;height:70%;float:center; vertical-align:middle;">
+		</div>
+		</body>
 </html>
