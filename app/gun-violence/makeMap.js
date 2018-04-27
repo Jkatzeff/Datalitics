@@ -113,7 +113,6 @@ function makeMap(csvName,jsonName,dataName,id_CSV,id_JSON){
 
         projection = d3.geoMercator()
                         .scale(100)
-                        // .center(center)
                         .translate([width/2, height/2]);
         path = d3.geoPath()
                  .projection(projection);
