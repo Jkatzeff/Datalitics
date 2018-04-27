@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>D3 Map</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+</head>
+<style>
+
+    .state-borders {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 0.5px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        pointer-events: none;
+    }
+    
+    .track{
+        stroke: #000;
+        stroke-opacity: 0.3;
+        stroke-width: 10px;
+    }
+    
+    .track-inset {
+        stroke: black;
+        stroke-width: 8px;
+    }
+    .track-overlay {
+        pointer-events: stroke;
+        stroke-width: 50px;
+        stroke: transparent;
+        cursor: crosshair;
+    }
+    div.tooltip {	
+        position: absolute;			
+        text-align: center;								
+        padding: 2px;				
+        font: 12px sans-serif;		
+        background: lightsteelblue;	
+        border: 0px;		
+        border-radius: 8px;			
+        pointer-events: none;			
+    }
+
+</style>
+<body></body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+var width = 1200,
+    height = 400;
+    
+var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+    
+var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("fill", "grey");
+    
+var svg2 = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("fill", "grey");
+    
+var svg3 = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("fill", "grey");
+    
+var projection =  d3.geoMercator()
+                    .scale(150)
+                        // .center(center)
+                    .translate([width/2, height/2]);
+
+var path = d3.geoPath()
+                .projection(projection);
+var projection2 =  d3.geoMercator()
+                    .scale(125)
+                        // .center(center)
+                    .translate([width/2, height/2]);
+
+var path2 = d3.geoPath()
+                .projection(projection2);
+var projection3 =  d3.geoMercator()
+                    .scale(280)
+                        // .center(center)
+                    .translate([width/2, height/1.2]);
+
+var path3 = d3.geoPath()
+                .projection(projection3);
+
+d3.json("aus.json", function(error, topology) {
+    svg.selectAll("path")
+        .data(topology.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        .style("stroke", "#fff");
+});
+d3.json("us.json", function(error, topology) {
+    svg2.selectAll("path")
+        .data(topology.features)
+        .enter()
+        .append("path")
+        .attr("d", path2)
+        .style("stroke", "#fff");
+});
+d3.json("france.json", function(error, topology) {
+    svg3.selectAll("path")
+        .data(topology.features)
+        .enter()
+        .append("path")
+        .attr("d", path3)
+        .style("stroke", "#fff");
+});
+// var svg2 = d3.select("body")
+//             .append("svg")
+//             .attr("width", width)
+//             .attr("height", height)
+//             .attr("fill", "grey");
+    
+// var projection2 =  d3.geoMercator()
+//                     .scale(200)
+//                         // .center(center)
+//                     .translate([width/2, height/2]);
+
+// var path2 = d3.geoPath()
+//                 .projection(projection2);
+
+// d3.json("us.json", function(error, topology2) {
+//     svg2.selectAll("path")
+//         .data(topology2.features)
+//         .enter()
+//         .append("path")
+//         .attr("d", path2)
+//         .style("stroke", "#fff");
+// });
+</script>
+</html>
