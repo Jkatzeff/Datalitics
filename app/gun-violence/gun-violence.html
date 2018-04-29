@@ -33,6 +33,11 @@
         top: 200px;
         left: 800px; 
     }
+    #currdata {
+        position: absolute;
+        top: 250px;
+        left: 800px;    
+    }
     #clock {
         position: absolute;
         top: 150px;
@@ -64,10 +69,6 @@
         cursor: pointer;
     }
     .button2 {
-        position: absolute;
-        top: 250px;
-        left: 800px;
-
         background-color: #008CBA;
     }
 
@@ -76,7 +77,7 @@
     <div id="wrapper">  
       <div id="map"></div>
       <button class="button" id="play">Start animation!</button>
-      <button class="button button2" id="dataset">Change dataset</button> 
+      <button class="button button2" id="currdata">Change dataset</button> 
       <span id="clock">current_year</span>
     </div>
 </body>
@@ -85,6 +86,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="makeMap.js"></script>
 <script type="text/javascript"> 
-    makeMap("combined_ordered.csv", "combined.json","Deaths Per Capita","Country", "id");
+    makeMap("combined_ordered.csv,combined-fake.csv", "combined.json","Deaths Per Capita","Country", "id");
 </script>
 </html>

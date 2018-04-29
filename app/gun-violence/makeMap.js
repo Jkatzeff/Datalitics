@@ -232,6 +232,7 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
     }
     function animateMap(){
         var timer;
+        // d3.select("#datase")
         d3.select("#play")
             .on('click', function(){
                 if(animating == false){
@@ -255,6 +256,12 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
                     d3.select(this).html('play');
                     animating = false;
                 }
+            })
+        d3.select("#currdata")
+            .on('click', function(){
+                current_dataset = (current_dataset + 1)%num_datasets;
+                console.log("hello");
+                enterFiles();
             })
     }
     function mouseClick(d){
