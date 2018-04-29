@@ -51,24 +51,32 @@
         opacity: 0;	
     }
     .button {
-    background-color: goldenrod;
-    border-radius: 20%;
-    width: 20%;
-    color: white;
-    padding: 15px 32px;
-    text-align: left;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 24px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
+        background-color: goldenrod;
+        border-radius: 25%;
+        width: 15%;
+        color: white;
+        padding: 8px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        margin: 4px 1px;
+        cursor: pointer;
+    }
+    .button2 {
+        position: absolute;
+        top: 250px;
+        left: 800px;
+
+        background-color: #008CBA;
+    }
 
 </style>
 <body>
     <div id="wrapper">  
       <div id="map"></div>
       <button class="button" id="play">Start animation!</button>
+      <button class="button button2" id="dataset">Change dataset</button> 
       <span id="clock">current_year</span>
     </div>
 </body>

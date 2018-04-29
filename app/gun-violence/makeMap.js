@@ -90,11 +90,16 @@
 
 // CSV must include "Year" as a variable.
 
-function makeMap(csvName,jsonName,dataName,id_CSV,id_JSON){
-	    var width, height, projection, path, svg, mapLayer, div,
+//In progress: Allow multiple datasets by setting csvNames = "csvName1[,csvName2,...]"
+
+function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
+    var width, height, projection, path, svg, mapLayer, div,
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
+    var csv_names_arr = csvNames.split(",");
+    var current_dataset=0;
+    num_datasets=csv_names_arr.length;
     var color = d3.scaleLinear()
                   .domain([1, 255])
                   .range([d3.rgb(0,0,255), d3.rgb(255,0,0)]);
@@ -104,16 +109,16 @@ function makeMap(csvName,jsonName,dataName,id_CSV,id_JSON){
         animateMap();
     }
     function loadMap(){
-        width = 1200,
-        height = 1200; //400?
+        width = 1600,
+        height = 1600; //400?
         div = d3.select("#map")
                     .append("div")
                     .attr("class", "tooltip");
 
 
         projection = d3.geoMercator()
-                        .scale(100)
-                        .translate([width/2, height/2]);
+                        .scale(200)
+                        .translate([width/20, height/2]);
         path = d3.geoPath()
                  .projection(projection);
 
@@ -137,7 +142,7 @@ function makeMap(csvName,jsonName,dataName,id_CSV,id_JSON){
     function enterFiles(){
         queue()
         .defer(d3.json,jsonName)
-        .defer(d3.csv,csvName)
+        .defer(d3.csv,csv_names_arr[current_dataset])
         .await(enterData);
     }    
     function enterData(error, world,data){
