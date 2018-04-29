@@ -102,7 +102,7 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
     num_datasets=csv_names_arr.length;
     var color = d3.scaleLinear()
                   .domain([1, 255])
-                  .range([d3.rgb(0,0,255), d3.rgb(255,0,0)]);
+                  .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
 
     function begin(){
         loadMap();
@@ -168,7 +168,8 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
             }
 
         }
-        d3.select('#clock').html(countryInfo[currentAttr]);
+        d3.select('#clock').html("Current year: " + countryInfo[currentAttr]);
+        d3.select('#dataname').html("Current dataset: " + csv_names_arr[current_dataset])
         drawMap(world);
     }
     function manageColors(min_deaths, max_deaths){
@@ -245,7 +246,7 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
                             currentAttr = 0;
                         }
                         changeMap();
-                        d3.select("#clock").html(countryInfo[currentAttr]);
+                        d3.select("#clock").html("Current year: " + countryInfo[currentAttr]);
                     }, 500);
 
                     d3.select(this).html('stop');
@@ -260,7 +261,6 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
         d3.select("#currdata")
             .on('click', function(){
                 current_dataset = (current_dataset + 1)%num_datasets;
-                console.log("hello");
                 enterFiles();
             })
     }
