@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Gun violence visualization by country</title> 
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+</head>
+
+<style>
+    #wrapper {
+        width: 1600px;
+        margin: -100px auto 0;
+    }
+    #map {
+        width: 1600px;
+        height: 1600px;
+        position: relative;  
+    }
+    .background{
+        fill: #eee;
+    }
+    .map-layer {
+        stroke: pink;
+    }
+    .country {
+        stroke: white;
+    }
+    #play { 
+        position: absolute;
+        top: 200px;
+        left: 800px; 
+    }
+    #currdata {
+        position: absolute;
+        top: 250px;
+        left: 800px;    
+    }
+    #clock {
+        position: absolute;
+        top: 220px;
+        left: 1150px;
+    }
+    #dataname {
+        position: absolute;
+        top: 270px;
+        left: 1150px;
+    }
+    div.tooltip {   
+        position: absolute;         
+        text-align: center;         
+        width: 100px;                   
+        height: 50px;                   
+        padding: 1px;               
+        font: 20px sans-serif;      
+        background: lightsteelblue;         
+        border-radius: 8px;         
+        pointer-events: none;
+        opacity: 0;	
+    }
+    .button {
+        background-color: goldenrod;
+        border-radius: 25%;
+        width: 15%;
+        color: white;
+        padding: 8px 12px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        margin: 4px 1px;
+        cursor: pointer;
+    }
+    .button2 {
+        background-color: #008CBA;
+    }
+
+</style>
+<body>
+    <div id="wrapper">  
+      <div id="map"></div>
+      <button class="button" id="play">Start animation!</button>
+      <button class="button button2" id="currdata">Change dataset</button>
+      <span id="dataname">current_dataset</span>
+      <span id="clock">current_year</span>
+    </div>
+</body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="makeMap.js"></script>
+<script type="text/javascript"> 
+    // makeMap("combined_ordered.csv", "combined.json","Deaths Per Capita","Country", "id");
+    // makeMap("combined_ordered.csv", "combined.json","Deaths Per Capita","Country", "id");
+    makeMap("uniform_fake.csv,uniform_fake2.csv,uniform_fake3.csv", "combined.json","Deaths Per Capita","Country", "id");
+</script>
+</html>
