@@ -1,0 +1,287 @@
+GTD ID,DATE,COUNTRY,CITY,PERPETRATOR 1,GUNCERTAIN 1,PERPETRATOR 2,GUNCERTAIN 2,PERPETRATOR 3,GUNCERTAIN 3,FATALITIES,INJURED,TARGET TYPE 1,TARGET TYPE 2,TARGET TYPE 3,REGION,ATTACK TYPE 1,ATTACK TYPE 2,ATTACK TYPE 3,WEAPON TYPE 1,WEAPON TYPE 2,WEAPON TYPE 3,WEAPON TYPE 4,LATITUDE,LONGITUDE
+201612160023,2016-12-16,France,Chateau-Thierry,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,49.0459869,3.40262
+201611050021,2016-11-05,France,Nantes,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,47.218371,-1.553621
+201610250048,2016-10-25,France,Calais,No Borders Group,0,,,,,0,Unknown,Other,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,50.95129000000001,1.858686
+201609040042,2016-09-04,France,Paris,Jihadi-inspired extremists,0,,,,,0,0,Unknown,,,Western Europe,Armed Assault,,,Incendiary,,,,48.856614,2.3522219
+201607270034,2016-07-27,France,Muret,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.46157400000001,1.33071
+201607260001,2016-07-26,France,Saint-Etienne-du-Rouvray,Jihadi-inspired extremists,0,,,,,3,1,Religious Figures/Institutions,,,Western Europe,Hostage Taking (Barricade Incident),,,Firearms,Melee,Fake Weapons,,49.380305,1.108209
+201607190060,2016-07-19,France,Maureilhan,Comite d'Action Viticole,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,Melee,Melee,,43.358381,3.119836
+201607140001,2016-07-14,France,Nice,Jihadi-inspired extremists,0,,,,,87,433,Private Citizens & Property,Private Citizens & Property,,Western Europe,Armed Assault,,,Firearms,Vehicle,Fake Weapons,,43.7101728,7.261953200000001
+201607040047,2016-07-04,France,Ouveillan,Comite d'Action Viticole,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.292732,2.968821
+201606210047,2016-06-21,France,Paris,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+201605010013,2016-04-30,France,Ajaccio,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.919229,8.738635
+201602030088,2016-02-03,France,Propriano,Unknown,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.6738915,8.901759199999999
+201602030060,2016-02-03,France,Propriano,Unknown,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.6738915,8.901759199999999
+201601100040,2016-01-10,France,Veneux-les-Sablons,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.377846,2.7951609
+201601100039,2016-01-10,France,Fontainebleau,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,25.816968,-80.12235559999999
+201512030059,2015-12-03,France,Ghisonaccia,Unknown,0,,,,,0,0,Business,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+201511260056,2015-11-26,France,Elne,White extremists,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,Incendiary,,,42.600336,2.970433
+201511130008,2015-11-13,France,Paris,Islamic State of Iraq and the Levant (ISIL),0,,,,,93,217,Business,Private Citizens & Property,,Western Europe,Hostage Taking (Barricade Incident),Bombing/Explosion,,Explosives/Bombs/Dynamite,Explosives/Bombs/Dynamite,Firearms,,48.856614,2.3522219
+201511130006,2015-11-13,France,Paris,Islamic State of Iraq and the Levant (ISIL),0,,,,,19,26,Business,Private Citizens & Property,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201511130005,2015-11-13,France,Paris,Islamic State of Iraq and the Levant (ISIL),0,,,,,5,24,Business,,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201511130003,2015-11-13,France,Paris,Islamic State of Iraq and the Levant (ISIL),0,,,,,15,26,Business,Private Citizens & Property,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201508250065,2015-08-23,France,Auch,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.64638,0.5867089999999999
+201508210035,2015-08-21,France,Arras,Islamic State of Iraq and the Levant (ISIL),0,,,,,0,3,Transportation,,,Western Europe,Armed Assault,,,Firearms,Melee,,,50.291002,2.777535
+201505280097,2015-05-28,France,Ceret,Animal Liberation Front (ALF),0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,42.485952,2.748826
+201504190055,2015-04-19,France,Paris,Jihadi-inspired extremists,0,,,,,1,0,Private Citizens & Property,Religious Figures/Institutions,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201503250070,2015-03-25,France,Henin-Beaumont,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,50.420087,2.94728
+201501110112,2015-01-11,France,Poitiers,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,46.58022400000001,0.340375
+201501100119,2015-01-10,France,Ghisonaccia,Unknown,0,,,,,0,0,Business,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+201501090098,2015-01-09,France,Soissons,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Firearms,,,,49.376636,3.32342
+201501090097,2015-01-09,France,Vendome,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Firearms,,,,47.792551,1.065343
+201501090002,2015-01-09,France,Paris,Jihadi-inspired extremists,0,,,,,5,3,Business,,,Western Europe,Hostage Taking (Barricade Incident),,,Firearms,,,,48.856614,2.3522219
+201501090001,2015-01-09,France,Dammartin en Goele,Muslim extremists,0,,,,,2,2,Business,,,Western Europe,Hostage Taking (Barricade Incident),Armed Assault,,Firearms,,,,49.054824,2.683399
+201501080091,2015-01-08,France,Saint-Juery,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Firearms,,,,43.9492679,2.211335
+201501080090,2015-01-08,France,Aix-les-Bains,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,45.692341,5.908998
+201501080002,2015-01-08,France,Le Mans,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Explosives/Bombs/Dynamite,Firearms,,,48.00611000000001,0.199556
+201501080001,2015-01-08,France,Paris,Jihadi-inspired extremists,0,,,,,1,1,Police,Government (General),,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201501070005,2015-01-07,France,Port-la-Nouvelle,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Firearms,,,,43.021342,3.043916
+201501070002,2015-01-07,France,Paris,Jihadi-inspired extremists,0,,,,,0,1,Private Citizens & Property,,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201501070001,2015-01-07,France,Paris,Al-Qaida in the Arabian Peninsula (AQAP),0,,,,,12,12,Journalists & Media,Police,Private Citizens & Property,Western Europe,Hostage Taking (Barricade Incident),Armed Assault,,Explosives/Bombs/Dynamite,Firearms,Firearms,,48.856614,2.3522219
+201411110070,2014-11-11,France,Gourdon,Animal Liberation Front (ALF),0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.719923,6.979337999999999
+201406130105,2014-06-13,France,Uzel,Breton Liberation Front (FLB),0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.28039800000001,-2.840971
+201406130104,2014-06-13,France,Huelgoat,Breton Liberation Front (FLB),0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.364725,-3.745645999999999
+201406120071,2014-06-12,France,Bastia,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+201403160037,2014-03-16,France,Bessieres,Comite d'Action Viticole,0,,,,,0,0,Telecommunication,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.800464,1.606142
+201403160036,2014-03-16,France,Bessieres,Comite d'Action Viticole,0,,,,,0,0,Telecommunication,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.800464,1.606142
+201401180080,2014-01-18,France,Lezay,The Justice Department,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,46.26605199999999,-0.011459
+201311180036,2013-11-18,France,Paris,Unknown,0,,,,,0,1,Journalists & Media,,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+201206190034,2012-06-19,France,Toulouse,Jihadi-inspired extremists,0,,,,,0,1,Business,,,Western Europe,Hostage Taking (Barricade Incident),,,Firearms,,,,43.604652,1.444209
+201203190009,2012-03-19,France,Toulouse,Muslim extremists,0,,,,,4,0,Educational Institution,,,Western Europe,Armed Assault,,,Firearms,,,,43.604652,1.444209
+201203150003,2012-03-15,France,Montauban,Muslim extremists,0,,,,,3,0,Military,,,Western Europe,Armed Assault,,,Firearms,,,,44.0221252,1.3529599
+201203110021,2012-03-11,France,Toulouse,Muslim extremists,0,,,,,1,0,Military,,,Western Europe,Armed Assault,,,Firearms,,,,43.604652,1.444209
+201104090001,2011-04-09,France,Creuse district,Basque Fatherland and Freedom (ETA),1,,,,,0,1,Police,,,Western Europe,Armed Assault,,,Firearms,,,,49.83891,2.163534
+201012120007,2010-12-12,France,Chasse-sur-Rhone,Animal Rights Militia,1,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,45.578041,4.812652
+200904060001,2009-04-06,France,Bonifacio,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,41.38717399999999,9.159269
+200903200007,2009-03-20,France,Lyon,Unknown,0,,,,,0,10,Private Citizens & Property,,,Western Europe,Armed Assault,,,Firearms,,,,45.764043,4.835659
+200901110002,2009-01-11,France,Saint-Denis,Unknown,0,,,,,0,0,Religious Figures/Institutions,Business,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.936181,2.357443
+200901050014,2009-01-05,France,Toulouse,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+200805170002,2008-05-17,France,Corsa du Sud district,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.8102633,8.9245343
+200804200018,2008-04-20,France,Toulouse,LW,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+200712010004,2007-12-01,France,Capbreton,Basque Fatherland and Freedom (ETA),0,,,,,2,0,Police,,,Western Europe,Assassination,,,Firearms,,,,43.637844,-1.420939
+200711140020,2007-11-14,France,Ajaccio,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+200708280039,2007-08-28,France,Linguizzetta,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Armed Assault,,,Firearms,,,,42.264463,9.473635
+200607030006,2006-07-03,France,Marseille,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.296482,5.36978
+200604220002,2006-04-22,France,Coti Chiavari,Corsican National Liberation Front (FLNC),1,,,,,0,2,Private Citizens & Property,Private Citizens & Property,,Western Europe,Hostage Taking (Barricade Incident),Bombing/Explosion,,Firearms,Explosives/Bombs/Dynamite,,,41.772597,8.771765
+200604050014,2006-04-05,France,Paris,Kurdistan Workers' Party (PKK),1,,,,,0,0,Government (Diplomatic),,,Western Europe,Bombing/Explosion,,,Incendiary,,,,48.856614,2.3522219
+200603040004,2006-03-04,France,Unknown,Corsican National Liberation Front (FLNC),0,,,,,0,0,Business,,,Western Europe,Bombing/Explosion,Hostage Taking (Kidnapping),,Explosives/Bombs/Dynamite,Firearms,,,41.6262707,-79.6735841
+200602090007,2006-02-09,France,Ghisonaccia,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.016837,9.403981000000002
+200504280008,2005-04-28,France,Ciboure,Basque Fatherland and Freedom (ETA),1,,,,,0,0,Government (General),Police,,Western Europe,Bombing/Explosion,,,Incendiary,,,,43.387537,-1.675432
+200503080002,2005-03-08,France,Corte,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.309409,9.149022
+200304140006,2003-04-14,France,Cergy,Unknown,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,49.03561699999999,2.060325
+200303290001,2003-03-29,France,Massy,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,48.730756,2.27137
+200301060002,2003-01-06,France,Paris,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+200206010003,2002-01-05,France,Paris,Youths,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,Melee,,,48.856614,2.3522219
+200205120004,2002-05-12,France,Toulouse,Neo-Nazi extremists,0,,,,,0,0,NGO,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+200204040002,2002-04-04,France,Le Kremlin-Bicetre,Anti-Semitic extremists,0,,,,,0,0,Religious Figures/Institutions,Private Citizens & Property,,Western Europe,Bombing/Explosion,,,Incendiary,,,,48.810108,2.356972
+200204020004,2002-04-02,France,Schiltigheim,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.60522599999999,7.748453
+200204020003,2002-04-02,France,Marseille,Unknown,0,,,,,0,0,Religious Figures/Institutions,Religious Figures/Institutions,,Western Europe,Bombing/Explosion,,,Incendiary,,,,43.296482,5.36978
+200202030008,2002-02-03,France,Ventiseri,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,41.94122,9.330645
+200202030002,2002-02-03,France,Ventiseri,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,41.94122,9.330645
+200202020005,2002-02-02,France,Hendaye,Unknown,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.359399,-1.766148
+200202020003,2002-02-02,France,Saint-Jean-de-Luz,Unknown,0,,,,,0,0,Business,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,43.388051,-1.663055
+200111060003,2001-11-06,France,Borgo,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,29.738019,-95.43645699999999
+200110100001,2001-10-10,France,Pau,Association Totalement Anti-Guerre (ATAG),0,,,,,0,0,Military,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,43.2951,-0.370797
+200109300001,2001-09-30,France,Ustaritz,Unknown,0,,,,,0,0,Police,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,43.395936,-1.45459
+200109080003,2001-09-08,France,Ixtassou,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Bombing/Explosion,Armed Assault,,Incendiary,,,,43.329845,-1.406347
+200108180003,2001-08-18,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+200108120001,2001-08-12,France,Paris,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+200011090002,2000-11-09,France,Hendaye,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.359399,-1.766148
+200010210002,2000-10-21,France,Cambo-les-Bains,Iparretarrak (IK),1,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.3605565,-1.3999053
+200010100006,2000-10-10,France,Paris,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+200010100003,2000-10-10,France,Paris,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+200008070005,2000-08-07,France,L'Ile Rousse,Unknown,0,,,,,2,1,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,42.63651,8.937045999999999
+200004010003,2000-04-01,France,Dury,Unknown,0,,,,,0,0,Business,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,50.249781,3.002522
+199910080004,1999-10-08,France,Mont La Rhune,Gazteriak,1,,,,,0,0,Telecommunication,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.3092177,-1.6352634
+199909270002,1999-09-27,France,Ajaccio,Armata di Liberazione Naziunale (ALN),1,,,,,0,0,Police,,,Western Europe,Bombing/Explosion,,,Incendiary,,,,41.919229,8.738635
+199802060001,1998-02-06,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,1,0,Government (Diplomatic),,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199712090019,1997-12-09,France,Unknown,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,41.6262707,-79.6735841
+199705160012,1997-05-16,France,Lyon,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,45.764043,4.835659
+199701250006,1997-01-25,France,Saint-pee-sur-nivelle,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,,,,43.356582,-1.550488
+199701090006,1997-01-09,France,Bastia,Unknown,0,,,,,0,1,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.697283,9.450880999999999
+199612200005,1996-12-20,France,Unknown,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,41.6262707,-79.6735841
+199612180013,1996-12-18,France,Bastia,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.697283,9.450880999999999
+199612180012,1996-12-18,France,Belgodere,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.58584,9.017958
+199612180010,1996-12-18,France,Bastia,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199612170011,1996-12-17,France,Vescovato,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.492576,9.439183
+199612150004,1996-12-15,France,Bastia,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199612070009,1996-12-07,France,Propriano,Unknown,0,,,,,1,0,Military,,,Western Europe,Assassination,,,Firearms,,,,41.6738915,8.901759199999999
+199612000001,1996-12-00,France,Saint-Florent,Unknown,0,,,,,0,0,Military,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.681846,9.303704
+199611120006,1996-11-12,France,Figari,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.48734,9.130112
+199610000008,1996-10-00,France,Paris,Unknown,0,,,,,2,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199610000003,1996-10-00,France,Oletta,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.631849,9.358393
+199609030010,1996-09-03,France,Bonifacio,Unknown,0,,,,,0,1,Military,,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Firearms,,,41.38717399999999,9.159269
+199606060005,1996-06-06,France,Ajaccio,Corsican Separatists,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+199605280007,1996-05-28,France,Paris,Unknown,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199605220004,1996-05-22,France,Brando,Corsican National Liberation Front- Historic Channel,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.8771962,-87.6289936
+199605190010,1996-05-19,France,Ventiseri,Corsican National Liberation Front- Historic Channel,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.94122,9.330645
+199605170006,1996-05-17,France,Bastia,Corsican National Liberation Front- Historic Channel,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199605160005,1996-05-16,France,Bastia,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199605150008,1996-05-15,France,Bonifacio,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.38717399999999,9.159269
+199605150007,1996-05-15,France,Ajaccio,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+199605150006,1996-05-15,France,Ajaccio,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+199605150005,1996-05-15,France,Ajaccio,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+199605140009,1996-05-14,France,Porto-Vecchio,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.591369,9.278311
+199605140008,1996-05-14,France,Porto-Vecchio,Unknown,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.591369,9.278311
+199605140006,1996-05-14,France,Ajaccio,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,41.919229,8.738635
+199605000001,1996-05-00,France,Vescovato,Corsican National Liberation Front- Historic Channel,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.492576,9.439183
+199603290009,1996-03-29,France,Ajaccio,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.919229,8.738635
+199603100012,1996-03-10,France,Orsay,Unknown,0,,,,,0,0,Journalists & Media,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,30.3002629,-81.7099827
+199603080006,1996-03-08,France,Sartene,Unknown,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,41.621822,8.97472
+199603070003,1996-03-07,France,Ajaccio,Unknown,0,,,,,0,1,Government (General),,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199603000001,1996-03-00,France,Reims,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Armed Assault,,,Incendiary,,,,49.258329,4.031696
+199602190009,1996-02-19,France,Ajaccio,Unknown,0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199602180007,1996-02-18,France,Porto-Vecchio,Unknown,0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,41.591369,9.278311
+199602160006,1996-02-16,France,Ajaccio,Unknown,0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199601010016,1996-01-01,France,Ajaccio,Corsican Separatists,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199511240005,1995-11-24,France,Porto-Vecchio,Separatists,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.591369,9.278311
+199511240004,1995-11-24,France,Porto-Vecchio,Separatists,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.591369,9.278311
+199511240003,1995-11-24,France,Porto-Vecchio,Separatists,0,,,,,0,0,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.591369,9.278311
+199511220007,1995-11-22,France,Ajaccio,Separatists,0,,,,,0,0,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,41.919229,8.738635
+199510290010,1995-10-29,France,Corte,Unknown,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,Firearms,,,42.309409,9.149022
+199510070009,1995-10-07,France,Toulouse,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,,,,43.604652,1.444209
+199509230003,1995-09-23,France,Paris,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199509170014,1995-09-17,France,Paris,Unknown,0,,,,,0,0,Transportation,,,Western Europe,Armed Assault,,,Incendiary,,,,48.856614,2.3522219
+199509170012,1995-09-17,France,Cargese,Unknown,0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,42.13485499999999,8.595837999999999
+199509170011,1995-09-17,France,Bastia,Unknown,0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,42.697283,9.450880999999999
+199508310004,1995-08-31,France,Corte,Movement for Self-Determination,0,,,,,1,1,Violent Political Party,,,Western Europe,Assassination,,,Firearms,,,,42.309409,9.149022
+199508310003,1995-08-31,France,Bastia,Cuncolta Naziunalista,0,,,,,2,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,42.697283,9.450880999999999
+199507280003,1995-07-28,France,Strasbourg,Kurdistan Workers' Party (PKK),0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.5734053,7.752111299999999
+199507260004,1995-07-26,France,Ajaccio,Unknown,0,,,,,2,1,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199507210012,1995-07-21,France,Bastia,Unknown,0,,,,,1,0,Violent Political Party,,,Western Europe,Assassination,,,Firearms,,,,42.697283,9.450880999999999
+199507130044,1995-07-13,France,Ajaccio,Unknown,0,,,,,1,1,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199501100006,1995-01-10,France,Paris,Unknown,0,,,,,1,0,Religious Figures/Institutions,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199410040008,1994-10-04,France,Paris,Unknown,0,,,,,4,6,Police,Private Citizens & Property,,Western Europe,Hostage Taking (Barricade Incident),,,Chemical,Firearms,,,48.856614,2.3522219
+199407160003,1994-07-16,France,Dreux,Unknown,0,,,,,1,8,Private Citizens & Property,,,Western Europe,Armed Assault,,,Firearms,,,,48.736134,1.370889
+199405100005,1994-05-10,France,Evreux,Unknown,0,,,,,0,0,Business,,,Western Europe,Armed Assault,,,Incendiary,,,,49.0270129,1.151361
+199404170008,1994-04-17,France,Lyon,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Armed Assault,,,Incendiary,,,,45.764043,4.835659
+199404170007,1994-04-17,France,Lyon,Unknown,0,,,,,0,0,Business,,,Western Europe,Armed Assault,,,Incendiary,,,,45.764043,4.835659
+199404170006,1994-04-17,France,Lyon,Unknown,0,,,,,0,0,Educational Institution,,,Western Europe,Armed Assault,,,Incendiary,,,,45.764043,4.835659
+199404160008,1994-04-16,France,Lyon,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Armed Assault,,,Incendiary,,,,45.764043,4.835659
+199403300017,1994-03-30,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,41.919229,8.738635
+199403300016,1994-03-30,France,Ghisonaccia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+199403300015,1994-03-30,France,Ghisonaccia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+199403300014,1994-03-30,France,Ghisonaccia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+199403300013,1994-03-30,France,Ghisonaccia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+199403300012,1994-03-30,France,Ghisonaccia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.016837,9.403981000000002
+199403050007,1994-03-05,France,Bonifacio,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.38717399999999,9.159269
+199403020008,1994-03-02,France,Paris,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199402250003,1994-02-25,France,Hyeres,Unknown,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,43.120541,6.128639
+199401150005,1994-01-15,France,Paris,Unknown,0,,,,,0,0,Terrorists/Non-state Militia,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199212310006,1992-12-31,France,Villepinte,Neo-Nazi extremists,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.960226,2.542867
+199212070026,1992-12-07,France,Corte,Resistenza,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,,,,42.309409,9.149022
+199212020011,1992-12-02,France,Bastia,Unknown,0,,,,,1,0,Business,,,Western Europe,Assassination,,,Firearms,,,,42.697283,9.450880999999999
+199211260001,1992-11-26,France,Strasbourg,Farmers,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.5734053,7.752111299999999
+199211190005,1992-11-19,France,Ajaccio,Corsican Nationalists,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,Melee,,,41.919229,8.738635
+199210230002,1992-10-23,France,strasbourg,Kurdistan Workers' Party (PKK),0,,,,,0,0,Government (Diplomatic),,,Western Europe,Armed Assault,,,Melee,Firearms,,,48.5734053,7.752111299999999
+199210170002,1992-10-17,France,Paris,Unknown,0,,,,,0,3,Police,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,Melee,,,48.856614,2.3522219
+199210150009,1992-10-15,France,Paris,Unknown,0,,,,,1,1,Police,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199210090019,1992-10-09,France,Vaulx-en-Velin,Unknown,0,,,,,0,0,Police,,,Western Europe,Assassination,,,Firearms,,,,45.782029,4.922661
+199210090012,1992-10-09,France,Vaulx-en-Velin,Mob,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Armed Assault,,,Incendiary,,,,45.782029,4.922661
+199209220007,1992-09-22,France,Paris,Kurdistan Workers' Party (PKK),0,,,,,0,0,Airports and Aircraft,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199208260008,1992-08-26,France,Marseilles,Union of Young Kurdish Revolutionaries,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.296482,5.36978
+199208250005,1992-08-25,France,Paris,Kurdistan Workers' Party (PKK),0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199208230002,1992-08-23,France,Santa-Reparata-di-Balagna,Unknown,0,,,,,2,0,Business,,,Western Europe,Assassination,,,Firearms,,,,42.6042,8.929852
+199207160001,1992-07-16,France,Bordeaux,Unknown,0,,,,,1,0,Religious Figures/Institutions,,,Western Europe,Assassination,,,Firearms,,,,44.837789,-0.57918
+199206160002,1992-06-16,France,Chauny,French National,0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,49.615576,3.219421
+199205190011,1992-05-19,France,Bordeaux,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Assassination,,,Incendiary,,,,44.837789,-0.57918
+199205190010,1992-05-19,France,Bordeaux,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Assassination,,,Incendiary,,,,44.837789,-0.57918
+199203260006,1992-03-26,France,Strasbourg,Kurdistan Workers' Party (PKK),0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Melee,Incendiary,,,48.5734053,7.752111299999999
+199203190018,1992-03-19,France,Bagnols Sur Ceze,Unknown,0,,,,,0,1,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,44.16252,4.620075
+199203190002,1992-03-19,France,Bagnols Sur Ceze,National Front Security Service,0,,,,,0,1,Government (General),,,Western Europe,Assassination,,,Firearms,,,,44.16252,4.620075
+199202130011,1992-02-13,France,Lunghignano,Unknown,0,,,,,1,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.542146,8.8864249
+199201090002,1992-01-09,France,Ajaccio,Unknown,0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199201040001,1992-01-04,France,Ajaccio,Unknown,0,,,,,0,1,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199108310013,1991-08-31,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,41.919229,8.738635
+199107110004,1991-07-11,France,Paris,Dev Sol,1,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199104010001,1991-04-01,France,Lyon,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,45.764043,4.835659
+199102010002,1991-02-01,France,Unknown,Unknown,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.6262707,-79.6735841
+199012310003,1990-12-31,France,Soveria,Corsican National Liberation Front (FLNC),1,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,39.0878487,16.370611
+199012190002,1990-12-19,France,Ajaccio,Unknown,0,,,,,1,1,Government (General),,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199012090006,1990-12-09,France,Poggio-Mezzanna,Resistenza,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,42.397834,9.492341999999999
+199012090005,1990-12-09,France,Poggio-Mezzanna,Resistenza,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,42.397834,9.492341999999999
+199012090004,1990-12-09,France,Poggio-Mezzanna,Resistenza,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,42.397834,9.492341999999999
+199012090003,1990-12-09,France,Poggio-Mezzanna,Resistenza,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,42.397834,9.492341999999999
+199012060004,1990-12-06,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,1,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+199012020002,1990-12-02,France,Paris,Gracchus Babeuf,0,,,,,0,0,Educational Institution,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199011280003,1990-11-28,France,Bastia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199011270011,1990-11-27,France,Bastia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,42.697283,9.450880999999999
+199011210006,1990-11-21,France,Paris,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+199010270003,1990-10-27,France,Aubagne,Corsican National Liberation Front (FLNC),0,,,,,0,0,Business,,,Western Europe,Bombing/Explosion,,,Firearms,Explosives/Bombs/Dynamite,,,43.2926781,5.5676425
+199010230014,1990-10-23,France,Paris,Unknown,0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+199005310013,1990-05-31,France,Golfe Juan,Unknown,0,,,,,0,1,Government (General),,,Western Europe,Assassination,,,Firearms,,,,43.5685407,7.077363399999999
+199001140001,1990-01-14,France,Bastia,Corsican National Liberation Front (FLNC),0,,,,,0,0,Business,,,Western Europe,Hostage Taking (Barricade Incident),,,Firearms,Incendiary,,,42.697283,9.450880999999999
+198911130006,1989-11-13,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,41.919229,8.738635
+198910310008,1989-10-31,France,Paris,France's Honour,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Assassination,,,Incendiary,,,,48.856614,2.3522219
+198910140006,1989-10-14,France,Biarritz,Basque Fatherland and Freedom (ETA),1,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.4831519,-1.558626
+198910140005,1989-10-14,France,Ciboure,Basque Fatherland and Freedom (ETA),1,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.387537,-1.675432
+198910140004,1989-10-14,France,Saint-Jean-de-Luz,Basque Fatherland and Freedom (ETA),1,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,,,,43.388051,-1.663055
+198910070011,1989-10-07,France,Libourne,Action Directe,0,,,,,1,0,Military,,,Western Europe,Hostage Taking (Kidnapping),,,Firearms,,,,44.91299799999999,-0.243985
+198908090006,1989-08-09,France,Lyon,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,45.764043,4.835659
+198810140001,1988-10-14,France,Nice,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.7101728,7.261953200000001
+198809300003,1988-09-30,France,Besancon,Unknown,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,47.237829,6.024053899999999
+198809070018,1988-09-07,France,Paris,Jewish Defense Organization,0,,,,,0,0,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+198803300013,1988-03-30,France,Marseilles,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Armed Assault,,,Firearms,,,,43.296482,5.36978
+198803290025,1988-03-29,France,Marseilles,Unknown,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,43.296482,5.36978
+198803290020,1988-03-29,France,Paris,Unknown,0,,,,,1,0,Violent Political Party,,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+198803290019,1988-03-29,France,Paris,Unknown,0,,,,,1,0,Violent Political Party,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198803080010,1988-03-08,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,1,0,Police,,,Western Europe,Bombing/Explosion,,,Firearms,,,,41.919229,8.738635
+198803080007,1988-03-08,France,Bastia,Corsican National Liberation Front (FLNC),0,,,,,1,0,Police,,,Western Europe,Assassination,,,Firearms,,,,42.697283,9.450880999999999
+198802190020,1988-02-19,France,Boucau,Iparretarrak (IK),0,,,,,0,2,Police,,,Western Europe,Armed Assault,,,Firearms,,,,43.523153,-1.4858579
+198801040012,1988-01-04,France,Paris,Kurdistan Workers' Party (PKK),1,,,,,1,0,Government (Diplomatic),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198711280002,1987-11-28,France,Calvi,Corsican National Liberation Front (FLNC),0,,,,,0,0,Government (General),,,Western Europe,Armed Assault,,,Incendiary,,,,42.567651,8.757221999999999
+198710180003,1987-10-18,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,Incendiary,,,41.919229,8.738635
+198710180002,1987-10-18,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,0,0,Private Citizens & Property,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,Incendiary,,,41.919229,8.738635
+198709050002,1987-09-05,France,Saint-Cyprien,Corsican National Liberation Front (FLNC),0,,,,,0,0,Business,,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Firearms,,,42.61783,3.004182
+198708040002,1987-08-04,France,Bastia,Corsican National Liberation Front (FLNC),0,,,,,1,3,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.697283,9.450880999999999
+198707250002,1987-07-25,France,Capi di Muro,Unknown,0,,,,,0,0,Private Citizens & Property,,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Firearms,,,41.7451429,8.6780773
+198706160011,1987-06-16,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,1,0,NGO,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+198702140001,1987-02-14,France,Paris,Red Brigades Fighting Communist Party (BR-PCC),0,,,,,2,0,Government (General),,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+198612120003,1986-12-12,France,Pau,Iparretarrak (IK),0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,43.2951,-0.370797
+198611170005,1986-11-17,France,Paris,Action Directe,0,,,,,0,0,Business,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198608120003,1986-08-12,France,Strasbourg,Armenian Secret Army for the Liberation of Armenia,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.5734053,7.752111299999999
+198607250008,1986-07-25,France,Bayonne,Basque Fatherland and Freedom (ETA),0,,,,,0,1,Government (General),,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Explosives/Bombs/Dynamite,Firearms,Firearms,40.6687141,-74.1143091
+198606300015,1986-06-30,France,Paris,Unknown,0,,,,,1,1,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198605160017,1986-05-16,France,Paris,Action Directe,0,,,,,0,1,Police,,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Firearms,,,48.856614,2.3522219
+198604250005,1986-04-25,France,Ecully,Unknown,0,,,,,1,0,Business,,,Western Europe,Assassination,,,Firearms,,,,45.774657,4.77867
+198604150013,1986-04-15,France,Le Vesinet,Action Directe,0,,,,,2,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,48.894198,2.134716
+198604060002,1986-04-06,France,Paris,Unknown,0,,,,,0,0,Government (General),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+198602080004,1986-02-08,France,Bayonne,Unknown,0,,,,,0,5,Business,,,Western Europe,Armed Assault,,,Firearms,,,,40.6687141,-74.1143091
+198602040002,1986-02-04,France,Paris,Committee of Solidarity with Arab and Middle East Political Prisoners (CSPPA),0,,,,,0,3,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,48.856614,2.3522219
+198509250007,1985-09-25,France,Bayonne,Anti-Terrorist Liberation Group (GAL),0,,,,,4,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,40.6687141,-74.1143091
+198508120008,1985-08-12,France,Paris,Unknown,0,,,,,0,1,Religious Figures/Institutions,,,Western Europe,Hostage Taking (Barricade Incident),,,Firearms,,,,48.856614,2.3522219
+198508040006,1985-08-04,France,Saint-Jean-Pied-de-Port,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.163141,-1.23811
+198506260008,1985-06-26,France,Neuilly-sur-Seine,Unknown,0,,,,,0,1,Military,,,Western Europe,Assassination,,,Firearms,,,,48.884831,2.26851
+198506260007,1985-06-26,France,Bayonne,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,40.6687141,-74.1143091
+198503310001,1985-03-31,France,Saint-Jean-de-Luz,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.388051,-1.663055
+198501250003,1985-01-25,France,Paris,Action Directe,0,,,,,1,0,Government (General),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198412020005,1984-12-02,France,Bastia,Unknown,0,,,,,1,2,Police,,,Western Europe,Armed Assault,,,Firearms,,,,42.697283,9.450880999999999
+198412020004,1984-12-02,France,Borgo,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,29.738019,-95.43645699999999
+198412020003,1984-12-02,France,L'Ile-Rousse,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,Unknown,,,42.63651,8.937045999999999
+198412020002,1984-12-02,France,Solenzara,Unknown,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Firearms,,,,41.837115,9.372646
+198407310002,1984-07-31,France,Paris,Guardsmen of Islam,0,,,,,0,0,Airports and Aircraft,,,Western Europe,Hijacking,,,Explosives/Bombs/Dynamite,Melee,Firearms,Firearms,48.856614,2.3522219
+198406070005,1984-06-07,France,Ajaccio,Corsican National Liberation Front (FLNC),0,,,,,2,0,Police,,,Western Europe,Bombing/Explosion,,,Unknown,Firearms,Explosives/Bombs/Dynamite,Firearms,41.919229,8.738635
+198405030006,1984-05-03,France,Saint-Etienne-de-Baigorry,Anti-Terrorist Liberation Group (GAL),1,,,,,2,1,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.175208,-1.347473
+198404230007,1984-04-23,France,Biarritz,Anti-Terrorist Liberation Group (GAL),1,,,,,1,0,Private Citizens & Property,,,Western Europe,Assassination,,,Firearms,,,,43.4831519,-1.558626
+198403260011,1984-03-26,France,Strasbourg,Lebanese Armed Revolutionary Faction (LARF),0,,,,,0,1,Government (Diplomatic),,,Western Europe,Assassination,,,Firearms,,,,48.5734053,7.752111299999999
+198402250008,1984-02-25,France,Idaux-Mendy,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.181544,-0.9148470000000001
+198402080009,1984-02-08,France,Paris,Abu Nidal Organization (ANO),0,,,,,1,0,Government (Diplomatic),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198402070011,1984-02-07,France,Hendaye,Anti-Terrorist Liberation Group (GAL),0,,,,,2,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.359399,-1.766148
+198401270009,1984-01-27,France,Montpellier,Unknown,1,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,Incendiary,,,43.610769,3.876716
+198312280011,1983-12-28,France,Saint-Jean-de-Luz,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,43.388051,-1.663055
+198312190002,1983-12-19,France,Bayonne,Anti-Terrorist Liberation Group (GAL),0,,,,,1,0,Terrorists/Non-state Militia,,,Western Europe,Assassination,,,Firearms,,,,40.6687141,-74.1143091
+198310260005,1983-10-26,France,Toulouse,Comite de Liberation et de Detournements d'Ordinateurs (Committee for the liberation and hijacking of computers),0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+198308270004,1983-08-27,France,Paris,Iraqi Moslems,0,,,,,0,0,Airports and Aircraft,,,Western Europe,Hijacking,,,Firearms,Explosives/Bombs/Dynamite,,,48.856614,2.3522219
+198308150006,1983-08-15,France,Toulouse,Anarchists,0,,,,,0,0,Religious Figures/Institutions,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+198308140003,1983-08-14,France,Toulouse,Unknown,0,,,,,0,0,Journalists & Media,,,Western Europe,Facility/Infrastructure Attack,,,Incendiary,,,,43.604652,1.444209
+198304090014,1983-04-09,France,Marseilles,Polish,0,,,,,0,0,Airports and Aircraft,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,43.296482,5.36978
+198304080003,1983-04-08,France,Marseilles,Polish,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,43.296482,5.36978
+198301120001,1983-01-12,France,Oletta,Corsican Separatists,0,,,,,0,0,Educational Institution,,,Western Europe,Bombing/Explosion,,,Explosives/Bombs/Dynamite,Firearms,,,42.631849,9.358393
+198301040003,1983-01-04,France,Ajaccio,Corsican Revolutionary Brigade,1,,,,,0,1,Police,,,Western Europe,Assassination,,,Firearms,,,,41.919229,8.738635
+198208120004,1982-08-12,France,Paris,Terrorists,0,,,,,0,0,Police,,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198208090005,1982-08-09,France,Paris,Abu Nidal Organization (ANO),1,,,,,6,22,Business,,,Western Europe,Bombing/Explosion,,,Firearms,Explosives/Bombs/Dynamite,,,48.856614,2.3522219
+198208010008,1982-08-01,France,Paris,Action Directe,0,,,,,0,0,Government (Diplomatic),,,Western Europe,Armed Assault,,,Firearms,,,,48.856614,2.3522219
+198206030006,1982-06-03,France,Perpignan,Survivors of Golfech,0,,,,,0,0,Police,,,Western Europe,Armed Assault,,,Incendiary,,,,42.6886591,2.8948332
+198205280004,1982-05-28,France,Paris,Action Directe,0,,,,,0,0,Business,,,Western Europe,Facility/Infrastructure Attack,,,Firearms,,,,48.856614,2.3522219
+198204030001,1982-04-03,France,Paris,Lebanese Armed Revolutionary Faction (LARF),0,,,,,1,0,Government (Diplomatic),,,Western Europe,Assassination,,,Firearms,,,,48.856614,2.3522219
+198203310017,1982-03-31,France,Paris,Palestine Liberation Organization (PLO),0,,,,,0,0,Government (Diplomatic),,,Western Europe,Armed Assault,,,Firearms,Firearms,,,48.856614,2.3522219

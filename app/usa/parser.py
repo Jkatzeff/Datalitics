@@ -16,4 +16,5 @@ def csv_parser(file):
         df.set_value(i, "longitude", loc['lng'])
     df.to_csv(file, index=False)
             
-csv_parser("data.csv")
+#csv_parser("data.csv")
+print(geoLocation("Paris, France", "AIzaSyBt9H1W4e9Y2qeNc_T0tWurJyXP6JxgaY4"))
