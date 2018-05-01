@@ -3,16 +3,16 @@ import re
 
 with open('data_no_newline.csv') as f:
     lines = f.readlines()
-
+    
 #create dictionarry and insert states
-Al = {'Alabama': 'AL', 'AL': 'AL'}
+AL = {'Alabama':'AL', 'AL': 'AL'}
 AK = {'Alaska': 'AK', 'AK': 'AK'}
 AR = {'Arizona': 'AZ', 'AZ': 'AZ'}
 CA = {'California': 'CA', 'CA': 'CA'}
 CO = {'Colorado': 'CO', 'CO': 'CO'}
 CT = {'Connecticut': 'CT', 'CT': 'CT'}
 DE = {'Delaware': 'DE', 'DE': 'DE'}
-Fl = {'Florida': 'FL', 'FL': 'FL'}
+FL = {'Florida': 'FL', 'FL': 'FL'}
 GA = {'Georgia': 'GA', 'GA':'GA'}
 HI = {'Hawaii': 'HI', 'HI': 'HI'}
 ID = {'Idaho': 'ID', 'ID': 'ID'}
@@ -40,7 +40,7 @@ NC = {'North Carolina':'NC', 'NC':'NC'}
 ND = {'North Dakota':'ND', 'ND':'ND'}
 OH = {'Ohio':'OH', 'OH':'OH'}
 OK = {'Oklahoma':'OK','OK':'OK'}
-OR = {'Oregon':'OR', 'OR':'OR'}
+OR = {'Oregon':'OR','OR':'OR'}
 PA = {'Pennslyvania':'PA', 'PA':'PA'}
 RI = {'Rhode Island':'RI','RI':'RI'}
 SC = {'South Carolina':'SC','SC':'SC'}
@@ -57,19 +57,22 @@ WY = {'Wyoming':'WY', 'WY':'WY'}
 
 
 def stateFind(names):
-	count = 0
-	init = "USA." + names.values()[0] + ","
-	print(init)
-	#iterate over lines
-	for x in lines:
-		#iterate over state matches
-		for y in names:
-			#output tree form
-			match = re.search(y,x)
-			if match:
-				out = "USA." + names[y] + "." + x
-				print(out)
-				count += 1
-	print(count)
+    with open('treedata.csv','a') as outcsv:
+        count = 0
+        init = "USA." + names.values()[0] + ",\n"
+        outcsv.write(init)
+        #iterate over lines
+        for x in lines:
+            #iterate over state matches
+            for y in names:
+                #output tree form
+                match = re.search(y,x)
+                if match:
+                    out = "USA." + names[y] + "." + x
+                    outcsv.write(out)
+                    count += 1
+    outcsv.closed
 
-stateFind(CA)
+stateFind(IL)
+stateFind(IN)
+stateFind(IA)
