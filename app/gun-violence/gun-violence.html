@@ -7,6 +7,7 @@
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -77,8 +78,39 @@
         background-color: #008CBA;
     }
 
+	.navButton {
+        background-color: goldenrod;
+        border-radius: 20%;
+        width: 15%;
+        color: white;
+        padding: 15px 32px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
 </style>
 <body>
+	<!--
+	<style>
+		nav{
+			height: 75px;
+			width: 100%;
+			background-color: #42bff4;
+		}
+		span {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	</style>
+	<nav style=text-align:center;>
+		<a href="index.html"><button class="navButton" id="aboutButton">Home</button></a>
+		<a href="gun-violence/gun-violence.html"><button class="navButton" id="startButton">See The Data</button></a>
+		<a href="home.html"><button class="navButton" id="aboutButton">About Us</button></a>
+	</nav>
+	-->
     <div id="wrapper">  
       <div id="map"></div>
       <button class="button" id="play">Start animation!</button>
@@ -94,4 +126,21 @@
 <script type="text/javascript"> 
     makeMap("combined_ordered.csv,combined-fake.csv", "combined.json","Deaths Per Capita","Country", "id");
 </script>
+<!--<script>
+$(window).resize(function() {
+		if(this.resizeTo){
+			clearTimeout(this.resizeTo)
+		};
+		this.resizeTo = setTimeout(function(){
+							$(this).trigger('resizeEnd');
+						}, 500);
+	});
+
+	$(window).bind('resizeEnd', function(){
+		var height = $("#mapContainer").width()/2;
+		$("#mapContainer svg").css("height", height);
+		//if you can redraw the map and set the height to this height value then it will probably work not sure how because you use makeMap and I'm not sure how to use it yet
+		draw(height); 
+	});
+</script>-->
 </html>
