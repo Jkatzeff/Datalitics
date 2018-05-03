@@ -211,10 +211,23 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
              .call(xAxis);  
     }
     
+    //include d3 scale 
+    //var d3ScaleChromatic = require("d3-scale-chromatic");
+    
+    //gradient scale at top
     //function spectralColors(max_deaths){
-        
     //    console.log('scaling colors to spectrum');
     //}
+    
+    //update to rainbow color scale
+    //function updateColor(d, max_deaths){
+    //    console.log("updating color string");
+    //    return d3.interpolateSpectral(d / max_deaths);
+    //}
+    
+    function updateColor(d, max_deaths){
+        
+    }
     
     function drawMap(world){
         svg.selectAll(".country")
