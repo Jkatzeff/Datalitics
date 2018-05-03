@@ -103,6 +103,7 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
     var color = d3.scaleLinear()
                   .domain([1, 255])
                   .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
+    
 
     function begin(){
         loadMap();
@@ -209,6 +210,12 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
              .attr("transform", "translate(0," + 120 + ")")
              .call(xAxis);  
     }
+    
+    //function spectralColors(max_deaths){
+        
+    //    console.log('scaling colors to spectrum');
+    //}
+    
     function drawMap(world){
         svg.selectAll(".country")
                 .data(world.features)
