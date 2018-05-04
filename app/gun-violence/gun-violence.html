@@ -48,6 +48,11 @@
         top: 270px;
         left: 1150px;
     }
+    #mapname {
+        position: absolute;
+        top: 320px;
+        left: 1150px;
+    }
     div.tooltip {   
         position: absolute;         
         text-align: center;         
@@ -84,6 +89,7 @@
       <button class="button" id="play">Start animation!</button>
       <button class="button button2" id="currdata">Change dataset</button>
       <span id="dataname">current_dataset</span>
+      <span id="mapname">current_map</span>
       <span id="clock">current_year</span>
     </div>
 </body>
@@ -92,6 +98,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="makeMap.js"></script>
 <script type="text/javascript"> 
-    makeMap("combined_ordered.csv,combined-fake.csv", "combined.json","Deaths Per Capita","Country", "id");
+    makeMap("combined_ordered.csv,population_parsed.csv", "combined.json,countries.geo.json","Deaths Per Capita","Country", "id");
 </script>
 </html>

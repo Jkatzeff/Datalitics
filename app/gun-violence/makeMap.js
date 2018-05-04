@@ -92,14 +92,17 @@
 
 //In progress: Allow multiple datasets by setting csvNames = "csvName1[,csvName2,...]"
 
-function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
+function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     var width, height, projection, path, svg, mapLayer, div,
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
     var csv_names_arr = csvNames.split(",");
+    var json_names_arr = jsonNames.split(",")
     var current_dataset=0;
+    var current_map=0;
     num_datasets=csv_names_arr.length;
+    num_maps =json_names_arr.length;
     var color = d3.scaleLinear()
                   .domain([1, 255])
                   .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
@@ -140,9 +143,13 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
         enterFiles();
 
     }
+    function clearMap(){
+        d3.select("div.tooltip").remove()
+        d3.select("svg").remove()
+    }
     function enterFiles(){
         queue()
-        .defer(d3.json,jsonName)
+        .defer(d3.json,json_names_arr[current_map])
         .defer(d3.csv,csv_names_arr[current_dataset])
         .await(enterData);
     }    
@@ -167,10 +174,10 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
                     countryInfo.push(data[i]["Year"]);
                 }
             }
-
         }
         d3.select('#clock').html("Current year: " + countryInfo[currentAttr]);
         d3.select('#dataname').html("Current dataset: " + csv_names_arr[current_dataset])
+        d3.select('#mapname').html("Current map: " + json_names_arr[current_map])
         drawMap(world);
     }
     function manageColors(min_deaths, max_deaths){
@@ -281,7 +288,9 @@ function makeMap(csvNames,jsonName,dataName,id_CSV,id_JSON){
         d3.select("#currdata")
             .on('click', function(){
                 current_dataset = (current_dataset + 1)%num_datasets;
-                enterFiles();
+                current_map = (current_map + 1)%num_maps;
+                clearMap();
+                loadMap();
             })
     }
     function mouseClick(d){
