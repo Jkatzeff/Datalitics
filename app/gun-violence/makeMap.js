@@ -90,15 +90,13 @@
 
 // CSV must include "Year" as a variable.
 
-//In progress: Allow multiple datasets by setting csvNames = "csvName1[,csvName2,...]"
-
 function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
-    var width, height, projection, path, svg, mapLayer, div,
+    var width, height, projection, path, svg, mapLayer, div, max_deaths, min_deaths
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
     var csv_names_arr = csvNames.split(",");
-    var json_names_arr = jsonNames.split(",")
+    var json_names_arr = jsonNames.split(",");
     var current_dataset=0;
     var current_map=0;
     num_datasets=csv_names_arr.length;
@@ -154,8 +152,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         .await(enterData);
     }    
     function enterData(error, world,data){
-        var max_deaths = d3.max(data, function(d){return +d[dataName]});
-        var min_deaths = d3.min(data, function(d){return +d[dataName]});
+        max_deaths = d3.max(data, function(d){return +d[dataName]});
+        min_deaths = d3.min(data, function(d){return +d[dataName]});
         manageColors(min_deaths,max_deaths);
         var center = d3.geoCentroid(world);
         projection.center(center);
@@ -193,11 +191,13 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
         linearGradient.append("stop") 
         .attr("offset", "0%")   
-        .attr("stop-color", color(min_deaths)); 
+        // .attr("stop-color", color(min_deaths)); 
+        .attr("stop-color", d3.interpolateReds(0)); 
 
         linearGradient.append("stop") 
         .attr("offset", "100%")   
-        .attr("stop-color", color(max_deaths));
+        // .attr("stop-color", color(max_deaths));
+        .attr("stop-color", d3.interpolateReds(max_deaths));
 
         svg.append("rect")
         .attr("width", width)
@@ -254,8 +254,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
             .transition()
             .duration(500)
             .style("fill", function(d){
-                if(d){return color(+d["Time Series"][+countryInfo[+currentAttr]]);}
-                else{return color(0);}
+                if(d){return d3.interpolateReds(+d["Time Series"][+countryInfo[+currentAttr]]/max_deaths);}
+                else{return d3.interpolateReds(min_deaths);}
             })
     }
     function animateMap(){
