@@ -160,8 +160,8 @@
     }
     function enterFiles(){
         queue()
-        .defer(d3.json,"combined.json")
-        .defer(d3.csv,"combined.csv")
+        .defer(d3.json,"data/combined.json")
+        .defer(d3.csv,"data/combined.csv")
         .await(enterData);
     }    
     function enterData(error, world,data){

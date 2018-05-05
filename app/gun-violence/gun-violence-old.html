@@ -101,7 +101,7 @@ var projection3 =  d3.geoMercator()
 var path3 = d3.geoPath()
                 .projection(projection3);
 
-d3.json("aus.json", function(error, topology) {
+d3.json("data/aus.json", function(error, topology) {
     svg.selectAll("path")
         .data(topology.features)
         .enter()
@@ -109,7 +109,7 @@ d3.json("aus.json", function(error, topology) {
         .attr("d", path)
         .style("stroke", "#fff");
 });
-d3.json("us.json", function(error, topology) {
+d3.json("data/us.json", function(error, topology) {
     svg2.selectAll("path")
         .data(topology.features)
         .enter()
@@ -117,7 +117,7 @@ d3.json("us.json", function(error, topology) {
         .attr("d", path2)
         .style("stroke", "#fff");
 });
-d3.json("france.json", function(error, topology) {
+d3.json("data/france.json", function(error, topology) {
     svg3.selectAll("path")
         .data(topology.features)
         .enter()

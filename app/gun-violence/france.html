@@ -68,7 +68,7 @@ var g = d3.select("svg")
             .append("g")
             .attr("id", "france");
     
-d3.json("france2.json", function(error, france) {
+d3.json("data/france2.json", function(error, france) {
     var center = d3.geoCentroid(france);
     
     var projection =  d3.geoMercator()
@@ -86,7 +86,7 @@ d3.json("france2.json", function(error, france) {
         .attr("d", path)
         .style("stroke", "#fff");
     
-    d3.csv("france_gun_data.csv", function(data){
+    d3.csv("data/france_gun_data.csv", function(data){
         data = data.filter(function(row){
             return parseInt(row['FATALITIES']) >= 4;
         });
