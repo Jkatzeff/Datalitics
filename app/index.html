@@ -19,9 +19,91 @@
                 margin: 4px 2px;
                 cursor: pointer;
             }
+			.button {
+				background-color: goldenrod;
+				border-radius: 20%;
+				width: 50%;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 24px;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+			.navButton {
+                background-color: goldenrod;
+                border-radius: 20%;
+                width: 15%;
+                color: white;
+                padding: 15px 32px;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 24px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+			.sticky {
+				position: fixed;
+				top: 0;
+				width: 100%
+			}
+			.sticky + .content {
+				padding-top: 60px;
+			}
 		</style>
 	</head>
 	<body>
+		<!-- this is the navbar-->
+		<style>
+			nav{
+				overflow: hidden;
+				height: 75px;
+				width: 100%;
+				background-color: #42bff4;
+				z-index: 1;
+			}
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			a {
+				float: left;
+				display: block;
+				text-align: center;
+				padding: 14px;
+				text-decoration: none;
+			}
+		</style>
+		<nav id="navbar" style=text-align:center;>
+			<a href="index.html"><button class="navButton" id="aboutButton">Landing</button></a>
+			<a href="gun-violence/gun-violence.html"><button class="navButton" id="startButton">See The Data</button></a>
+			<a href="home.html"><button class="navButton" id="aboutButton">Home</button></a>
+		</nav>
+		
+		<script>
+			// When the user scrolls the page, execute myFunction 
+			window.onscroll = function() {myFunction()};
+
+			// Get the navbar
+			var navbar = document.getElementById("navbar");
+
+			// Get the offset position of the navbar
+			var sticky = navbar.offsetTop;
+
+			// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+			function myFunction() {
+				if (window.pageYOffset >= sticky) {
+					navbar.classList.add("sticky")
+				} else {
+					navbar.classList.remove("sticky");
+				}
+			}
+		</script>
+	<!-- this is the navbar-->
+	
 		<div><section class="rain"></section></div>
 		
 		<style>
@@ -79,21 +161,7 @@
 			// Make it rain
 			createRain();
 		</script>
-		<style>
-			nav{
-				height: 75px;
-				width: 100%;
-				background-color: #42bff4;
-			}
-			span {
-				display: inline-block;
-				vertical-align: middle;
-			}
-		</style>
-		<nav style=text-align:center;>
-			<a href="home.html"><button class="button" id="startButton">See The Data</button></a>
-			<a href="home.html"><button class="button" id="startButton">About Us</button></a>
-		</nav>
+		
 		<div style="height:100%; width:100%;text-align:center;>
 			<section class="rain"></section>
 			<img src="icon_small.jpg" alt="DataLitics" style="width:70%;height:70%;float:center; vertical-align:middle;">
