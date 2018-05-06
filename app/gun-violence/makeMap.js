@@ -131,7 +131,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         svg.append("rect")
             .attr("class", "background")
             .attr("width", width)
-            .attr("height", height);
+            .attr("height", height)
+			.attr("transform", "translate(0," + 100 + ")");
 
         var g = svg.append("g");
         
@@ -199,10 +200,12 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         // .attr("stop-color", color(max_deaths));
         .attr("stop-color", d3.interpolateReds(max_deaths));
 
+		//the rect for scale at the top
         svg.append("rect")
         .attr("width", width)
         .attr("height", 200)
-        .style("fill", "url(#linear-gradient)");
+        .style("fill", "url(#linear-gradient)")
+		.attr("transform", "translate(0," + 120 + ")");
         var xScale = d3.scaleLinear()
                          .domain([min_deaths, max_deaths])
                          .range([0,width]);
@@ -214,7 +217,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
         svg.append("g")
              .attr("class", "axis")
-             .attr("transform", "translate(0," + 120 + ")")
+             .attr("transform", "translate(0," + 220 + ")")
              .call(xAxis);  
     }
     

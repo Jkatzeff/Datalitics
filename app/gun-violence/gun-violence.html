@@ -102,6 +102,10 @@
 	.sticky + .content {
 		padding-top: 60px;
 	}
+	
+	.interact{
+		transform: translate(0px,-1300px);
+	}
 </style>
 <body>
 	<!-- this is the navbar-->
@@ -154,12 +158,14 @@
 	
     <div id="wrapper">  
       <div id="map"></div>
-      <button class="button" id="play">Start animation!</button>
-      <button class="button button2" id="currdata">Change dataset</button>
-      <span id="dataname">current_dataset</span>
-      <span id="mapname">current_map</span>
-      <span id="clock">current_year</span>
-    </div>
+		<div id="aniStuffs" class="interact">
+			<button class="button" id="play">Start animation!</button>
+			<button class="button button2" id="currdata">Change dataset</button>
+			<span id="dataname">current_dataset</span>
+			<span id="mapname">current_map</span>
+			<span id="clock">current_year</span>
+		</div>
+	</div>
 </body>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
