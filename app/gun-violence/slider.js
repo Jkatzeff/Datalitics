@@ -37,7 +37,7 @@ function drawCircles(data, element, projection, popup_div, longitude_field, lati
 }
 
 function slider(map_svg, circles_g, projection, data, popup_div, minYear, maxYear, slider_width, longitude_field, latitude_field, fatalities_field, playButton){
-    var currentValue;
+    var currentValue=minYear;
     var moving = false;
     
     var x = d3.scaleLinear()
@@ -90,37 +90,37 @@ function slider(map_svg, circles_g, projection, data, popup_div, minYear, maxYea
             .attr("text-anchor", "middle")
             .text(function(d){return d });
     
-//    playButton.on("click", function() {
-//        var button = d3.select(this);
-//        if (button.text() == "Pause") {
-//            button.text("Play");
-//            moving = false;
-//            clearInterval(timer);
-//        }
-//        else{
-//            button.text("Pause");
-//            moving = true;
-//            timer = setInterval(step, 700);
-//        }
-//    })
+    playButton.on("click", function() {
+        var button = d3.select(this);
+        if (button.text() == "Pause") {
+            button.text("Play");
+            moving = false;
+            clearInterval(timer);
+        }
+        else{
+            button.text("Pause");
+            moving = true;
+            timer = setInterval(step, 400);
+        }
+    })
 //    
-//    function step(){
-//        moveCircle(currentValue, handle, x);
-//        var yearOf = data.filter(function(d){
-//            if (d.DATE.substring(0,4) == currentValue){
-//                return d;
-//            }
-//        });
-//        drawCircles(yearOf, circles_g, projection, popup_div, longitude_field, latitude_field, fatalities_field);
-//        currentValue += 1;
-//        if (currentValue > maxYear){
-//            moving = false;
-//            currentValue = 0;
-//            clearInterval(timer);
-//            playButton.text("Play");
-//            console.log("Slider moving: " + moving);
-//        }
-//    }
+    function step(){
+        moveCircle(currentValue, handle, x);
+        var yearOf = data.filter(function(d){
+            if (d.DATE.substring(0,4) == currentValue){
+                return d;
+            }
+        });
+        drawCircles(yearOf, circles_g, projection, popup_div, longitude_field, latitude_field, fatalities_field);
+        currentValue += 1;
+        if (currentValue > maxYear){
+            moving = false;
+            currentValue = 0;
+            clearInterval(timer);
+            playButton.text("Play");
+            console.log("Slider moving: " + moving);
+        }
+    }
 
 }
 
