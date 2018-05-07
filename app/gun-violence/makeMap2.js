@@ -109,7 +109,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     num_datasets=csv_names_arr.length;
     num_maps =json_names_arr.length;
     var color = d3.scaleLinear()
-                  .domain([1, 255])
+                  .domain([0, 255])
                   .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
     
 
@@ -171,11 +171,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         }
         // console.log(additive_data)
         // data.forEach(function(d){ max_per_year[+d["Year"]]+= })
-        max_data = d3.max(data, function(d){additive_data[d["Year"]]})
-        // max_data = d3.max(data, function(d){additive_data[d["Year"]]+= +d[dataName]; return additive_data[d[id_CSV]]});
+        max_data = d3.max(data, function(d){return additive_data[d["Year"]]})
         min_data = d3.min(data, function(d){return additive_data[d[id_CSV]]});
-        // max_deaths = d3.max(data, function(d){return +d[dataName]});
-        // min_deaths = d3.min(data, function(d){return +d[dataName]});
 
         // console.log(max_data)
         manageColors(min_data,max_data);
@@ -216,12 +213,14 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         linearGradient.append("stop") 
         .attr("offset", "100%")   
         // .attr("stop-color", color(max_deaths));
-        .attr("stop-color", d3.interpolateReds(max_data));
-
+        .attr("stop-color", d3.interpolateReds(1));
+        console.log(min_data)
+        console.log(max_data);
         svg.append("rect")
         .attr("width", width)
         .attr("height", 200)
-        .style("fill", "url(#linear-gradient)");
+        .style("fill", "url(#linear-gradient)")
+        .attr("transform", "translate(0," + 120 + ")");
         var xScale = d3.scaleLinear()
                          .domain([min_data,max_data])
                          .range([0,width]);
@@ -277,6 +276,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                     var add_to = +d["Time Series"][+countryInfo[+currentAttr]];
                     if (add_to){
                         additive_data[d[id_JSON]]+= add_to;
+
                     }
                 }
                 // console.log(additive_data);
@@ -288,9 +288,11 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                 var arr = Object.keys( additive_data ).map(function ( key ) { return additive_data[key]; });
                 var temp_max = Math.max.apply( null, arr );
                 console.log(temp_max);
+                max_data = temp_max;
+                manageColors(min_data,max_data);
                 // console.log(additive_data)
                 // console.log(additive_data[d[id_JSON]]);
-                return d3.interpolateReds(additive_data[d[id_JSON]]/temp_max);
+                return d3.interpolateReds(additive_data[d[id_JSON]]);
             })
     }
     function animateMap(){
