@@ -106,12 +106,10 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     var json_names_arr = jsonNames.split(",");
     var current_dataset=0;
     var current_map=0;
-    num_datasets=csv_names_arr.length;
-    num_maps =json_names_arr.length;
-    var color = d3.scaleLinear()
-                  .domain([0, 255])
-                  .range([d3.rgb(0,0,0), d3.rgb(255,0,0)]);
     
+    num_datasets=csv_names_arr.length;
+    num_maps =json_names_arr.length;    
+
 
     function begin(){
         loadMap();
@@ -169,16 +167,12 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
             features[j]["Time Series"] = {}
             additive_data[features[j][id_JSON]]=0;
         }
-        // console.log(additive_data)
-        // data.forEach(function(d){ max_per_year[+d["Year"]]+= })
         max_data = d3.max(data, function(d){return additive_data[d["Year"]]})
         min_data = d3.min(data, function(d){return additive_data[d[id_CSV]]});
 
-        // console.log(max_data)
         manageColors(min_data,max_data);
 
         for (var i in data){
-            // data[i] = Object containing country name, code, year, value;
             for(var j in features){
                 if(features[j][id_JSON] == data[i][id_CSV]){
                     features[j]["Time Series"][data[i]["Year"]] = data[i][dataName];
@@ -188,18 +182,12 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                 }
             }
         }
-        //additive stuff
         d3.select('#clock').html("Current year: " + countryInfo[currentAttr]);
         d3.select('#dataname').html("Current dataset: " + csv_names_arr[current_dataset])
         d3.select('#mapname').html("Current map: " + json_names_arr[current_map])
         drawMap(world);
     }
     function manageColors(min_data, max_data){
-         color.domain([min_data,max_data]);
-        var y = d3.scaleLinear()
-        .domain([min_data,max_data])
-        .range([0,300]);
-        
         var defs = svg.append("defs");
 
         var linearGradient = defs.append("linearGradient")
@@ -207,18 +195,14 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
         linearGradient.append("stop") 
         .attr("offset", "0%")   
-        // .attr("stop-color", color(min_deaths)); 
         .attr("stop-color", d3.interpolateReds(0)); 
 
         linearGradient.append("stop") 
         .attr("offset", "100%")   
-        // .attr("stop-color", color(max_deaths));
         .attr("stop-color", d3.interpolateReds(1));
-        console.log(min_data)
-        console.log(max_data);
         svg.append("rect")
         .attr("width", width)
-        .attr("height", 200)
+        .attr("height", 60)
         .style("fill", "url(#linear-gradient)")
         .attr("transform", "translate(0," + 120 + ")");
         var xScale = d3.scaleLinear()
@@ -236,24 +220,6 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
              .call(xAxis);  
     }
     
-    //include d3 scale 
-    //var d3ScaleChromatic = require("d3-scale-chromatic");
-    
-    //gradient scale at top
-    //function spectralColors(max_deaths){
-    //    console.log('scaling colors to spectrum');
-    //}
-    
-    //update to rainbow color scale
-    //function updateColor(d, max_deaths){
-    //    console.log("updating color string");
-    //    return d3.interpolateSpectral(d / max_deaths);
-    //}
-    
-    function updateColor(d, max_deaths){
-        
-    }
-    
     function drawMap(world){
         svg.selectAll(".country")
                 .data(world.features)
@@ -264,7 +230,6 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                 .attr("d", path)
                 .attr('vector-effect', 'non-scaling-stroke')
                 .on("click",mouseClick);
-
                 changeMap();
     }
     function changeMap(){
@@ -276,28 +241,17 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                     var add_to = +d["Time Series"][+countryInfo[+currentAttr]];
                     if (add_to){
                         additive_data[d[id_JSON]]+= add_to;
-
                     }
                 }
-                // console.log(additive_data);
-
-                // var temp_max = d3.max(additive_data)
-                // console.log(additive_data)
-                // console.log(temp_max)
-                // console.log(temp_max)
                 var arr = Object.keys( additive_data ).map(function ( key ) { return additive_data[key]; });
                 var temp_max = Math.max.apply( null, arr );
-                console.log(temp_max);
                 max_data = temp_max;
                 manageColors(min_data,max_data);
-                // console.log(additive_data)
-                // console.log(additive_data[d[id_JSON]]);
-                return d3.interpolateReds(additive_data[d[id_JSON]]);
+                return d3.interpolateReds(additive_data[d[id_JSON]]/max_data);
             })
     }
     function animateMap(){
         var timer;
-        // d3.select("#datase")
         d3.select("#play")
             .on('click', function(){
                 if(animating == false){
