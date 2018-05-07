@@ -170,15 +170,14 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
             additive_data[features[j][id_JSON]]=0;
         }
         // console.log(additive_data)
-        max_data = d3.max(data, function(d){additive_data[d[id_CSV]]+= +d[dataName]; return additive_data[d[id_CSV]]});
+        // data.forEach(function(d){ max_per_year[+d["Year"]]+= })
+        max_data = d3.max(data, function(d){additive_data[d["Year"]]})
+        // max_data = d3.max(data, function(d){additive_data[d["Year"]]+= +d[dataName]; return additive_data[d[id_CSV]]});
         min_data = d3.min(data, function(d){return additive_data[d[id_CSV]]});
         // max_deaths = d3.max(data, function(d){return +d[dataName]});
         // min_deaths = d3.min(data, function(d){return +d[dataName]});
 
         // console.log(max_data)
-        for(var j in features){
-            additive_data[features[j][id_JSON]]=0;
-        }
         manageColors(min_data,max_data);
 
         for (var i in data){
@@ -202,7 +201,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
          color.domain([min_data,max_data]);
         var y = d3.scaleLinear()
         .domain([min_data,max_data])
-        .range([0,300]);     
+        .range([0,300]);
         
         var defs = svg.append("defs");
 
@@ -280,9 +279,18 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                         additive_data[d[id_JSON]]+= add_to;
                     }
                 }
+                // console.log(additive_data);
+
+                // var temp_max = d3.max(additive_data)
                 // console.log(additive_data)
-                console.log(additive_data[d[id_JSON]]);
-                return d3.interpolateReds(additive_data[d[id_JSON]]);
+                // console.log(temp_max)
+                // console.log(temp_max)
+                var arr = Object.keys( additive_data ).map(function ( key ) { return additive_data[key]; });
+                var temp_max = Math.max.apply( null, arr );
+                console.log(temp_max);
+                // console.log(additive_data)
+                // console.log(additive_data[d[id_JSON]]);
+                return d3.interpolateReds(additive_data[d[id_JSON]]/temp_max);
             })
     }
     function animateMap(){
@@ -298,6 +306,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                         }
                         else{
                             currentAttr = 0;
+                            enterFiles();
                         }
                         changeMap();
                         d3.select("#clock").html("Current year: " + countryInfo[currentAttr]);
