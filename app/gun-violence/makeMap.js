@@ -111,7 +111,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         animateMap();
     }
     function loadMap(){
-        width = 1600,
+        width = 2000,
         height = 1600; //400?
         div = d3.select("#map")
                     .append("div")
@@ -119,8 +119,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
 
         projection = d3.geoMercator()
-                        .scale(200)
-                        .translate([width/20, height/2]);
+                        .scale(350)
+                        .translate([width/40, height/2]);
         path = d3.geoPath()
                  .projection(projection);
 
@@ -142,6 +142,17 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         enterFiles();
 
     }
+	function loadMaps(){
+		var fwidth = 800,
+		fheight = 800,
+		awidth = 800,
+		aheight = 800,
+		uwidth = 800,
+		uheight = 800;
+		console.log('loading all three maps');
+		
+	}
+	
     function clearMap(){
         d3.select("div.tooltip").remove()
         d3.select("svg").remove()
