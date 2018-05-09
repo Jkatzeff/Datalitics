@@ -112,7 +112,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     }
     function loadMap(){
         //map container size
-		width = 1600,
+        width = 2000,
         height = 1600; //400?
         
 		div = d3.select("#map")
@@ -121,8 +121,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
 
         projection = d3.geoMercator()
-                        .scale(200)
-                        .translate([width/20, height/2]);
+                        .scale(350)
+                        .translate([width/40, height/2]);
         path = d3.geoPath()
                  .projection(projection);
 
@@ -144,6 +144,17 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         enterFiles();
 
     }
+	function loadMaps(){
+		var fwidth = 800,
+		fheight = 800,
+		awidth = 800,
+		aheight = 800,
+		uwidth = 800,
+		uheight = 800;
+		console.log('loading all three maps');
+		
+	}
+	
     function clearMap(){
         d3.select("div.tooltip").remove()
         d3.select("svg").remove()
@@ -221,24 +232,6 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
              .attr("class", "axis")
              .attr("transform", "translate(0," + 220 + ")")
              .call(xAxis);  
-    }
-    
-    //include d3 scale 
-    //var d3ScaleChromatic = require("d3-scale-chromatic");
-    
-    //gradient scale at top
-    //function spectralColors(max_deaths){
-    //    console.log('scaling colors to spectrum');
-    //}
-    
-    //update to rainbow color scale
-    //function updateColor(d, max_deaths){
-    //    console.log("updating color string");
-    //    return d3.interpolateSpectral(d / max_deaths);
-    //}
-    
-    function updateColor(d, max_deaths){
-        
     }
     
     function drawMap(world){
