@@ -145,13 +145,19 @@
 					$('#drop'+i).css('top',dropTop);
 				}
 			}
-			// Make it rain
-			createRain();
 		</script>
 		
 		<div style="height:100%; width:100%;text-align:center;>
 			<section class="rain"></section>
-			<img src="icon_small.jpg" alt="DataLitics" style="width:70%;height:70%;float:center; vertical-align:middle;">
+			<img id="icon" src="icon_small.jpg" alt="DataLitics" style="width:70%;height:70%;float:center; vertical-align:middle;">
 		</div>
+		<script>
+			$("#icon").fadeOut(1);
+			$("#icon").fadeIn(1000);
+			setTimeout(function(){
+				// Make it rain
+				createRain();
+			}, 3000);
+		</script>
 		</body>
 </html>

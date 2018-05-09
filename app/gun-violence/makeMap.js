@@ -111,9 +111,11 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         animateMap();
     }
     function loadMap(){
-        width = 1600,
+        //map container size
+		width = 1600,
         height = 1600; //400?
-        div = d3.select("#map")
+        
+		div = d3.select("#map")
                     .append("div")
                     .attr("class", "tooltip");
 
