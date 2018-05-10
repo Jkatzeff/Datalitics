@@ -11,6 +11,7 @@ For a local host instance:
 4. open your browser and go to localhost:3000
 
 ## Current visualizations
+* Multi Country comparison - This visualization has three countries on the same project and bound to a time inclusive dataset.
 * California - force layout visualization of demographics county by county
 * World - timescale heat map of population changes county by county
 * USA - timescale of mass shootings
