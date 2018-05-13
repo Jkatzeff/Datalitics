@@ -112,8 +112,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     }
     function loadMap(){
         //map container size
-        width = 2000,
-        height = 1600; //400?
+        width = window.innerWidth;
+        height = window.innerHeight; //400?
         
 		div = d3.select("#map")
                     .append("div")
