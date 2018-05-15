@@ -73,6 +73,5 @@ def stateFind(names):
                     count += 1
     outcsv.closed
 
-stateFind(IL)
-stateFind(IN)
-stateFind(IA)
+stateFind(WI)
+stateFind(WY)
