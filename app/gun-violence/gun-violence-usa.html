@@ -16,9 +16,9 @@
         margin: -100px auto 0;
     }
     map {
-        width: 100%;
-        height: 100%;
-        position: relative;  
+        width: 100vw;
+        height: 100vh;
+        position: absolute;  
     }
     .background{
         fill: #eee;
@@ -31,38 +31,38 @@
     }
     #play { 
         position: absolute;
-        top: 200px;
-        left: 800px; 
+        top: 75vh;
+        left: 50vw; 
     }
     #currdata {
         position: absolute;
-        top: 250px;
-        left: 800px;    
+        top: 82vh;
+        left: 50vw;    
     }
     #currvar {
         position: absolute;
-        top: 300px;
-        left: 800px;    
+        top: 89vh;
+        left: 50vw;    
     }
     #clock {
         position: absolute;
-        top: 220px;
-        left: 1150px;
+        top: 77vh;
+        left: 68vw;
     }
     #dataname {
         position: absolute;
-        top: 270px;
-        left: 1150px;
+        top: 84vh;
+        left: 68vw;
     }
     #mapname {
         position: absolute;
-        top: 320px;
-        left: 1150px;
+        top: 88vh;
+        left: 68vw;
     }
     #varname {
         position: absolute;
-        top: 370px;
-        left: 1150px;
+        top: 95vh;
+        left: 68vw;
     }
     div.tooltip {   
         position: absolute;         
@@ -190,7 +190,8 @@
 			<button class="button button2" id="currdata">Change dataset</button>
             <button class="button button4" id="currvar">Change variable being visualized</button>
 			<span id="dataname">current_dataset</span>
-			<span id="mapname">current_map</span>
+            <span id="mapname">current_map</span>
+            <span id="varname">current variable</span>
 			<span id="clock">current_year</span>
 		</div>
 	</div>

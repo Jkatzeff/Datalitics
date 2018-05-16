@@ -119,16 +119,16 @@ function makeMap(csvNames,jsonNames,id_CSV,id_JSON){
         animateMap();
     }
     function loadMap(){
-        width = 1600, //window.innerWidth
-        height = 1600; //400? window.innerHeight
+        width = screen.width, //window.innerWidth
+        height = screen.height; //400? window.innerHeight
         div = d3.select("#map")
                     .append("div")
                     .attr("class", "tooltip");
 
 
         projection = d3.geoMercator()
-                        .scale(200)
-                        .translate([width/20, height/2]);
+                        .scale(width/4)
+                        .translate([width/2, 3*height/4]);
         path = d3.geoPath()
                  .projection(projection);
 
@@ -195,6 +195,7 @@ function makeMap(csvNames,jsonNames,id_CSV,id_JSON){
         d3.select('#clock').html("Current year: " + countryInfo[currentAttr]);
         d3.select('#dataname').html("Current dataset: " + csv_names_arr[current_dataset]);
         d3.select('#mapname').html("Current map: " + json_names_arr[current_map]);
+        console.log(var_names[curr_var]);
         d3.select('#varname').html("Current variable: " + var_names[curr_var]);
         drawMap(world);
     }
