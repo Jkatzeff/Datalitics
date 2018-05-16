@@ -100,6 +100,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
 
     var max_so_far = 0;
 
+    var var_names;
+
     var min_data = 0;
     var max_data = 0;
     var csv_names_arr = csvNames.split(",");
@@ -170,8 +172,9 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         max_data = d3.max(data, function(d){return additive_data[d["Year"]]})
         min_data = d3.min(data, function(d){return additive_data[d[id_CSV]]});
 
+        var_names = Object.keys(data[0]);
+        console.log(var_names);
         manageColors(min_data,max_data);
-
         for (var i in data){
             for(var j in features){
                 if(features[j][id_JSON] == data[i][id_CSV]){
