@@ -120,6 +120,23 @@
 	.interact{
 		transform: translate(0px,-1300px);
 	}
+    
+    .track{
+        stroke: #000;
+        stroke-opacity: 0.3;
+        stroke-width: 10px;
+    }
+    
+    .track-inset {
+        stroke: black;
+        stroke-width: 8px;
+    }
+    .track-overlay {
+        pointer-events: stroke;
+        stroke-width: 50px;
+        stroke: transparent;
+        cursor: crosshair;
+    }
 </style>
 <body>
 	<!-- this is the navbar-->
@@ -173,7 +190,7 @@
     <div id="wrapper">  
       <div id="map"></div>
 		<div id="aniStuffs" class="interact">
-			<button class="button" id="play">Start animation!</button>
+			<button class="button" id="play">play</button>
 			<button class="button button2" id="currdata">Change dataset</button>
 			<span id="dataname">current_dataset</span>
 			<span id="mapname">current_map</span>
