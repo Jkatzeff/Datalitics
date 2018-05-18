@@ -96,7 +96,7 @@
         cursor: pointer;
     }
 	.navButton {
-        background-color: #B8860B;
+        background-color: #ff000c;
         border-radius: 5%;
         width: 100%;
         color: white;
@@ -145,7 +145,7 @@
 				overflow: hidden;
 				height: 100px;
 				width: 100%;
-				background-color: #42bff4;
+				background-color: #000000;
 				z-index: 1;
 			}
 			span {
@@ -186,9 +186,27 @@
 			}
 		</script>
 	<!-- this is the navbar-->
-	
+	<style>
+		.moveLegend{
+			transform: translate(800px,-1200px);
+		}
+	</style>
     <div id="wrapper">  
       <div id="map"></div>
+		<div class="moveLegend" id="legend">
+			<p>
+				Legend:
+			</p>
+			<p>
+				-Press "Play" to start cycle through the years.
+			</p>
+			<p>
+				-Press "Change dataset" to change the dataset.
+			</p>
+			<p>
+				-The more red the area is, the more victims of gun violence there have been.
+			</p>
+		</div>
 		<div id="aniStuffs" class="interact">
             <button class="button" id="play">Play</button>
 			<button class="button button2" id="currdata">Change dataset</button>
