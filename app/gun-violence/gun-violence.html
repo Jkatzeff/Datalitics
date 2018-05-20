@@ -96,6 +96,7 @@
         cursor: pointer;
     }
 	.navButton {
+		font-family: 'Crimson Text', serif;
         background-color: #ff000c;
         border-radius: 5%;
         width: 100%;
@@ -186,24 +187,34 @@
 			}
 		</script>
 	<!-- this is the navbar-->
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
 	<style>
 		.moveLegend{
 			transform: translate(800px,-1200px);
+		}
+		@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+		p.a{
+			font-family: 'Crimson Text', serif;
+			font-size: 40px;
+		}
+		p.b{
+			font-family: 'Crimson Text', serif;
+			font-size: 25px;
 		}
 	</style>
     <div id="wrapper">  
       <div id="map"></div>
 		<div class="moveLegend" id="legend">
-			<p>
+			<p class="a">
 				Legend:
 			</p>
-			<p>
+			<p class="b">
 				-Press "Play" to start cycle through the years.
 			</p>
-			<p>
+			<p class="b">
 				-Press "Change dataset" to change the dataset.
 			</p>
-			<p>
+			<p class="b">
 				-The more red the area is, the more victims of gun violence there have been.
 			</p>
 		</div>
