@@ -25,11 +25,11 @@ div.circle{
     fill: orange;
 }
 .button {
-    background-color: goldenrod;
-    border-radius: 20%;
+    background-color: #808080;
+    border-radius: 5%;
     width: 100%;
     color: white;
-    padding: 15px 32px;
+    padding: 15px ;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -38,11 +38,11 @@ div.circle{
     cursor: pointer;
 }
 .yearButton {
-    background-color: goldenrod;
-    border-radius: 20%;
+    background-color: #808080;
+    border-radius: 5%;
     width: 49.5%;
     color: white;
-    padding: 5px 32px;
+    padding: 5px;
     text-align: left;
     text-decoration: none;
     display: inline-block;
@@ -78,6 +78,6 @@ div.circle{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: goldenrod;
+    background-color: #808080;
     color: white;
 }
