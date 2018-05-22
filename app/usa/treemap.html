@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
 <style>
 
 body {
@@ -27,18 +30,35 @@ body {
 
 </style>
 <body>
-<script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
 var width = 960,
-    height = 1060;
+    height = 1060,
+    maxId = 133,
+    minId = 111;
 
 var format = d3.format(",d");
 
 var color = d3.scaleOrdinal()
-    .range(d3.schemeCategory10
+    .range(d3.schemeCategory20
         .map(function(c) { c = d3.rgb(c); c.opacity = 0.6; return c; }));
+    
+//create a value based on the ascii values
+function getIdValue(str, len, start){
+    var total = 0;
+    for (var i = 0; i < len; i++){
+        total = total + str.charCodeAt(start + i);
+    }
+    return total;
+}
 
+//use v5 spectral function to return a color string
+function getColorString(low, high, d){
+    var x = getIdValue(d, 2, 3);
+    console.log(x);
+    return interpolateSpectral((x - low) / (high - low));
+}
+    
 var stratify = d3.stratify()
     .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
 
@@ -79,5 +99,4 @@ function type(d) {
   d.value = +d.value;
   return d;
 }
-
 </script>
