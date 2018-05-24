@@ -88,7 +88,18 @@
 // @param id_CSV: id in CSV file that matches id in JSON (example: "Country")
 // @param id_JSON: id in JSON file that matched id in CSV (example: "id")
 
-// CSV must include "Year" as a variable.
+// CSV must include "Year" as a variable
+
+function printGDP(csvFile, year){
+    d3.csv(csvFile, function(data){
+        data.forEach(function(d){
+            if (d["Country Name"] == "United States" || d["Country Name"] == "France" || d["Country Name"] == "Australia"){
+                console.log(d['Country Name'] + ": " + d[year.toString()]);
+            }
+        })
+    })
+}
+
 
 function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     var width, height, projection, path, svg, mapLayer, div, max_data, min_data, button
@@ -175,7 +186,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         min_data = d3.min(data, function(d){return additive_data[d[id_CSV]]});
 
         var_names = Object.keys(data[0]);
-        console.log(var_names);
+
         manageColors(min_data,max_data);
         for (var i in data){
             for(var j in features){
@@ -191,7 +202,9 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         d3.select('#dataname').html("Current dataset: " + csv_names_arr[current_dataset])
         d3.select('#mapname').html("Current map: " + json_names_arr[current_map])
         drawMap(world);
+        
         slider(svg, projection, data, 1980, 2018, width, button, null);
+        
     }
     function manageColors(min_data, max_data){
         var defs = svg.append("defs");
@@ -301,11 +314,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
     begin();    
 }
 
-function hello(){
-    console.log("Hello");
-}
-
 function slider(map_svg, projection, data, minYear, maxYear, slider_width, playButton, your_function){
+    console.log(your_function);
     var currentValue=minYear;
     var moving = false;
     
@@ -313,7 +323,7 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
                 .domain([minYear, maxYear])
                 .range([0,slider_width*3/4])
                 .clamp(true);
-    
+
     var slider = map_svg.append("g")
         .attr("class", "slider")
         .attr("transform", "translate(50,20)");
@@ -321,7 +331,7 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
     var handle = slider.insert("circle", ".track-overlay")
                         .attr("class", "handle")
                         .attr("r", 9);
-    your_function;
+    
     slider.append("line")
             .attr("class", "track")
             .attr("x1", x.range()[0])
@@ -334,14 +344,16 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
             .attr("class", "track-overlay")
             .call(d3.drag()
                     .on("drag", function(){
+//                        your_function();
                         currentValue = Math.round(x.invert(d3.event.x));
+                        printGDP("data/data_gdp_all_countries.csv", currentValue);
                         moveCircle(currentValue, handle, x);
-                        var yearOf = data.filter(function(d){
-                            if (d.Year == currentValue){
-                                return d;
-                            }
-                        });
-                        console.log(yearOf);
+//                        var yearOf = data.filter(function(d){
+//                            if (d.Year == currentValue){
+//                                return d;
+//                            }
+//                        });
+        
             }));
 
 
@@ -356,37 +368,38 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
             .attr("text-anchor", "middle")
             .text(function(d){return d });
     
-    playButton.on("click", function() {
-        var button = d3.select(this);
-        if (button.text() == "stop") {
-            button.text("play");
-            moving = false;
-            clearInterval(timer);
-        }
-        else{
-            button.text("play");
-            moving = true;
-            timer = setInterval(step, 400);
-        }
-    })
+//    playButton.on("click", function() {
+//        var button = d3.select(this);
+//        if (button.text() == "stop") {
+//            button.text("play");
+//            moving = false;
+//            clearInterval(timer);
+//        }
+//        else{
+//            button.text("play");
+//            moving = true;
+//            timer = setInterval(step, 400);
+//        }
+//    })
 //    
-    function step(){
-        moveCircle(currentValue, handle, x);
-        var yearOf = data.filter(function(d){
-            if (d.DATE.substring(0,4) == currentValue){
-                return d;
-            }
-        });
-
-        currentValue += 1;
-        if (currentValue > maxYear){
-            moving = false;
-            currentValue = 0;
-            clearInterval(timer);
-            playButton.text("Play");
-            console.log("Slider moving: " + moving);
-        }
-    }
+////    
+//    function step(){
+//        moveCircle(currentValue, handle, x);
+//        var yearOf = data.filter(function(d){
+//            if (d.DATE.substring(0,4) == currentValue){
+//                return d;
+//            }
+//        });
+//
+//        currentValue += 1;
+//        if (currentValue > maxYear){
+//            moving = false;
+//            currentValue = 0;
+//            clearInterval(timer);
+//            playButton.text("Play");
+//            console.log("Slider moving: " + moving);
+//        }
+//    }
 
 }
 
