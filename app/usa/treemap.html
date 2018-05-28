@@ -61,7 +61,7 @@
 <style>
 
 body {
-  font: 10px sans-serif;
+  font: 20px sans-serif;
   position: relative;
 }
 
@@ -78,9 +78,9 @@ body {
 }
 
 .node-value {
-  color: rgba(0,0,0,0.8);
-  font-size: 9px;
-  margin-top: 1px;
+  color: rgba(255,255,255,0.9);
+  font-size: 60px;
+  margin-top: 40px;
 }
 	.button {
                 background-color: #B8860B;
@@ -124,11 +124,11 @@ body {
 <body>	
 <script>
 
-var width = 960,
-    height = 1060,
+var width = screen.width,
+    height = screen.height,
     maxId = 133,
     minId = 111;
-
+;
 var format = d3.format(",d");
 
 var color = d3.scaleOrdinal()
