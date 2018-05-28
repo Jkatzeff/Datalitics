@@ -10,7 +10,100 @@
         <script src="https://d3js.org/d3-queue.v3.min.js"></script>
         <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
     </head>
+	<style>
+		
+	.button {
+                background-color: #B8860B;
+                border-radius: 20%;
+                width: 15%;
+                color: white;
+                padding: 15px 32px;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 24px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+			.navButton {
+				font-family: 'Crimson Text', serif;
+                background-color: #ff000c;
+                border-radius: 5%;
+                width: 100%;
+                color: white;
+                padding: 15px ;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 24px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+			.sticky {
+				position: fixed;
+				top: 0;
+				width: 100%
+			}
+			.sticky + .content {
+				padding-top: 60px;
+			}
+	</style>
     <body>
+	<!-- this is the navbar-->
+		<style>
+			nav{
+				white-space: nowrap;
+				overflow: auto;
+				height: 100px;
+				width: 100%;
+				background-color: #808080;
+				z-index: 1;
+			}
+			span {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			a {
+				float: left;
+				display: block;
+				text-align: center;
+				padding: 14px;
+				text-decoration: none;
+			}
+			.moveAnistuffs{
+				transform: translate(-650px,200px);
+			}
+		</style>
+		<nav id="navbar" style=text-align:center;>
+			<a href="../index.html"><button class="navButton" id="aboutButton">Landing</button></a>
+			<a href="../gun-violence/gun-violence.html"><button class="navButton" id="startButton">See The Data</button></a>
+            <a href="../home.html"><button class="navButton" id="aboutButton">Home</button></a>
+            <a href= "../world/world.html"><button class = "navButton" id= "worldButton">Population Growth</button></a>
+            <a href= "../usa/index.html"><button class = "navButton" id= "USButton">US States</button></a>
+            <a href= "../usa/treemap.html"><button class = "navButton" id= "treeButton">Tree Visual</button></a>
+            <a href= "../california/cali.html"><button class = "navButton" id= "caliButton">Cali Counties</button></a>
+		</nav>
+		
+		<script>
+			// When the user scrolls the page, execute myFunction 
+			window.onscroll = function() {myFunction()};
+
+			// Get the navbar
+			var navbar = document.getElementById("navbar");
+
+			// Get the offset position of the navbar
+			var sticky = navbar.offsetTop;
+
+			// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+			function myFunction() {
+				if (window.pageYOffset >= sticky) {
+					navbar.classList.add("sticky")
+				} else {
+					navbar.classList.remove("sticky");
+				}
+			}
+		</script>
+	<!-- this is the navbar-->
         <table id="countTable">
   <tr>
     <th>Demographic</th>
