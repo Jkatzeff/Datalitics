@@ -90,19 +90,8 @@
 
 // CSV must include "Year" as a variable
 
-function printGDP(csvFile, year){
-    d3.csv(csvFile, function(data){
-        data.forEach(function(d){
-            if (d["Country Name"] == "United States" || d["Country Name"] == "France" || d["Country Name"] == "Australia"){
-                console.log(d['Country Name'] + ": " + d[year.toString()]);
-            }
-        })
-    })
-}
-
-
 function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
-    var width, height, projection, path, svg, mapLayer, div, max_data, min_data, button
+    var width, height, projection, path, svg, mapLayer, div, max_data, min_data, gdp
         countryInfo = [], 
         currentAttr = 0, 
         animating = false;
@@ -156,7 +145,9 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         mapLayer = g.append("g")
                         .classed("map-layer", true);
         
-        button = d3.select("#play");
+        gdp = svg.append("g")
+                .attr("id", "gdp")
+                .attr("transform", "translate(0, 1300)");
 
         enterFiles();
 
@@ -203,7 +194,7 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
         d3.select('#mapname').html("Current map: " + json_names_arr[current_map])
         drawMap(world);
         
-        slider(svg, projection, data, 1980, 2018, width, button, null);
+//        slider(svg, projection, data, 1980, 2018, width, null, null);
         
     }
     function manageColors(min_data, max_data){
@@ -311,6 +302,8 @@ function makeMap(csvNames,jsonNames,dataName,id_CSV,id_JSON){
                         .style("top", (d3.event.pageY) + "px")
                         .style("opacity", 100); 
     }
+    
+    
     begin();    
 }
 
@@ -346,7 +339,7 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
                     .on("drag", function(){
 //                        your_function();
                         currentValue = Math.round(x.invert(d3.event.x));
-                        printGDP("data/data_gdp_all_countries.csv", currentValue);
+                        drawGdpCircles(currentValue);
                         moveCircle(currentValue, handle, x);
 //                        var yearOf = data.filter(function(d){
 //                            if (d.Year == currentValue){
@@ -405,4 +398,15 @@ function slider(map_svg, projection, data, minYear, maxYear, slider_width, playB
 
 function moveCircle(value, handle, line){
     handle.attr("cx", line(value));
+}
+
+function drawGdpCircles(currentValue){
+    d3.csv("data/data_gdp_all_countries.csv", function(data){
+        data = data.filter(function(row){
+            return (row['Country Name'] == "France" || row['Country Name'] == "United States" || row['Country Name'] == "Australia")
+        });
+        data.forEach(function(d){
+            console.log(d[currentValue.toString()])
+        })
+    })
 }
