@@ -1,6 +1,8 @@
 known bugs:
 3 countriest - other unused countries when projected, shift the project too far off the screen
 	- scaling is off and can't seem to fit on some screens by default
+	- clicking on a country may bring up an overfolwing tooltip
+	- changing map or variable may slow the browser drastically
 nav bar - scrolling becomes veritcal and not horizontal
 	- tree navbar scales wierdly on some pages such as the tree visualization
 home - scollring glitches on home page when using chrome
