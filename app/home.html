@@ -47,6 +47,20 @@
                 margin: 4px 2px;
                 cursor: pointer;
             }
+            .bodyButton{
+                font-family: 'Crimson Text', serif;
+                background-color: #ff000c;
+                border-radius: 5%;
+                color: white;
+                padding: 15px;
+                width: 15%;
+                text-align: left;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 24px;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
 			.sticky {
 				position: fixed;
 				top: 0;
@@ -55,6 +69,17 @@
 			.sticky + .content {
 				padding-top: 60px;
 			}
+            .container{
+                background-color: whitesmoke;
+                text-align: left;
+                font-style: normal;
+                padding-left: 10px;
+                padding-right: 10px;
+                color: black;
+                width: 100%;
+                height: auto;
+                flex: auto;
+            }
 		</style>
 	</head>
 	<body>
@@ -119,6 +144,7 @@
 		<h1 class="banner2" style="font-size:25px;font:arial;font-style:italic;position:relative;vertical-align:middle;"><font face="helvetica">Amazing analytics at the tip of your fingers.</font></span><br clear="all" />
 		
 			<p class="about"><span style="font-size:30px;font:helvetica;color:white"><font face="helvetica">About Us:</font> </span></p>
+        <div class="container">
 		<p>
 			<font face="helvetica">
 			The Datalitics project is an attempt to bring visual meaning to select large numbers. Humans are great at quickly understanding visual representations.
@@ -129,9 +155,50 @@
 		</p>
 		<p>
 			<font face="helvetica">
-			At the moment, we have decided to focus on the topic of gun violence because it is a topical issue that is important to many Americans in this day and age.
+			At the moment, we have decided to focus on the topic of mass shootings because it is a topical issue that is important to many Americans in this day and age.
 			</font>
 		</p>
+        </div>
+        <hr>
+        <div class="container">
+            <p>
+			 <font face="helvetica">
+                 3 Country comparison - This visualization displays three major developed countries side by side, Australia, USA and, France. This visualization is based on geographical locations, color changes and, time. The page is by default tied to a dataset on deaths per capita for the three countries. The page has the ability to switch between datasets in the datasets folder.
+			 </font>
+            </p>
+        </div>
+        <hr>
+        <div class="container">
+            <p>
+			 <font face="helvetica">
+                 Grouping visualization - This visualization makes use of size, color, and group organization. The visualziation makes use of tree formated CSVs. It turns the tree CSV into a visualization by grouping values of the same parent into one color together and setting the size of each based on the numerical value they contain. Any single root CSV can be implemented in this visaulzation if it has one of its parameters named "value". The visualization is by default projecting a breakdown of mass shooting in the USA state by state.
+			 </font>
+            </p>
+        </div>
+        <hr>
+        <div class="container">
+            <p>
+			 <font face="helvetica">
+                 California - This visualization is an example of color, size, time and, geography. The visualzation includes a map projection of california split up by counties. The visualization is tied to a dataset of demographic breakdown of each California county over the span of a few decades. Upon selecting a county, an animation comes up with differnet color circles representative of the size of each different demographic.
+			 </font>
+            </p>
+        </div>
+        <hr>
+        <div class="container">
+            <p>
+			 <font face="helvetica">
+                 World - This visualization is an example of geography and time. It is tied to population growth over time in all countries. This was a prototype for the main three country visualization.
+			 </font>
+            </p>
+        </div>
+        <hr>
+        <div class="container">
+            <p>
+			 <font face="helvetica">
+                 USA - This visualization is an example of geographic locations within the US, size, and time. It is tied to a dataset containing times, locations and, victim count of mass shooting in the US. It has the ability to traverse through the time variable automatically as well as interactively through a slider.
+			 </font>
+            </p>
+        </div>
 		<p class="about"><span style="font-size:30px;font:helvetica;color:white"><font face="helvetica">The DataLitics Team:</font> </span></p>
 		<p>
 			-Brian Liu<br>
